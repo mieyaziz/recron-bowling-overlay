@@ -3,23 +3,683 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>RECRON • Team Showcase</title>
+<title>RECRON • Team Showcase Premium</title>
+
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;font-family:Arial,Helvetica,sans-serif;color:#fff}body{display:flex;align-items:flex-end;justify-content:center}.stage{width:100%;height:100%;padding:18px;display:flex;align-items:flex-end;justify-content:center}.panel{width:100%;max-width:720px;min-height:66%;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:linear-gradient(160deg,rgba(10,12,18,.96),rgba(25,27,34,.94));box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px rgba(255,255,255,.12);overflow:hidden;position:relative}.glow{position:absolute;inset:auto -20% 70% -20%;height:180px;background:radial-gradient(circle,rgba(214,173,47,.2),transparent 65%);pointer-events:none}.head{padding:20px 22px 15px;position:relative}.brand{font-size:13px;font-weight:900;letter-spacing:4px;color:#d6ad2f}.event{font-size:12px;letter-spacing:1.5px;color:#aeb3bc;margin-top:5px}.show{display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px}.eyebrow{font-size:10px;letter-spacing:2px;color:#9298a3;text-transform:uppercase}.team{font-size:34px;font-weight:950;line-height:1.05;margin-top:4px;letter-spacing:.3px}.rank{font-size:12px;color:#d6ad2f;font-weight:800;text-align:right}.rule{height:2px;background:linear-gradient(90deg,#d6ad2f,rgba(214,173,47,0));margin:0 22px}.players{padding:14px 16px 10px}.player{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:13px 8px;margin:6px 0;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:rgba(255,255,255,.045)}.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:12px;background:#242731;color:#d6ad2f}.name{font-size:14px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.section{font-size:9px;color:#858b96;margin-top:3px;letter-spacing:.3px}.score{text-align:right;font-size:20px;font-weight:950}.games{font-size:8px;color:#818793;margin-top:2px;white-space:nowrap}.summary{margin:4px 16px 0;padding:15px 16px;border-radius:17px;background:linear-gradient(90deg,rgba(214,173,47,.15),rgba(255,255,255,.045));border:1px solid rgba(214,173,47,.35);display:flex;justify-content:space-between;align-items:center}.summary small{font-size:9px;letter-spacing:1.7px;color:#a7acb5}.total{font-size:29px;font-weight:950;color:#fff}.footer{display:flex;justify-content:space-between;padding:12px 22px 17px;color:#707681;font-size:8px;letter-spacing:1px}.status{color:#d6ad2f}.empty{height:300px;display:grid;place-items:center;color:#a0a5ae;font-size:14px}.fade{animation:fade .45s ease}@keyframes fade{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}@media(max-height:700px){.panel{min-height:78%}.team{font-size:27px}.player{padding:9px 8px}.head{padding-top:14px}.summary{padding:10px 14px}.total{font-size:24px}}
+:root{
+  --gold:#d7b24a;
+  --gold2:#f0d27a;
+  --white:#fff;
+  --muted:#a9adb7;
+  --panel:rgba(12,14,20,.94);
+  --card:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.11);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:transparent;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--white);
+}
+
+body{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.stage{
+  width:100%;
+  height:100%;
+  padding:18px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.panel{
+  width:min(720px,100%);
+  min-height:66%;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 80% 0%,rgba(215,178,74,.13),transparent 34%),
+    linear-gradient(145deg,rgba(8,10,15,.98),rgba(25,27,34,.96));
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.58),
+    inset 0 1px rgba(255,255,255,.12);
+}
+
+.panel:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(120deg,transparent 0%,rgba(255,255,255,.025) 45%,transparent 55%);
+}
+
+.glow{
+  position:absolute;
+  width:420px;
+  height:260px;
+  top:-150px;
+  right:-80px;
+  background:radial-gradient(circle,rgba(215,178,74,.25),transparent 68%);
+  pointer-events:none;
+}
+
+.header{
+  position:relative;
+  padding:20px 22px 14px;
+}
+
+.brand{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:5px;
+  color:var(--gold2);
+}
+
+.event{
+  margin-top:5px;
+  font-size:9px;
+  letter-spacing:1.8px;
+  color:#858b97;
+}
+
+.hero{
+  margin-top:17px;
+  display:grid;
+  grid-template-columns:74px 1fr auto;
+  gap:14px;
+  align-items:center;
+}
+
+.logo{
+  width:68px;
+  height:68px;
+  border-radius:19px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:1px solid rgba(215,178,74,.48);
+  background:
+    radial-gradient(circle,rgba(215,178,74,.18),transparent 68%),
+    rgba(255,255,255,.045);
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:5px;
+}
+
+.logoFallback{
+  font-size:22px;
+  font-weight:950;
+  color:var(--gold2);
+}
+
+.kicker{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:2.3px;
+  color:#858b96;
+}
+
+.team{
+  margin-top:4px;
+  font-size:32px;
+  line-height:1.04;
+  font-weight:950;
+  letter-spacing:.2px;
+}
+
+.rankBox{
+  text-align:right;
+}
+
+.rankLabel{
+  font-size:8px;
+  letter-spacing:1.8px;
+  color:#858b96;
+  text-transform:uppercase;
+}
+
+.rank{
+  margin-top:2px;
+  font-size:25px;
+  line-height:1;
+  font-weight:950;
+  color:var(--gold2);
+}
+
+.rankSub{
+  margin-top:4px;
+  font-size:8px;
+  color:#777d88;
+}
+
+.rule{
+  height:1px;
+  margin:0 22px;
+  background:linear-gradient(90deg,var(--gold),rgba(215,178,74,0));
+  box-shadow:0 0 14px rgba(215,178,74,.2);
+}
+
+.players{
+  padding:13px 16px 9px;
+}
+
+.player{
+  position:relative;
+  display:grid;
+  grid-template-columns:38px 1fr auto;
+  gap:10px;
+  align-items:center;
+  min-height:58px;
+  margin:6px 0;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:
+    linear-gradient(100deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  box-shadow:inset 0 1px rgba(255,255,255,.035);
+}
+
+.player.top{
+  border-color:rgba(215,178,74,.36);
+  background:
+    linear-gradient(100deg,rgba(215,178,74,.12),rgba(255,255,255,.035));
+}
+
+.num{
+  width:29px;
+  height:29px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:950;
+  color:var(--gold2);
+  background:#252832;
+  border:1px solid rgba(215,178,74,.28);
+}
+
+.player.top .num{
+  background:linear-gradient(145deg,#f0d27a,#a47b22);
+  color:#111;
+  border:0;
+}
+
+.name{
+  font-size:13px;
+  line-height:1.15;
+  font-weight:850;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.section{
+  margin-top:3px;
+  font-size:8px;
+  color:#777e89;
+  letter-spacing:.4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.scoreWrap{
+  text-align:right;
+  min-width:88px;
+}
+
+.score{
+  font-size:20px;
+  line-height:1;
+  font-weight:950;
+}
+
+.games{
+  margin-top:4px;
+  font-size:7px;
+  color:#777e89;
+  letter-spacing:.25px;
+  white-space:nowrap;
+}
+
+.summary{
+  margin:4px 16px 0;
+  padding:13px 16px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:1px solid rgba(215,178,74,.4);
+  background:
+    linear-gradient(100deg,rgba(215,178,74,.14),rgba(255,255,255,.045));
+  box-shadow:inset 0 1px rgba(255,255,255,.05);
+}
+
+.summaryLabel{
+  font-size:8px;
+  letter-spacing:2px;
+  color:#a7acb5;
+}
+
+.summarySub{
+  margin-top:4px;
+  font-size:7px;
+  color:#6f7580;
+  letter-spacing:.7px;
+}
+
+.total{
+  font-size:31px;
+  line-height:1;
+  font-weight:950;
+}
+
+.footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 22px 16px;
+  font-size:7px;
+  letter-spacing:1.2px;
+  color:#626873;
+}
+
+.live{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--gold2);
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#e5b93f;
+  box-shadow:0 0 10px rgba(229,185,63,.8);
+  animation:pulse 1.5s infinite;
+}
+
+.progress{
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:2px;
+  width:100%;
+  transform-origin:left;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+}
+
+.empty{
+  height:270px;
+  display:grid;
+  place-items:center;
+  color:#9298a3;
+  font-size:12px;
+}
+
+.animOut{
+  animation:out .28s ease forwards;
+}
+
+.animIn{
+  animation:in .5s cubic-bezier(.2,.75,.25,1) forwards;
+}
+
+@keyframes in{
+  from{opacity:0;transform:translateX(24px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+@keyframes out{
+  from{opacity:1;transform:translateX(0)}
+  to{opacity:0;transform:translateX(-18px)}
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.72)}
+}
+
+@media(max-height:700px){
+  .panel{min-height:78%}
+  .header{padding-top:14px}
+  .hero{margin-top:12px}
+  .team{font-size:27px}
+  .logo{width:58px;height:58px}
+  .player{min-height:50px;padding:7px 9px}
+  .players{padding-top:9px}
+  .summary{padding:10px 14px}
+  .total{font-size:25px}
+}
+
+@media(max-width:480px){
+  .stage{padding:10px}
+  .panel{border-radius:24px}
+  .team{font-size:26px}
+  .hero{grid-template-columns:60px 1fr auto;gap:10px}
+  .logo{width:56px;height:56px;border-radius:15px}
+  .rank{font-size:20px}
+  .name{font-size:12px}
+  .score{font-size:18px}
+}
 </style>
 </head>
+
 <body>
-<div class="stage"><div class="panel" id="panel"><div class="glow"></div><div class="head"><div class="brand">RECRON</div><div class="event">INTERPLANT BOWLING TOURNAMENT 2026</div><div class="show"><div><div class="eyebrow">TEAM / GROUP SHOWCASE</div><div class="team" id="team">Loading...</div></div><div class="rank" id="rank">-- / --</div></div></div><div class="rule"></div><div class="players" id="players"><div class="empty">Memuatkan data...</div></div><div class="summary"><div><small>TEAM TOTAL</small></div><div class="total" id="total">0</div></div><div class="footer"><span class="status">● LIVE SCORE</span><span id="updated">--</span></div></div></div>
+<div class="stage">
+  <div class="panel" id="panel">
+    <div class="glow"></div>
+
+    <div class="header">
+      <div class="brand">RECRON</div>
+      <div class="event">INTERPLANT BOWLING TOURNAMENT 2026</div>
+
+      <div class="hero">
+        <div class="logo" id="logo"></div>
+
+        <div>
+          <div class="kicker">Team / Group Showcase</div>
+          <div class="team" id="team">Loading...</div>
+        </div>
+
+        <div class="rankBox">
+          <div class="rankLabel">Team Rank</div>
+          <div class="rank" id="rank">--</div>
+          <div class="rankSub" id="rankSub">-- / --</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="players" id="players">
+      <div class="empty">Memuatkan data...</div>
+    </div>
+
+    <div class="summary">
+      <div>
+        <div class="summaryLabel">TEAM TOTAL</div>
+        <div class="summarySub" id="playerCount">4 PLAYERS</div>
+      </div>
+      <div class="total" id="total">0</div>
+    </div>
+
+    <div class="footer">
+      <div class="live"><span class="dot"></span> LIVE SCORE</div>
+      <div id="updated">UPDATED --</div>
+    </div>
+
+    <div class="progress" id="progress"></div>
+  </div>
+</div>
+
 <script>
-const API_URL='https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec?page=api_teamgroup';
-let groups=[],current=0,timer=null,lastUpdated='--';
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function jsonp(){return new Promise((resolve,reject)=>{const cb='teamGroupCB_'+Date.now();const s=document.createElement('script');let done=false;window[cb]=d=>{done=true;cleanup();resolve(d)};s.src=API_URL+'&callback='+cb+'&_='+Date.now();s.onerror=()=>{if(!done){cleanup();reject(new Error('API error'))}};document.body.appendChild(s);function cleanup(){try{s.remove()}catch(e){}try{delete window[cb]}catch(e){window[cb]=undefined}};setTimeout(()=>{if(!done){cleanup();reject(new Error('Timeout'))}},10000)})}
-function render(){if(!groups.length){document.getElementById('team').textContent='TIADA TEAM';document.getElementById('players').innerHTML='<div class="empty">Belum ada data team</div>';document.getElementById('total').textContent='0';return}const g=groups[current%groups.length];const p=document.getElementById('panel');p.classList.remove('fade');void p.offsetWidth;p.classList.add('fade');document.getElementById('team').textContent=g.team||'TEAM';document.getElementById('rank').textContent=(current%groups.length+1)+' / '+groups.length;document.getElementById('total').textContent=Number(g.total||0).toLocaleString('en-US');document.getElementById('updated').textContent='UPDATED '+lastUpdated;document.getElementById('players').innerHTML=(g.players||[]).slice(0,4).map((x,i)=>`<div class="player"><div class="num">${i+1}</div><div><div class="name">${esc(x.nama)}</div><div class="section">${esc(x.section||'')}</div></div><div><div class="score">${Number(x.total||0)}</div><div class="games">G1 ${Number(x.g1||0)} • G2 ${Number(x.g2||0)} • G3 ${Number(x.g3||0)}</div></div></div>`).join('')||'<div class="empty">Belum ada pemain</div>'}
-async function load(){try{const r=await jsonp();if(r&&r.success){groups=Array.isArray(r.groups)?r.groups:[];lastUpdated=r.updated?String(r.updated).split(' ')[1]||String(r.updated):new Date().toLocaleTimeString('ms-MY');if(current>=groups.length)current=0;render();}else{throw new Error('Invalid data')}}catch(e){if(!groups.length)document.getElementById('players').innerHTML='<div class="empty">Menunggu sambungan live...</div>'}}
-function next(){if(groups.length){current=(current+1)%groups.length;render()}}
-function prev(){if(groups.length){current=(current-1+groups.length)%groups.length;render()}}
-load();setInterval(load,5000);timer=setInterval(next,8000);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec?page=api_teamgroup';
+
+/*
+  LOGO TEAM
+  -------------------------
+  API semasa tidak menghantar URL logo.
+  Jadi kita sediakan ruang mapping di sini.
+
+  Contoh:
+  const TEAM_LOGOS = {
+    "Mama Hot": "https://...",
+    "RC Squad": "https://...",
+  };
+
+  Kalau tiada URL, sistem automatik buat logo inisial.
+*/
+const TEAM_LOGOS = {
+  // "Mama Hot": "URL-LOGO-MAMA-HOT",
+  // "RC Squad": "URL-LOGO-RC-SQUAD",
+  // "Bidadari Lanes": "URL-LOGO-BIDADARI-LANES",
+  // "Star": "URL-LOGO-STAR",
+};
+
+const SLIDE_MS = 8000;
+const REFRESH_MS = 5000;
+
+let groups = [];
+let current = 0;
+let slideTimer = null;
+let lastUpdated = '--';
+
+function esc(v){
+  return String(v ?? '').replace(/[&<>"']/g, m => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[m]));
+}
+
+function initials(name){
+  const words = String(name || 'TEAM')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if(words.length === 1) return words[0].slice(0,2).toUpperCase();
+
+  return (words[0][0] + words[1][0]).toUpperCase();
+}
+
+function renderLogo(team){
+  const box = document.getElementById('logo');
+  const url = TEAM_LOGOS[team];
+
+  if(url){
+    box.innerHTML =
+      '<img src="' + esc(url) + '" alt="' + esc(team) +
+      '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'">' +
+      '<div class="logoFallback" style="display:none">' +
+      esc(initials(team)) + '</div>';
+  }else{
+    box.innerHTML =
+      '<div class="logoFallback">' + esc(initials(team)) + '</div>';
+  }
+}
+
+function render(){
+  if(!groups.length){
+    document.getElementById('team').textContent = 'TIADA TEAM';
+    document.getElementById('rank').textContent = '--';
+    document.getElementById('rankSub').textContent = '-- / --';
+    document.getElementById('players').innerHTML =
+      '<div class="empty">Belum ada data team</div>';
+    document.getElementById('total').textContent = '0';
+    document.getElementById('playerCount').textContent = '0 PLAYERS';
+    renderLogo('');
+    return;
+  }
+
+  const g = groups[current % groups.length];
+
+  const panel = document.getElementById('panel');
+  panel.classList.remove('animOut','animIn');
+  void panel.offsetWidth;
+  panel.classList.add('animIn');
+
+  const rank = current % groups.length + 1;
+  const playerList = Array.isArray(g.players) ? g.players.slice(0,4) : [];
+
+  document.getElementById('team').textContent = g.team || 'TEAM';
+  document.getElementById('rank').textContent = '#' + rank;
+  document.getElementById('rankSub').textContent =
+    rank + ' / ' + groups.length;
+
+  document.getElementById('total').textContent =
+    Number(g.total || 0).toLocaleString('en-US');
+
+  document.getElementById('playerCount').textContent =
+    playerList.length + ' PLAYERS';
+
+  document.getElementById('updated').textContent =
+    'UPDATED ' + lastUpdated;
+
+  renderLogo(g.team || '');
+
+  document.getElementById('players').innerHTML =
+    playerList.map((x,i) => {
+      const total = Number(x.total || 0);
+      const isTop = i === 0 && total > 0;
+
+      return `
+        <div class="player ${isTop ? 'top' : ''}">
+          <div class="num">${i+1}</div>
+
+          <div>
+            <div class="name">${esc(x.nama || '')}</div>
+            <div class="section">${esc(x.section || '—')}</div>
+          </div>
+
+          <div class="scoreWrap">
+            <div class="score">${total.toLocaleString('en-US')}</div>
+            <div class="games">
+              G1 ${Number(x.g1 || 0)}
+              • G2 ${Number(x.g2 || 0)}
+              • G3 ${Number(x.g3 || 0)}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('') ||
+    '<div class="empty">Belum ada pemain</div>';
+
+  resetProgress();
+}
+
+function resetProgress(){
+  const p = document.getElementById('progress');
+  p.style.transition = 'none';
+  p.style.transform = 'scaleX(1)';
+  void p.offsetWidth;
+  p.style.transition = 'transform ' + SLIDE_MS + 'ms linear';
+  p.style.transform = 'scaleX(0)';
+}
+
+function next(){
+  if(!groups.length) return;
+
+  current = (current + 1) % groups.length;
+  render();
+}
+
+function prev(){
+  if(!groups.length) return;
+
+  current = (current - 1 + groups.length) % groups.length;
+  render();
+}
+
+function jsonp(){
+  return new Promise((resolve,reject)=>{
+    const cb = 'teamGroupPremiumCB_' + Date.now();
+    const script = document.createElement('script');
+    let done = false;
+
+    window[cb] = data => {
+      done = true;
+      cleanup();
+      resolve(data);
+    };
+
+    script.src =
+      API_URL +
+      '&callback=' + encodeURIComponent(cb) +
+      '&_=' + Date.now();
+
+    script.onerror = () => {
+      if(!done){
+        cleanup();
+        reject(new Error('API error'));
+      }
+    };
+
+    document.body.appendChild(script);
+
+    setTimeout(()=>{
+      if(!done){
+        cleanup();
+        reject(new Error('Timeout'));
+      }
+    },10000);
+
+    function cleanup(){
+      try{ script.remove(); }catch(e){}
+      try{ delete window[cb]; }catch(e){ window[cb] = undefined; }
+    }
+  });
+}
+
+async function load(){
+  try{
+    const data = await jsonp();
+
+    if(!data || data.success !== true){
+      throw new Error('Invalid API response');
+    }
+
+    groups = Array.isArray(data.groups) ? data.groups : [];
+
+    if(data.updated){
+      const parts = String(data.updated).split(' ');
+      lastUpdated = parts[1] || String(data.updated);
+    }else{
+      lastUpdated = new Date().toLocaleTimeString('ms-MY');
+    }
+
+    if(current >= groups.length) current = 0;
+
+    render();
+
+  }catch(err){
+    console.warn('Team Showcase:', err);
+
+    if(!groups.length){
+      document.getElementById('team').textContent = 'LIVE SCORE';
+      document.getElementById('players').innerHTML =
+        '<div class="empty">Menunggu sambungan live...</div>';
+    }
+  }
+}
+
+function restartSlideTimer(){
+  clearInterval(slideTimer);
+  slideTimer = setInterval(next, SLIDE_MS);
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight') next();
+  if(e.key === 'ArrowLeft') prev();
+});
+
+load();
+restartSlideTimer();
+setInterval(load, REFRESH_MS);
 </script>
 </body>
 </html>
