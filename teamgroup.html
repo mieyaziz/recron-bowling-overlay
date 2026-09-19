@@ -84,105 +84,72 @@ body{display:flex;align-items:flex-end;justify-content:center}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .empty{padding:35px;text-align:center;color:var(--muted)}
 @media(max-width:800px){
-  html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
-  body{display:block;padding:12px 0 20px}
-  .overlay{
-    width:calc(100vw - 20px);
-    margin:0 auto;
-    border-radius:22px;
+  /* Mobile: keep player name on one line; scores sit directly underneath */
+  .player-row{
+    display:grid !important;
+    grid-template-columns:56px minmax(0,1fr) !important;
+    grid-template-rows:auto auto !important;
+    column-gap:10px !important;
+    row-gap:8px !important;
+    align-items:center !important;
+    min-width:0 !important;
   }
-  .header{
-    grid-template-columns:72px minmax(0,1fr);
-    gap:12px;
-    padding:16px 16px 14px;
+
+  .player-rank,.player-medal{
+    grid-column:1 !important;
+    grid-row:1 / span 2 !important;
   }
-  .logo{width:68px;height:68px;border-radius:14px}
-  .logo img{max-width:64px;max-height:64px}
-  .logoFallback{font-size:20px}
-  .eyebrow{font-size:9px;letter-spacing:1.5px;line-height:1.35}
-  .teamName{font-size:clamp(25px,8vw,38px);line-height:1.02;margin-top:5px}
-  .subtitle{font-size:10px;line-height:1.35;letter-spacing:1px;margin-top:7px}
-  .rankBox{
-    grid-column:2;
-    text-align:left;
-    min-width:0;
-    display:flex;
-    align-items:baseline;
-    gap:7px;
-    margin-top:-2px;
+
+  .player-info{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    min-width:0 !important;
+    overflow:hidden !important;
   }
-  .rankLabel{font-size:8px}
-  .rank{font-size:25px}
-  .rankTotal{font-size:9px;margin-top:0}
-  .content{padding:12px 10px 12px}
-  .tableHead{display:none}
-  .player{
-    display:grid;
-    grid-template-columns:30px minmax(0,1fr);
-    grid-template-rows:auto auto;
-    column-gap:8px;
-    row-gap:5px;
-    min-height:0;
-    padding:11px 10px 10px;
-    margin-bottom:5px;
-    border-radius:12px;
+
+  .player-name{
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    display:block !important;
+    line-height:1.15 !important;
   }
-  .medal{
-    grid-column:1;
-    grid-row:1 / span 2;
-    align-self:center;
-    font-size:18px;
+
+  .player-section{
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    line-height:1.15 !important;
   }
-  .playerName{
-    grid-column:2;
-    grid-row:1;
-    font-size:14px;
-    line-height:1.2;
-    overflow-wrap:anywhere;
+
+  .player-scores{
+    grid-column:2 !important;
+    grid-row:2 !important;
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:7px !important;
+    width:100% !important;
+    min-width:0 !important;
   }
-  .section{
-    margin-top:2px;
-    font-size:8px;
-    line-height:1.1;
+
+  .score-box{
+    min-width:0 !important;
+    width:100% !important;
+    padding:7px 4px !important;
+    text-align:center !important;
+    white-space:nowrap !important;
   }
-  .player > .scoreCell,
-  .player > .totalCell{
-    grid-row:2;
-    min-width:0;
-    padding:5px 5px 4px;
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:7px;
-    font-size:11px;
-    text-align:center;
+
+  .score-label,.score-value{
+    display:inline !important;
   }
-  .player > .scoreCell:nth-of-type(2){grid-column:2}
-  .player > .scoreCell:nth-of-type(3){grid-column:2}
-  .player > .scoreCell:nth-of-type(4){grid-column:2}
-  .player > .totalCell{
-    grid-column:2;
+
+  .score-label{margin-right:3px !important}
+
+  .team-card,.player-card,.players{
+    max-width:100% !important;
+    overflow:hidden !important;
   }
-  .player{
-    grid-template-columns:30px repeat(4,minmax(0,1fr));
-  }
-  .playerName,.section{
-    grid-column:2 / 6;
-  }
-  .player > .scoreCell:nth-of-type(2){grid-column:2}
-  .player > .scoreCell:nth-of-type(3){grid-column:3}
-  .player > .scoreCell:nth-of-type(4){grid-column:4}
-  .player > .totalCell{grid-column:5}
-  .player > .scoreCell:nth-of-type(2)::before{content:"G1 ";color:#778398;font-size:8px;font-weight:900}
-  .player > .scoreCell:nth-of-type(3)::before{content:"G2 ";color:#778398;font-size:8px;font-weight:900}
-  .player > .scoreCell:nth-of-type(4)::before{content:"G3 ";color:#778398;font-size:8px;font-weight:900}
-  .player > .totalCell::before{content:"TOT ";color:var(--gold);font-size:8px;font-weight:900}
-  .bottom{
-    padding:12px 16px;
-    gap:12px;
-  }
-  .totalLabel{font-size:9px}
-  .teamTotal{font-size:28px}
-  .live{font-size:9px;letter-spacing:1px}
-  .updated{font-size:8px}
 }
 </style>
 </head>
