@@ -1,524 +1,157 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RECRON • Attendance</title>
-
-  <style>
-    *{box-sizing:border-box}
-
-    html,body{
-      margin:0;
-      padding:0;
-      min-height:100%;
-      font-family:Arial,Helvetica,sans-serif;
-      background:#080d14;
-      color:#f5f7fb;
-    }
-
-    body{padding:24px 14px}
-
-    .container{
-      width:min(1180px,100%);
-      margin:auto;
-    }
-
-    .card{
-      overflow:hidden;
-      border:1px solid rgba(255,193,7,.42);
-      border-radius:24px;
-      background:
-        radial-gradient(circle at top right,rgba(255,193,7,.08),transparent 30%),
-        linear-gradient(180deg,#151c26 0%,#0d141e 100%);
-      box-shadow:0 25px 80px rgba(0,0,0,.45);
-    }
-
-    .header{
-      position:relative;
-      padding:30px 28px 24px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .home{
-      position:absolute;
-      top:18px;
-      right:20px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height:34px;
-      padding:0 15px;
-      border:1px solid rgba(255,193,7,.55);
-      border-radius:999px;
-      color:#ffd54f;
-      background:rgba(255,193,7,.04);
-      font-size:10px;
-      font-weight:900;
-      letter-spacing:1px;
-      text-decoration:none;
-    }
-
-    .home:hover{background:rgba(255,193,7,.12)}
-
-    .eyebrow{
-      margin-bottom:8px;
-      color:#ffc107;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:3px;
-      text-transform:uppercase;
-    }
-
-    .title{
-      margin:0;
-      color:#f7f8fb;
-      font-size:clamp(32px,6vw,52px);
-      line-height:1;
-      font-weight:900;
-      letter-spacing:-1.5px;
-    }
-
-    .subtitle{
-      margin-top:12px;
-      color:#9faabd;
-      font-size:12px;
-      font-weight:600;
-    }
-
-    .summary{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      padding:20px 28px 0;
-    }
-
-    .summary-box{
-      min-height:100px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding:18px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      background:rgba(255,255,255,.035);
-    }
-
-    .summary-label{
-      color:#8e9aab;
-      font-size:9px;
-      font-weight:900;
-      letter-spacing:1.5px;
-      text-transform:uppercase;
-    }
-
-    .summary-number{
-      margin-top:7px;
-      color:#ffc52b;
-      font-size:34px;
-      line-height:1;
-      font-weight:900;
-    }
-
-    .present .summary-number{color:#66e3a4}
-    .absent .summary-number{color:#ff9d9d}
-
-    .controls{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:22px 28px 18px;
-    }
-
-    .search{
-      width:100%;
-      height:44px;
-      padding:0 16px;
-      outline:none;
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:12px;
-      color:#f5f7fb;
-      background:rgba(255,255,255,.045);
-      font-size:13px;
-    }
-
-    .search::placeholder{color:#6f7b8c}
-    .search:focus{border-color:rgba(255,193,7,.5)}
-
-    .refresh{
-      flex:0 0 auto;
-      height:44px;
-      padding:0 18px;
-      border:1px solid rgba(255,193,7,.5);
-      border-radius:12px;
-      color:#ffd54f;
-      background:rgba(255,193,7,.04);
-      font-size:10px;
-      font-weight:900;
-      cursor:pointer;
-    }
-
-    .refresh:hover{background:rgba(255,193,7,.1)}
-
-    .table-wrap{
-      padding:0 28px 26px;
-      overflow-x:auto;
-    }
-
-    table{
-      width:100%;
-      min-width:720px;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:14px;
-    }
-
-    th{
-      padding:13px 14px;
-      color:#8995a7;
-      background:rgba(255,255,255,.035);
-      font-size:9px;
-      font-weight:900;
-      letter-spacing:1px;
-      text-align:left;
-      text-transform:uppercase;
-      border-bottom:1px solid rgba(255,255,255,.07);
-    }
-
-    td{
-      padding:13px 14px;
-      color:#dce3ed;
-      font-size:12px;
-      border-bottom:1px solid rgba(255,255,255,.055);
-    }
-
-    tr:last-child td{border-bottom:none}
-    tbody tr:hover{background:rgba(255,255,255,.025)}
-
-    .id{
-      color:#9da9ba;
-      font-family:Consolas,monospace;
-      font-size:11px;
-    }
-
-    .name{color:#fff;font-weight:800}
-    .section{color:#aeb9c9}
-    .team{color:#d5ddea;font-weight:700}
-
-    .status{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:92px;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:9px;
-      font-weight:900;
-      letter-spacing:.5px;
-    }
-
-    .status.present{
-      color:#72efae;
-      background:rgba(50,205,130,.1);
-      border:1px solid rgba(50,205,130,.2);
-    }
-
-    .status.absent{
-      color:#ff9d9d;
-      background:rgba(255,90,90,.08);
-      border:1px solid rgba(255,90,90,.16);
-    }
-
-    .status.other{
-      color:#ffd76a;
-      background:rgba(255,193,7,.08);
-      border:1px solid rgba(255,193,7,.16);
-    }
-
-    .message{
-      padding:40px 20px!important;
-      color:#7f8b9d;
-      text-align:center;
-    }
-
-    .error{color:#ff9d9d!important}
-
-    .footer{
-      padding:16px 28px;
-      border-top:1px solid rgba(255,255,255,.07);
-      color:#697587;
-      font-size:9px;
-      letter-spacing:.5px;
-    }
-
-    @media(max-width:700px){
-      body{padding:10px}
-      .card{border-radius:18px}
-      .header{padding:26px 18px 20px}
-      .home{top:13px;right:13px}
-      .summary{
-        grid-template-columns:repeat(3,1fr);
-        gap:7px;
-        padding:15px 14px 0;
-      }
-      .summary-box{min-height:78px;padding:12px}
-      .summary-number{font-size:25px}
-      .summary-label{font-size:7px;letter-spacing:.8px}
-      .controls{padding:16px 14px 14px}
-      .refresh{padding:0 12px}
-      .table-wrap{padding:0 14px 20px}
-      .footer{padding:14px}
-    }
-
-    @media(max-width:430px){
-      .title{font-size:34px}
-      .controls{flex-direction:column;align-items:stretch}
-      .refresh{width:100%}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECRON • Attendance</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#080d14;color:#f5f7fb}
+body{padding:18px 12px}
+.container{width:min(1100px,100%);margin:auto}
+.card{overflow:hidden;border:1px solid rgba(255,193,7,.38);border-radius:22px;background:linear-gradient(180deg,#151c26,#0d141e);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.header{position:relative;padding:25px 24px 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.home{position:absolute;top:17px;right:18px;padding:8px 13px;border:1px solid rgba(255,193,7,.45);border-radius:999px;color:#ffd54f;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:.8px}
+.eyebrow{margin-bottom:7px;color:#ffc107;font-size:10px;font-weight:900;letter-spacing:2.5px}
+.title{margin:0;font-size:clamp(30px,6vw,48px);line-height:1;font-weight:900;letter-spacing:-1px}
+.subtitle{margin-top:9px;color:#929daf;font-size:12px;font-weight:600}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 24px 0}
+.summary-box{min-height:78px;padding:14px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.035)}
+.summary-label{color:#8995a7;font-size:8px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.summary-number{margin-top:6px;font-size:28px;line-height:1;font-weight:900;color:#ffc52b}
+.summary-box.present .summary-number{color:#66e3a4}
+.summary-box.absent .summary-number{color:#ff9d9d}
+.summary-box.rate .summary-number{color:#7fc7ff}
+.controls{display:flex;gap:9px;padding:16px 24px 12px}
+.search{width:100%;height:42px;padding:0 14px;outline:none;border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;background:rgba(255,255,255,.045);font-size:12px}
+.search::placeholder{color:#687587}
+.search:focus{border-color:rgba(255,193,7,.5)}
+.refresh{height:42px;padding:0 16px;border:1px solid rgba(255,193,7,.45);border-radius:11px;color:#ffd54f;background:rgba(255,193,7,.04);font-size:9px;font-weight:900;cursor:pointer;white-space:nowrap}
+.list{padding:0 24px 20px}
+.person{display:flex;align-items:center;gap:12px;margin-top:7px;padding:12px 13px;border:1px solid rgba(255,255,255,.065);border-radius:13px;background:rgba(255,255,255,.025)}
+.person.present{border-color:rgba(55,220,135,.28);background:rgba(45,205,125,.075)}
+.number{width:24px;color:#687587;font-size:10px;font-weight:900;text-align:center;flex:0 0 24px}
+.info{min-width:0;flex:1}
+.name{overflow:hidden;color:#fff;font-size:14px;font-weight:900;white-space:nowrap;text-overflow:ellipsis}
+.team{margin-top:4px;color:#8f9bad;font-size:10px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person.present .team{color:#9bdab9}
+.status{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:105px;padding:7px 10px;border-radius:999px;font-size:8px;font-weight:900;letter-spacing:.5px;flex:0 0 auto}
+.status.present{color:#72efae;background:rgba(50,205,130,.1);border:1px solid rgba(50,205,130,.22)}
+.status.absent{color:#ff9d9d;background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.17)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.message{padding:35px 10px;color:#778395;text-align:center;font-size:11px}
+.error{color:#ff9d9d}
+.footer{padding:14px 24px;border-top:1px solid rgba(255,255,255,.06);color:#687587;font-size:8px;letter-spacing:.4px}
+@media(max-width:650px){
+ body{padding:9px}
+ .card{border-radius:17px}
+ .header{padding:22px 16px 17px}
+ .home{top:12px;right:12px}
+ .summary{grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 12px 0}
+ .summary-box{min-height:67px;padding:10px 8px}
+ .summary-label{font-size:6px;letter-spacing:.5px}
+ .summary-number{font-size:22px}
+ .controls{padding:13px 12px 8px}
+ .list{padding:0 12px 16px}
+ .person{padding:10px 9px;gap:8px}
+ .number{display:none}
+ .name{font-size:13px}
+ .team{font-size:9px}
+ .status{min-width:90px;padding:7px 7px;font-size:7px}
+ .footer{padding:12px}
+}
+@media(max-width:430px){
+ .title{font-size:32px}
+ .summary-label{font-size:5.5px}
+ .summary-number{font-size:19px}
+ .controls{flex-direction:column}
+ .refresh{width:100%}
+ .status{min-width:84px}
+}
+</style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="card">
-
-      <div class="header">
-        <a class="home" href="./">⌂ HOME</a>
-
-        <div class="eyebrow">RECRON BOWLING TOURNAMENT 2026</div>
-
-        <h1 class="title">ATTENDANCE</h1>
-
-        <div class="subtitle">
-          Participant Attendance Status
-        </div>
-      </div>
-
-      <div class="summary">
-        <div class="summary-box">
-          <div class="summary-label">Jumlah Peserta</div>
-          <div class="summary-number" id="totalCount">0</div>
-        </div>
-
-        <div class="summary-box present">
-          <div class="summary-label">Sudah Hadir</div>
-          <div class="summary-number" id="presentCount">0</div>
-        </div>
-
-        <div class="summary-box absent">
-          <div class="summary-label">Belum Hadir</div>
-          <div class="summary-number" id="absentCount">0</div>
-        </div>
-      </div>
-
-      <div class="controls">
-        <input
-          id="search"
-          class="search"
-          type="search"
-          placeholder="Cari nama, No ID, section atau team..."
-          autocomplete="off"
-        >
-
-        <button
-          id="refreshBtn"
-          class="refresh"
-          type="button"
-        >
-          ↻ REFRESH
-        </button>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>No ID</th>
-              <th>Nama Penuh</th>
-              <th>Section</th>
-              <th>Team</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody id="attendanceBody">
-            <tr>
-              <td colspan="5" class="message">
-                Memuatkan attendance...
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="footer">
-        Recron Bowling Tournament 2026 | Attendance System
-      </div>
-
-    </div>
+<div class="container"><div class="card">
+  <div class="header">
+    <a class="home" href="./">⌂ HOME</a>
+    <div class="eyebrow">RECRON BOWLING TOURNAMENT 2026</div>
+    <h1 class="title">ATTENDANCE</h1>
+    <div class="subtitle">Participant Attendance Status</div>
   </div>
 
-  <script>
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+  <div class="summary">
+    <div class="summary-box"><div class="summary-label">Jumlah Peserta</div><div class="summary-number" id="totalCount">0</div></div>
+    <div class="summary-box present"><div class="summary-label">Sudah Hadir</div><div class="summary-number" id="presentCount">0</div></div>
+    <div class="summary-box absent"><div class="summary-label">Belum Hadir</div><div class="summary-number" id="absentCount">0</div></div>
+    <div class="summary-box rate"><div class="summary-label">Kehadiran</div><div class="summary-number" id="rateCount">0%</div></div>
+  </div>
 
-    let attendanceData = [];
+  <div class="controls">
+    <input id="search" class="search" type="search" placeholder="Cari nama atau team..." autocomplete="off">
+    <button id="refreshBtn" class="refresh" type="button">↻ REFRESH</button>
+  </div>
 
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-    }
+  <div id="attendanceList" class="list">
+    <div class="message">Memuatkan attendance...</div>
+  </div>
 
-    function getStatusClass(status) {
-      const s = String(status || "")
-        .trim()
-        .toUpperCase();
+  <div class="footer">Recron Bowling Tournament 2026 | Attendance System</div>
+</div></div>
 
-      if (s === "HADIR") return "present";
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+let attendanceData=[];
 
-      if (
-        s === "BELUM HADIR" ||
-        s === "TIDAK HADIR"
-      ) {
-        return "absent";
-      }
+function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 
-      return "other";
-    }
+function updateSummary(){
+  const total=attendanceData.length;
+  const present=attendanceData.filter(x=>String(x.status||"").trim().toUpperCase()==="HADIR").length;
+  const absent=attendanceData.filter(x=>String(x.status||"").trim().toUpperCase()==="BELUM HADIR").length;
+  const rate=total?Math.round((present/total)*100):0;
+  document.getElementById("totalCount").textContent=total;
+  document.getElementById("presentCount").textContent=present;
+  document.getElementById("absentCount").textContent=absent;
+  document.getElementById("rateCount").textContent=rate+"%";
+}
 
-    function updateSummary() {
-      const total = attendanceData.length;
+function renderAttendance(){
+  const list=document.getElementById("attendanceList");
+  const search=String(document.getElementById("search").value||"").trim().toLowerCase();
+  const filtered=attendanceData.filter(item=>[item.nama,item.team].join(" ").toLowerCase().includes(search));
+  if(!filtered.length){list.innerHTML='<div class="message">Tiada rekod dijumpai.</div>';return;}
+  list.innerHTML=filtered.map((item,index)=>{
+    const present=String(item.status||"").trim().toUpperCase()==="HADIR";
+    return `<div class="person ${present?'present':''}">
+      <div class="number">${index+1}</div>
+      <div class="info"><div class="name">${escapeHtml(item.nama)}</div><div class="team">${escapeHtml(item.team||"-")}</div></div>
+      <div class="status ${present?'present':'absent'}"><span class="dot"></span>${present?'HADIR':'BELUM HADIR'}</div>
+    </div>`;
+  }).join("");
+}
 
-      const present = attendanceData.filter(item =>
-        String(item.status || "")
-          .trim()
-          .toUpperCase() === "HADIR"
-      ).length;
+function attendanceCallback(data){
+  attendanceData=Array.isArray(data)?data:[];
+  updateSummary();
+  renderAttendance();
+}
 
-      const absent = attendanceData.filter(item =>
-        String(item.status || "")
-          .trim()
-          .toUpperCase() === "BELUM HADIR"
-      ).length;
+function loadAttendance(){
+  const list=document.getElementById("attendanceList");
+  list.innerHTML='<div class="message">Memuatkan attendance...</div>';
+  const old=document.getElementById("attendance-api");
+  if(old)old.remove();
+  const script=document.createElement("script");
+  script.id="attendance-api";
+  script.src=API_URL+"?page=api_attendance&callback=attendanceCallback&t="+Date.now();
+  script.onerror=function(){list.innerHTML='<div class="message error">Gagal mendapatkan data attendance.</div>';};
+  document.body.appendChild(script);
+}
 
-      document.getElementById("totalCount").textContent = total;
-      document.getElementById("presentCount").textContent = present;
-      document.getElementById("absentCount").textContent = absent;
-    }
-
-    function renderAttendance() {
-
-      const list = document.getElementById("attendanceList");
-
-      const search =
-        String(document.getElementById("search").value || "")
-          .trim()
-          .toLowerCase();
-
-      const filtered = attendanceData.filter(function(item) {
-
-        return [
-          item.nama,
-          item.team
-        ].join(" ").toLowerCase().includes(search);
-
-      });
-
-      if (!filtered.length) {
-        list.innerHTML =
-          '<div class="message">Tiada rekod dijumpai.</div>';
-        return;
-      }
-
-      list.innerHTML = filtered.map(function(item, index) {
-
-        const present =
-          String(item.status || "").trim().toUpperCase() === "HADIR";
-
-        return `
-          <div class="person ${present ? "present" : ""}">
-
-            <div class="number">${index + 1}</div>
-
-            <div class="info">
-              <div class="name">${escapeHtml(item.nama)}</div>
-              <div class="team">${escapeHtml(item.team || "-")}</div>
-            </div>
-
-            <div class="status ${present ? "present" : "absent"}">
-              <span class="status-dot"></span>
-              ${present ? "HADIR" : "BELUM HADIR"}
-            </div>
-
-          </div>
-        `;
-
-      }).join("");
-    }
-
-    function attendanceCallback(data) {
-      attendanceData = Array.isArray(data) ? data : [];
-      updateSummary();
-      renderAttendance();
-    }
-
-    function loadAttendance() {
-      const body = document.getElementById("attendanceBody");
-
-      body.innerHTML = `
-        <tr>
-          <td colspan="5" class="message">
-            Memuatkan attendance...
-          </td>
-        </tr>
-      `;
-
-      const oldScript =
-        document.getElementById("attendance-api");
-
-      if (oldScript) oldScript.remove();
-
-      const script = document.createElement("script");
-
-      script.id = "attendance-api";
-
-      script.src =
-        API_URL +
-        "?page=api_attendance" +
-        "&callback=attendanceCallback" +
-        "&t=" +
-        Date.now();
-
-      script.onerror = function() {
-        body.innerHTML = `
-          <tr>
-            <td colspan="5" class="message error">
-              Gagal mendapatkan data attendance.
-            </td>
-          </tr>
-        `;
-      };
-
-      document.body.appendChild(script);
-    }
-
-    document
-      .getElementById("search")
-      .addEventListener("input", renderAttendance);
-
-    document
-      .getElementById("refreshBtn")
-      .addEventListener("click", loadAttendance);
-
-    setInterval(loadAttendance, 10000);
-
-    loadAttendance();
-  </script>
+document.getElementById("search").addEventListener("input",renderAttendance);
+document.getElementById("refreshBtn").addEventListener("click",loadAttendance);
+setInterval(loadAttendance,10000);
+loadAttendance();
+</script>
 </body>
 </html>
