@@ -413,57 +413,52 @@
     }
 
     function renderAttendance() {
-      const body = document.getElementById("attendanceBody");
 
-      const search = String(
-        document.getElementById("search").value || ""
-      )
-        .trim()
-        .toLowerCase();
+      const list = document.getElementById("attendanceList");
 
-      const filtered = attendanceData.filter(item => {
-        const text = [
-          item.id,
-          item.nama,
-          item.section,
-          item.team,
-          item.status
-        ]
-          .join(" ")
+      const search =
+        String(document.getElementById("search").value || "")
+          .trim()
           .toLowerCase();
 
-        return text.includes(search);
+      const filtered = attendanceData.filter(function(item) {
+
+        return [
+          item.nama,
+          item.team
+        ].join(" ").toLowerCase().includes(search);
+
       });
 
       if (!filtered.length) {
-        body.innerHTML = `
-          <tr>
-            <td colspan="5" class="message">
-              Tiada rekod dijumpai.
-            </td>
-          </tr>
-        `;
+        list.innerHTML =
+          '<div class="message">Tiada rekod dijumpai.</div>';
         return;
       }
 
-      body.innerHTML = filtered.map(item => {
-        const status = String(
-          item.status || "BELUM HADIR"
-        ).trim().toUpperCase();
+      list.innerHTML = filtered.map(function(item, index) {
+
+        const present =
+          String(item.status || "").trim().toUpperCase() === "HADIR";
 
         return `
-          <tr>
-            <td class="id">${escapeHtml(item.id)}</td>
-            <td class="name">${escapeHtml(item.nama)}</td>
-            <td class="section">${escapeHtml(item.section)}</td>
-            <td class="team">${escapeHtml(item.team)}</td>
-            <td>
-              <span class="status ${getStatusClass(status)}">
-                ${escapeHtml(status)}
-              </span>
-            </td>
-          </tr>
+          <div class="person ${present ? "present" : ""}">
+
+            <div class="number">${index + 1}</div>
+
+            <div class="info">
+              <div class="name">${escapeHtml(item.nama)}</div>
+              <div class="team">${escapeHtml(item.team || "-")}</div>
+            </div>
+
+            <div class="status ${present ? "present" : "absent"}">
+              <span class="status-dot"></span>
+              ${present ? "HADIR" : "BELUM HADIR"}
+            </div>
+
+          </div>
         `;
+
       }).join("");
     }
 
@@ -521,7 +516,7 @@
       .getElementById("refreshBtn")
       .addEventListener("click", loadAttendance);
 
-    setInterval(loadAttendance, 10000);
+    setInterval(loadAttendance, 30000);
 
     loadAttendance();
   </script>
