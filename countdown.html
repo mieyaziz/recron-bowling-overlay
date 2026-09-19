@@ -100,6 +100,15 @@ function countdownCallback(x){
   document.getElementById("footer").textContent=x.Footer||"RECRON BOWLING TOURNAMENT 2026";
   const rawDate = x["Event Date"] || x.EventDate || x.eventDate || x.date || x.DATE || "";
 
+console.log("COUNTDOWN API DATA:", x);
+console.log("COUNTDOWN RAW DATE:", rawDate);
+
+if(!rawDate){
+  document.getElementById("status").textContent =
+    "DEBUG: "+JSON.stringify(x);
+  return;
+}
+
 let d = null;
 const parts = String(rawDate).trim().split("/");
 
