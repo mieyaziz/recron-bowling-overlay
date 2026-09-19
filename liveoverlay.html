@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 html, body { margin:0; width:100%; min-height:100%; background:#05070b; color:#fff; font-family:Arial,Helvetica,sans-serif; overflow-x:hidden; }
 body { display:flex; justify-content:center; }
-.overlay { width:100%; max-width:1600px; min-height:100vh; padding:22px 28px; background:radial-gradient(circle at 90% 0%,rgba(0,100,220,.2),transparent 35%),linear-gradient(160deg,#06080c,#101722 50%,#050505); position:relative; }
+.overlay { width:100%; max-width:1080px; min-height:100vh; padding:24px; background:radial-gradient(circle at 90% 0%,rgba(0,100,220,.2),transparent 35%),linear-gradient(160deg,#06080c,#101722 50%,#050505); position:relative; }
 
 /* ==============================
    2. HEADER / LOGO / CLOCK
@@ -20,7 +20,7 @@ body { display:flex; justify-content:center; }
 .topbar { display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid #168dff; padding-bottom:16px; margin-bottom:18px; }
 .brand { display:flex; align-items:center; gap:14px; }
 .logo { width:76px; height:76px; object-fit:contain; flex-shrink:0; }
-.event-title { font-size:30px; font-weight:900; line-height:1.1; }
+.event-title { font-size:25px; font-weight:900; line-height:1.1; }
 .live-badge { display:inline-flex; align-items:center; gap:7px; background:#e00000; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:bold; margin-top:7px; }
 .live-dot { width:9px; height:9px; border-radius:50%; background:#fff; animation:blink 1s infinite; }
 .clock { text-align:right; color:#aaa; font-size:12px; }
@@ -30,23 +30,23 @@ body { display:flex; justify-content:center; }
 /* ==============================
    3. SECTION TITLE / STATISTICS
    ============================== */
-.section-title { display:flex; align-items:center; gap:10px; font-size:20px; font-weight:900; margin:0 0 11px; }
+.section-title { display:flex; align-items:center; gap:10px; font-size:17px; font-weight:900; margin:0 0 11px; }
 .section-title span { width:5px; height:21px; background:#168dff; display:inline-block; border-radius:4px; }
 .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:20px; }
 .stat-card, .panel { background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.1); border-radius:14px; }
 .stat-card { padding:13px; text-align:center; }
 .stat-label { color:#aaa; font-size:10px; text-transform:uppercase; }
-.stat-value { font-size:28px; font-weight:900; margin-top:5px; }
+.stat-value { font-size:24px; font-weight:900; margin-top:5px; }
 
 /* ==============================
    4. NOW PLAYING / CHECK-IN
    ============================== */
 .now-playing { background:linear-gradient(135deg,rgba(29,143,255,.16),rgba(255,255,255,.035)); border:1px solid rgba(29,143,255,.45); border-radius:15px; padding:17px; margin-bottom:18px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:15px; }
 .now-label { color:#5bb4ff; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; }
-.now-name { font-size:28px; font-weight:900; margin-top:6px; }
+.now-name { font-size:24px; font-weight:900; margin-top:6px; }
 .now-team { color:#aaa; font-size:12px; margin-top:4px; }
 .now-score { text-align:right; }
-.now-score-value { font-size:46px; font-weight:900; color:#5bb4ff; }
+.now-score-value { font-size:39px; font-weight:900; color:#5bb4ff; }
 .now-game { color:#aaa; font-size:11px; }
 .checkin { background:linear-gradient(135deg,rgba(0,180,100,.13),rgba(255,255,255,.025)); border:1px solid rgba(0,200,120,.3); border-radius:13px; padding:13px 15px; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
 .checkin-icon { width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#00a86b; font-size:20px; }
@@ -58,83 +58,38 @@ body { display:flex; justify-content:center; }
    5. RANKING / GROUPS
    ============================== */
 .grid-two { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:18px; }
-    .team-section-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:18px; align-items:stretch; }
-    .group-slider { position:relative; min-height:370px; display:flex; flex-direction:column; }
-    .group-stage { flex:1; display:flex; align-items:center; justify-content:center; padding:8px 48px 0; }
-    .group-card { width:100%; max-width:760px; background:linear-gradient(145deg,rgba(18,44,75,.9),rgba(5,17,32,.96)); border:1px solid rgba(91,180,255,.35); border-radius:16px; padding:22px 26px; animation:groupFade .55s ease both; }
-@keyframes groupFade { from { opacity:0; transform:translateY(10px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
-    .group-nav { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; }
-    .group-arrow { width:42px; height:42px; border:1px solid rgba(91,180,255,.5); border-radius:50%; background:#10243a; color:#5bb4ff; cursor:pointer; font-size:20px; line-height:1; }
-    .group-arrow:hover { background:#183b5b; }
-    .group-counter { color:#8ea2b8; font-size:14px; font-weight:800; }
-    .group-dots { display:flex; justify-content:center; gap:5px; flex:1; }
-    .group-dot { width:8px; height:8px; border-radius:50%; background:#34475b; }
-    .group-dot.active { background:#5bb4ff; transform:scale(1.25); }
 .panel { padding:15px; overflow:hidden; }
-.ranking-row, .team-row { display:grid; grid-template-columns:38px 1fr auto; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.07); }
+.ranking-row, .team-row { display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.07); }
 .ranking-row:last-child, .team-row:last-child { border-bottom:0; }
 .rank { width:29px; height:29px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#222; font-size:12px; font-weight:bold; }
 .rank.gold { background:#c99b22; color:#000; }
 .rank.silver { background:#999; color:#000; }
 .rank.bronze { background:#a56a3d; }
-.player-name, .team-name { font-size:16px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.player-name, .team-name { font-size:13px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .player-team, .team-members { color:#999; font-size:10px; margin-top:3px; }
 .score, .team-score { font-size:18px; font-weight:900; color:#5bb4ff; }
-.team-score { color:#fff; font-size:21px; }
+.team-score { color:#fff; }
 .groups { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; max-height:650px; overflow:hidden; }
-.group-header { display:flex; justify-content:space-between; align-items:center; padding-bottom:14px; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,.12); }
-.group-name { font-weight:900; font-size:28px; letter-spacing:.2px; }
-.group-total { color:#5bb4ff; font-weight:900; font-size:30px; }
-.group-player { display:grid; grid-template-columns:1fr auto; gap:12px; font-size:16px; padding:10px 0; color:#eaf4ff; border-bottom:1px solid rgba(255,255,255,.08); }
-.group-player-score { font-weight:900; color:#5bb4ff; font-size:17px; }
+.group-card { background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); border-radius:11px; padding:12px; }
+.group-header { display:flex; justify-content:space-between; align-items:center; padding-bottom:8px; margin-bottom:7px; border-bottom:1px solid rgba(255,255,255,.08); }
+.group-name { font-weight:900; font-size:13px; }
+.group-total { color:#5bb4ff; font-weight:900; font-size:15px; }
+.group-player { display:grid; grid-template-columns:1fr auto; gap:8px; font-size:10px; padding:4px 0; color:#ddd; }
+.group-player-score { font-weight:bold; color:#aaa; }
 .empty { color:#777; text-align:center; padding:18px; font-size:11px; }
 .footer { margin-top:18px; display:flex; justify-content:space-between; color:#667080; font-size:9px; }
 
 /* ==============================
    6. RESPONSIVE
    ============================== */
-@media (max-width:900px) {
+@media (max-width:700px) {
   .overlay { padding:15px; }
-  .grid-two, .team-section-grid { grid-template-columns:1fr; }
-  .group-stage { padding:4px 12px 0; }
+  .grid-two, .groups { grid-template-columns:1fr; }
   .stats { grid-template-columns:repeat(2,1fr); }
   .event-title { font-size:18px; }
   .logo { width:58px; height:58px; }
   .now-name { font-size:20px; }
 }
-
-/* TIKTOK 9:16 PORTRAIT OVERRIDE */
-html,body{width:100%;min-height:100%;margin:0;background:#05070b;overflow-x:hidden;}
-body{display:flex;justify-content:center;align-items:flex-start;}
-.overlay{width:100%;max-width:1080px;min-height:100vh;padding:24px;margin:0 auto;}
-.topbar{gap:15px;}
-.brand{min-width:0;flex:1;}
-.event-title{font-size:clamp(18px,3vw,28px);}
-.stats{grid-template-columns:repeat(2,1fr);gap:10px;}
-.grid-two{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;}
-.team-section-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;}
-.now-playing{grid-template-columns:1fr auto;gap:10px;}
-.now-name{font-size:clamp(18px,3.5vw,28px);}
-.group-stage{padding:8px 0 0;}
-.group-card{max-width:none;padding:16px;}
-.groups{grid-template-columns:1fr;max-height:none;overflow:visible;}
-.group-name{font-size:22px;}
-.group-total{font-size:25px;}
-.footer{flex-wrap:wrap;gap:8px;}
-@media(min-width:700px){.overlay{max-width:1080px;padding:32px;}.stats{grid-template-columns:repeat(4,1fr);}}
-@media(max-width:480px){
-  .overlay{padding:8px;}
-  .logo{width:42px;height:42px;}
-  .clock{font-size:8px;}
-  .clock strong{font-size:11px;}
-  .section-title{font-size:14px;}
-  .group-name{font-size:16px;}
-  .group-total{font-size:18px;}
-  .grid-two,.team-section-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-  .card{padding:10px;}
-  .section-title{margin-bottom:8px;}
-}
-
 </style>
 </head>
 <body>
@@ -177,35 +132,17 @@ body{display:flex;justify-content:center;align-items:flex-start;}
 
     <!-- ============================== INDIVIDUAL RANKING ============================== -->
     <div class="grid-two">
-      <div class="panel">
-        <div class="section-title"><span></span>TOP 5 INDIVIDU LELAKI</div>
-        <div id="individualMale"></div>
-      </div>
-
-      <div class="panel">
-        <div class="section-title"><span></span>TOP 5 INDIVIDU PEREMPUAN</div>
-        <div id="individualFemale"></div>
-      </div>
+      <div class="panel"><div class="section-title"><span></span>TOP 5 INDIVIDU LELAKI</div><div id="maleRanking"></div></div>
+      <div class="panel"><div class="section-title"><span></span>TOP 5 INDIVIDU PEREMPUAN</div><div id="femaleRanking"></div></div>
     </div>
 
-    <!-- ============================== TEAM RANKING + GROUP SLIDER ============================== -->
-    <div class="team-section-grid">
-      <div class="panel">
-        <div class="section-title"><span></span>TOP 5 TEAM RANKING</div>
-        <div id="teamRanking"></div>
-      </div>
+    <!-- ============================== TEAM RANKING ============================== -->
+    <div class="panel"><div class="section-title"><span></span>TOP 5 TEAM RANKING</div><div id="teamRanking"></div></div>
 
-      <div class="panel group-slider">
-        <div class="section-title"><span></span>TEAM / GROUP</div>
-        <div class="group-stage" id="groups"></div>
-        <div class="group-nav">
-          <button class="group-arrow" onclick="changeGroup(-1)" aria-label="Previous team">‹</button>
-          <div class="group-dots" id="groupDots"></div>
-          <div class="group-counter" id="groupCounter">0 / 0</div>
-          <button class="group-arrow" onclick="changeGroup(1)" aria-label="Next team">›</button>
-        </div>
-      </div>
-    </div>
+    <!-- ============================== GROUPS ============================== -->
+    <br>
+    <div class="section-title"><span></span>TEAM / GROUP</div>
+    <div class="groups" id="groups"></div>
 
     <div class="footer"><span>RECRON BOWLING TOURNAMENT 2026</span><span>LIVE OVERLAY</span></div>
   </div>
@@ -213,9 +150,6 @@ body{display:flex;justify-content:center;align-items:flex-start;}
   <script>
     /* ============================== STATE ============================== */
     let lastCheckIn = "";
-    let allGroups = [];
-    let currentGroupIndex = 0;
-    let groupTimer = null;
 
     /* ============================== HELPERS ============================== */
     function esc(value) {
@@ -260,7 +194,7 @@ body{display:flex;justify-content:center;align-items:flex-start;}
         element.innerHTML = '<div class="empty">Tiada ranking team</div>';
         return;
       }
-      element.innerHTML = teams.slice(0, 5).map(team => `
+      element.innerHTML = teams.map(team => `
         <div class="team-row">
           <div class="rank ${rankClass(team.rank)}">${team.rank}</div>
           <div>
@@ -272,72 +206,27 @@ body{display:flex;justify-content:center;align-items:flex-start;}
       `).join("");
     }
 
-    /* ============================== RENDER GROUP SLIDER ==============================
-       Auto-slide setiap 7 saat — cukup untuk membaca nama 4 pemain. */
+    /* ============================== RENDER GROUPS ============================== */
     function renderGroups(groups) {
-      const incomingGroups = Array.isArray(groups) ? groups : [];
-      const groupCountChanged = incomingGroups.length !== allGroups.length;
-      allGroups = incomingGroups;
-      currentGroupIndex = Math.min(currentGroupIndex, Math.max(allGroups.length - 1, 0));
-      renderCurrentGroup();
-
-      // Jangan reset timer setiap kali data live refresh.
-      // Data refresh berlaku setiap 5 saat, manakala slide bergerak setiap 7 saat.
-      if (groupCountChanged || !groupTimer) {
-        startGroupAutoSlide();
-      }
-    }
-
-    function renderCurrentGroup() {
       const element = document.getElementById("groups");
-      const dots = document.getElementById("groupDots");
-      const counter = document.getElementById("groupCounter");
-
-      if (!allGroups.length) {
+      if (!groups || !groups.length) {
         element.innerHTML = '<div class="empty">Tiada data group</div>';
-        dots.innerHTML = "";
-        counter.textContent = "0 / 0";
         return;
       }
-
-      const group = allGroups[currentGroupIndex];
-      element.innerHTML = `
+      element.innerHTML = groups.map(group => `
         <div class="group-card">
           <div class="group-header">
             <div class="group-name">${esc(group.team)}</div>
             <div class="group-total">${Number(group.total || 0)}</div>
           </div>
-          ${(group.players || []).map((player, index) => `
+          ${(group.players || []).map(player => `
             <div class="group-player">
               <div>${esc(player.nama)}</div>
               <div class="group-player-score">${Number(player.total || 0)}</div>
             </div>
           `).join("")}
         </div>
-      `;
-
-      counter.textContent = `${currentGroupIndex + 1} / ${allGroups.length}`;
-      dots.innerHTML = allGroups.map((_, index) =>
-        `<span class="group-dot ${index === currentGroupIndex ? "active" : ""}"></span>`
-      ).join("");
-    }
-
-    function changeGroup(direction) {
-      if (!allGroups.length) return;
-      currentGroupIndex = (currentGroupIndex + direction + allGroups.length) % allGroups.length;
-      renderCurrentGroup();
-      startGroupAutoSlide();
-    }
-
-    function startGroupAutoSlide() {
-      clearInterval(groupTimer);
-      groupTimer = null;
-
-      if (allGroups.length > 1) {
-        groupTimer = setInterval(() => {
-          changeGroup(1);
-        }, 7000);
-      }
+      `).join("");
     }
 
     /* ============================== RENDER NOW PLAYING ============================== */
@@ -372,27 +261,66 @@ body{display:flex;justify-content:center;align-items:flex-start;}
       document.getElementById("averageScore").textContent = data.averageScore || 0;
     }
 
-    /* ============================== LOAD DATA FROM CODE.GS ============================== */
+    /* ============================== GITHUB / APPS SCRIPT API ============================== */
+    const API = "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+
+    function jsonp(page, params = {}) {
+      return new Promise((resolve, reject) => {
+        const cb = "overlay_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+        const script = document.createElement("script");
+        const query = new URLSearchParams({
+          page: page,
+          callback: cb,
+          ...params
+        });
+
+        const timer = setTimeout(() => {
+          cleanup();
+          reject(new Error("API timeout"));
+        }, 15000);
+
+        function cleanup() {
+          clearTimeout(timer);
+          delete window[cb];
+          script.remove();
+        }
+
+        window[cb] = data => {
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("Gagal sambung ke API."));
+        };
+
+        script.src = API + "?" + query.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    /* ============================== LOAD DATA FROM APPS SCRIPT ============================== */
     function loadOverlay() {
-      google.script.run
-        .withSuccessHandler(data => {
+      jsonp("api_liveoverlay")
+        .then(data => {
           if (!data || !data.success) return;
 
-          renderIndividuals(data.individualMale || [], "individualMale");
-          renderIndividuals(data.individualFemale || [], "individualFemale");
+          renderIndividuals(data.individualMale || [], "maleRanking");
+          renderIndividuals(data.individualFemale || [], "femaleRanking");
           renderTeams(data.teamRanking || []);
           renderGroups(data.groups || []);
           renderNowPlaying(data.nowPlaying);
           renderCheckIn(data.latestCheckIn);
           updateStatistics(data.statistics);
 
-          document.getElementById("updated").textContent = "Last update: " + (data.updated || "");
+          document.getElementById("updated").textContent =
+            "Last update: " + (data.updated || "");
         })
-        .withFailureHandler(error => {
+        .catch(error => {
           console.error(error);
           document.getElementById("updated").textContent = "Connection error";
-        })
-        .getLiveOverlayData();
+        });
     }
 
     /* ============================== CLOCK ============================== */
