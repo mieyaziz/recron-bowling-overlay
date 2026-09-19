@@ -98,15 +98,25 @@ function countdownCallback(x){
   document.getElementById("subtitle").textContent=x.Subtitle||"COUNTDOWN TO TOURNAMENT DAY";
   document.getElementById("venue").textContent=x.Venue||"";
   document.getElementById("footer").textContent=x.Footer||"RECRON BOWLING TOURNAMENT 2026";
-  const rawDate = x["Event Date"] || x.EventDate || x.eventDate || x.date || x.DATE || "";
+  let rawDate = "";
 
-console.log("COUNTDOWN API DATA:", x);
-console.log("COUNTDOWN RAW DATE:", rawDate);
+Object.keys(x).forEach(function(key){
+  const cleanKey = String(key)
+    .replace(/\s+/g,"")
+    .toLowerCase();
+
+  if(cleanKey === "eventdate"){
+    rawDate = x[key];
+  }
+});
 
 if(!rawDate){
-  document.getElementById("status").textContent =
-    "DEBUG: "+JSON.stringify(x);
-  return;
+  rawDate = x.EventDate || x["Event Date"] || x.eventDate || x.date || x.DATE || "";
+}
+
+console.log("COUNTDOWN DATA:", x);
+console.log("COUNTDOWN DATE KEY:", rawDate);
+
 }
 
 let d = null;
