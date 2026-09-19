@@ -142,7 +142,7 @@ function jsonp(page, params={}) {
     function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
     window[cb]=data=>{cleanup();resolve(data)};
     script.onerror=()=>{cleanup();reject(new Error("Gagal sambung ke API."))};
-    script.src=API+"&"+query.toString();
+    script.src=API+"?"+query.toString();
     document.body.appendChild(script);
   });
 }
