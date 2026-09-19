@@ -1,38 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RECRON • Live Individual</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;font-family:Arial,sans-serif;color:#fff}
-.overlay{position:relative;width:100%;height:100%;background:transparent}
-.panel{position:absolute;left:0;right:0;bottom:0;padding:12px 12px 10px;border-radius:16px 16px 0 0;background:rgba(18,18,18,.88);border:1px solid rgba(212,175,55,.8);border-bottom:0;box-shadow:0 -4px 22px rgba(0,0,0,.35)}
-.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.bar b{font-size:13px;color:#e0b93f;letter-spacing:1px}.updated{font-size:9px;color:#bbb}
-.tabs{display:flex;gap:5px;margin-bottom:8px}.tabs button{flex:1;border:1px solid #777;background:rgba(255,255,255,.08);color:#fff;border-radius:13px;padding:6px 2px;font-size:9px;font-weight:bold}.tabs button.active{background:#d4af37;color:#111;border-color:#d4af37}
-#ranking{max-height:40vh;overflow:hidden}.row{display:grid;grid-template-columns:30px 1fr 58px;gap:7px;align-items:center;padding:6px 7px;margin:3px 0;border-radius:7px;background:rgba(255,255,255,.11);border-left:3px solid transparent;min-height:34px}.row:nth-child(1){border-left-color:#d4af37}.row:nth-child(2){border-left-color:#c0c0c0}.row:nth-child(3){border-left-color:#a66a35}.rank{text-align:center;font-size:14px;font-weight:900}.name{font-size:11px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.team{font-size:8px;color:#bbb;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.score{text-align:right;font-size:15px;font-weight:900}.empty{text-align:center;padding:18px;color:#bbb;font-size:11px}
-@media(max-width:500px){.panel{padding:9px 8px 8px}.bar b{font-size:11px}.updated{font-size:8px}.tabs{margin-bottom:6px}.tabs button{font-size:8px;padding:5px 1px}.row{grid-template-columns:27px 1fr 48px;padding:5px 6px;margin:2px 0;min-height:29px}.name{font-size:9px}.team{font-size:7px}.score{font-size:12px}.rank{font-size:12px}}
+:root{--bg:#070a10;--panel:#111722;--gold:#f6c744;--text:#f5f7fb;--muted:#9aa5b5;--line:rgba(255,255,255,.09)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#0b0f17,#05070b);color:var(--text)}
+body{padding:12px}.wrap{width:min(1100px,100%);margin:auto}.panel{border:1px solid rgba(246,199,68,.45);border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#151c28,#0c121b);box-shadow:0 25px 70px rgba(0,0,0,.45)}
+.header{position:relative;padding:32px 25px 22px;border-bottom:1px solid var(--line)}.home{position:absolute;right:18px;top:17px;padding:9px 14px;border:1px solid rgba(246,199,68,.5);border-radius:999px;background:rgba(246,199,68,.07);color:#ffdf72;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:1px}.eyebrow{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:2.5px}.header h1{margin:7px 0 0;font-size:clamp(30px,5vw,48px);line-height:1}.sub{margin-top:8px;color:var(--muted);font-size:11px;letter-spacing:1px}.updated{position:absolute;right:25px;bottom:23px;color:#7f899a;font-size:9px}
+.controls{display:flex;gap:8px;padding:16px 20px;border-bottom:1px solid var(--line)}.tab{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.04);color:#fff;font-weight:900;font-size:10px}.tab.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px}.stat{padding:12px;text-align:center;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025)}.stat b{display:block;font-size:20px;color:var(--gold)}.stat span{font-size:8px;color:var(--muted);letter-spacing:1px}
+.list{padding:0 20px 20px}.row{display:grid;grid-template-columns:48px minmax(0,1fr) 90px;gap:12px;align-items:center;padding:13px 14px;margin:7px 0;border:1px solid rgba(255,255,255,.06);border-radius:14px;background:rgba(255,255,255,.035)}.row.top1{background:linear-gradient(90deg,rgba(246,199,68,.15),rgba(255,255,255,.025))}.row.top2{background:linear-gradient(90deg,rgba(210,210,210,.09),rgba(255,255,255,.025))}.row.top3{background:linear-gradient(90deg,rgba(180,120,50,.09),rgba(255,255,255,.025))}.rank{text-align:center;font-size:19px;font-weight:950}.name{font-size:14px;font-weight:900;overflow-wrap:anywhere}.team{margin-top:3px;color:#7e899b;font-size:9px;letter-spacing:.4px}.score{text-align:right;font-size:20px;font-weight:950;color:var(--gold)}.empty{text-align:center;padding:50px 15px;color:var(--muted)}
+footer{padding:16px 20px;border-top:1px solid var(--line);font-size:9px;color:#748093;letter-spacing:1px}
+@media(max-width:600px){body{padding:7px}.panel{border-radius:20px}.header{padding:70px 16px 20px}.home{top:11px;right:11px}.updated{position:static;margin-top:8px}.controls{padding:12px 12px}.stats{padding:12px;gap:7px}.list{padding:0 10px 12px}.row{grid-template-columns:34px minmax(0,1fr) 58px;gap:8px;padding:11px 9px}.rank{font-size:16px}.name{font-size:13px}.score{font-size:18px}}
 </style>
 </head>
-<body>
-<div class="overlay">
-  <div class="panel">
-    <div class="bar"><b>LIVE INDIVIDUAL</b><span class="updated" id="updated">Loading...</span></div>
-    <div class="tabs"><button id="all" onclick="setGender('ALL')">SEMUA</button><button id="male" onclick="setGender('LELAKI')">LELAKI</button><button id="female" onclick="setGender('PEREMPUAN')">PEREMPUAN</button></div>
-    <div id="ranking"><div class="empty">Memuatkan keputusan...</div></div>
-  </div>
-</div>
+<body><main class="wrap"><section class="panel">
+<header class="header"><a class="home" href="./">⌂ HOME</a><div class="eyebrow">RECRON BOWLING TOURNAMENT 2026</div><h1>LIVE INDIVIDUAL</h1><div class="sub">LIVE INDIVIDUAL SCOREBOARD • TOP 10</div><div id="updated" class="updated">Updating...</div></header>
+<div class="controls"><button class="tab active" data-g="ALL">SEMUA</button><button class="tab" data-g="LELAKI">LELAKI</button><button class="tab" data-g="PEREMPUAN">PEREMPUAN</button></div>
+<div class="stats"><div class="stat"><b id="players">0</b><span>PLAYERS</span></div><div class="stat"><b id="games">0</b><span>GAMES SCORED</span></div><div class="stat"><b id="avg">0</b><span>AVERAGE</span></div></div>
+<div id="list" class="list"><div class="empty">Loading live scores...</div></div>
+<footer>RECRON • LIVE BOWLING 2026</footer>
+</section></main>
 <script>
-let gender='ALL';let jsonpId=0;
-const API_URL='https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec';
-document.addEventListener('DOMContentLoaded',()=>{buttons();load();setInterval(load,10000)});
-function setGender(g){gender=g;buttons();load()}
-function buttons(){['all','male','female'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById({ALL:'all',LELAKI:'male',PEREMPUAN:'female'}[gender]).classList.add('active')}
-function norm(g){g=String(g||'').trim().toUpperCase();return ['L','LELAKI','MALE','M'].includes(g)?'LELAKI':['P','PEREMPUAN','FEMALE','F'].includes(g)?'PEREMPUAN':''}
-function load(){const cb='recronLiveCallback_'+(++jsonpId);window[cb]=r=>{try{if(!r||!r.success){err('Data tidak berjaya dibaca');return}let p=(r.players||[]).filter(x=>gender==='ALL'||norm(x.gender)===gender).sort((a,b)=>Number(b.total||0)-Number(a.total||0));render(p);document.getElementById('updated').textContent='Update '+new Date().toLocaleTimeString('ms-MY')}finally{delete window[cb];const old=document.getElementById(cb);if(old)old.remove()}};const s=document.createElement('script');s.id=cb;s.src=API_URL+(API_URL.includes('?')?'&':'?')+'page=api_liveindividual&callback='+cb+'&t='+Date.now();s.onerror=()=>{err('Ralat sambungan data');delete window[cb];s.remove()};document.body.appendChild(s)}
-function render(p){const el=document.getElementById('ranking');if(!p.length){el.innerHTML='<div class="empty">Tiada data untuk kategori ini.</div>';return}el.innerHTML=p.slice(0,10).map((x,i)=>{const r=i+1;const medal=r===1?'🥇':r===2?'🥈':r===3?'🥉':r;return `<div class="row"><div class="rank">${medal}</div><div><div class="name">${esc(x.name||x.nama||'-')}</div><div class="team">${esc(x.team||x.pasukan||'-')}</div></div><div class="score">${Number(x.total||x.totalScore||0)}</div></div>`}).join('')}
-function err(m){document.getElementById('ranking').innerHTML='<div class="empty">'+m+'</div>'}function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-</script>
-</body>
-</html>
+const API="https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";let gender="ALL",last=[];
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{gender=b.dataset.g;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));render()});
+function callback(data){if(!data||!data.success)return;last=data.players||[];document.getElementById("updated").textContent="Updated "+(data.updated||new Date().toLocaleTimeString("ms-MY"));render()}
+function render(){
+  const rows=last.filter(p=>gender==="ALL"||String(p.gender||"").toUpperCase()===gender).sort((a,b)=>Number(b.total||0)-Number(a.total||0));
+  document.getElementById("players").textContent=rows.length;
+  document.getElementById("games").textContent=rows.filter(p=>Number(p.total||0)>0).length;
+  const avg=rows.length?rows.reduce((a,p)=>a+Number(p.total||0),0)/rows.length:0;document.getElementById("avg").textContent=avg.toFixed(0);
+  document.getElementById("list").innerHTML=rows.slice(0,20).map((p,i)=>{const r=i+1,m=r===1?"🥇":r===2?"🥈":r===3?"🥉":r;return `<div class="row ${r<=3?"top"+r:""}"><div class="rank">${m}</div><div><div class="name">${esc(p.nama||p.name)}</div><div class="team">${esc(p.team||"-")}</div></div><div class="score">${Number(p.total||0)}</div></div>`}).join("")||'<div class="empty">Belum ada data untuk kategori ini.</div>';
+}
+function load(){const old=document.getElementById("api");if(old)old.remove();const s=document.createElement("script");s.id="api";s.src=API+"?page=api_liveindividual&callback=callback&t="+Date.now();s.onerror=()=>document.getElementById("list").innerHTML='<div class="empty">Data tidak dapat dimuatkan.</div>';document.body.appendChild(s)}
+load();setInterval(load,10000);
+</script></body></html>
