@@ -98,57 +98,45 @@ function countdownCallback(x){
   document.getElementById("subtitle").textContent=x.Subtitle||"COUNTDOWN TO TOURNAMENT DAY";
   document.getElementById("venue").textContent=x.Venue||"";
   document.getElementById("footer").textContent=x.Footer||"RECRON BOWLING TOURNAMENT 2026";
+  // Find the tournament date from the API without relying on a specific key name.
   let rawDate = "";
 
-Object.keys(x).forEach(function(key){
-  const cleanKey = String(key)
-    .replace(/\s+/g,"")
-    .toLowerCase();
+  Object.keys(x || {}).some(function(key){
+    const value = String(x[key] ?? "").trim();
+    const cleanKey = String(key).replace(/\s+/g,"").toLowerCase();
 
-  if(cleanKey === "eventdate"){
-    rawDate = x[key];
+    if(cleanKey === "eventdate" && value){
+      rawDate = value;
+      return true;
+    }
+    return false;
+  });
+
+  // Fallback: find any DD/MM/YYYY value returned by the API.
+  if(!rawDate){
+    Object.keys(x || {}).some(function(key){
+      const value = String(x[key] ?? "").trim();
+      if(/^\d{1,2}\/\d{1,2}\/\d{4}(?:[ T]+\d{1,2}:\d{2}(?::\d{2})?)?$/.test(value)){
+        rawDate = value;
+        return true;
+      }
+      return false;
+    });
   }
-});
 
-if(!rawDate){
-  rawDate = x.EventDate || x["Event Date"] || x.eventDate || x.date || x.DATE || "";
-}
+  const d = parseDate(rawDate);
 
-console.log("COUNTDOWN DATA:", x);
-console.log("COUNTDOWN DATE KEY:", rawDate);
-
-}
-
-let d = null;
-const parts = String(rawDate).trim().split("/");
-
-if(parts.length === 3){
-  const day = Number(parts[0]);
-  const month = Number(parts[1]);
-  const year = Number(parts[2]);
-
-  d = new Date(year, month - 1, day, 9, 0, 0);
-
-  if(
-    d.getFullYear() !== year ||
-    d.getMonth() !== month - 1 ||
-    d.getDate() !== day
-  ){
-    d = null;
+  if(!d){
+    document.getElementById("status").textContent="Tarikh acara belum ditetapkan.";
+    return;
   }
-}else{
-  d = parseDate(rawDate);
-}
 
-if(!d){
-  document.getElementById("status").textContent="Tarikh acara belum ditetapkan.";
-  return;
-}
-
-target = d.getTime();
-document.getElementById("status").textContent="EVENT DATE";
-document.getElementById("date").textContent=formatEventDate(d);
-  clearInterval(timer);tick();timer=setInterval(tick,1000);
+  target = d.getTime();
+  document.getElementById("status").textContent="EVENT DATE";
+  document.getElementById("date").textContent=formatEventDate(d);
+  clearInterval(timer);
+  tick();
+  timer=setInterval(tick,1000);
 }
 function tick(){
   if(!target)return; let z=target-Date.now();
