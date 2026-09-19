@@ -93,6 +93,7 @@ function formatEventDate(d){
   return day+" "+month+" "+year+" pada "+String(h12).padStart(2,"0")+":"+minute+" "+suffix;
 }
 function countdownCallback(x){
+  alert("TEST COUNTDOWN BARU");
   x=x||{};
   document.getElementById("title").textContent=x.Title||"RECRON BOWLING TOURNAMENT 2026";
   document.getElementById("subtitle").textContent=x.Subtitle||"COUNTDOWN TO TOURNAMENT DAY";
