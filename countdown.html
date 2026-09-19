@@ -36,10 +36,13 @@ footer{padding:17px 24px;border-top:1px solid var(--line);color:#758093;font-siz
 const API="https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
 let target=0,timer=null;
 function parseDate(v){
-  if(!v)return null; const s=String(v).trim();
-  let m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+  if(v===null||v===undefined||v==="")return null;
+  if(typeof v==="number"){const n=new Date(v);return isNaN(n.getTime())?null:n;}
+  const s=String(v).trim();
+  let m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:[ T]+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
   if(m)return new Date(Number(m[3]),Number(m[2])-1,Number(m[1]),Number(m[4]||0),Number(m[5]||0),Number(m[6]||0));
-  const d=new Date(s); return isNaN(d.getTime())?null:d;
+  const d=new Date(s);
+  return isNaN(d.getTime())?null:d;
 }
 function countdownCallback(x){
   x=x||{};
@@ -47,7 +50,8 @@ function countdownCallback(x){
   document.getElementById("subtitle").textContent=x.Subtitle||"COUNTDOWN TO TOURNAMENT DAY";
   document.getElementById("venue").textContent=x.Venue||"";
   document.getElementById("footer").textContent=x.Footer||"RECRON BOWLING TOURNAMENT 2026";
-  const d=parseDate(x.EventDate);
+  const rawDate = x.EventDate || x["Event Date"] || x.eventDate || x.date || x.DATE || "";
+  const d=parseDate(rawDate);
   if(!d){document.getElementById("status").textContent="Tarikh acara belum ditetapkan.";return}
   target=d.getTime();
   document.getElementById("status").textContent="EVENT DATE";
