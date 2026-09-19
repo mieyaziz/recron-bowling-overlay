@@ -98,12 +98,37 @@ function countdownCallback(x){
   document.getElementById("subtitle").textContent=x.Subtitle||"COUNTDOWN TO TOURNAMENT DAY";
   document.getElementById("venue").textContent=x.Venue||"";
   document.getElementById("footer").textContent=x.Footer||"RECRON BOWLING TOURNAMENT 2026";
-  const rawDate = x.EventDate || x["Event Date"] || x.eventDate || x.date || x.DATE || "";
-  const d=parseDate(rawDate);
-  if(!d){document.getElementById("status").textContent="Tarikh acara belum ditetapkan.";return}
-  target=d.getTime();
-  document.getElementById("status").textContent="EVENT DATE";
-  document.getElementById("date").textContent=formatEventDate(d);
+  const rawDate = x["Event Date"] || x.EventDate || x.eventDate || x.date || x.DATE || "";
+
+let d = null;
+const parts = String(rawDate).trim().split("/");
+
+if(parts.length === 3){
+  const day = Number(parts[0]);
+  const month = Number(parts[1]);
+  const year = Number(parts[2]);
+
+  d = new Date(year, month - 1, day, 9, 0, 0);
+
+  if(
+    d.getFullYear() !== year ||
+    d.getMonth() !== month - 1 ||
+    d.getDate() !== day
+  ){
+    d = null;
+  }
+}else{
+  d = parseDate(rawDate);
+}
+
+if(!d){
+  document.getElementById("status").textContent="Tarikh acara belum ditetapkan.";
+  return;
+}
+
+target = d.getTime();
+document.getElementById("status").textContent="EVENT DATE";
+document.getElementById("date").textContent=formatEventDate(d);
   clearInterval(timer);tick();timer=setInterval(tick,1000);
 }
 function tick(){
