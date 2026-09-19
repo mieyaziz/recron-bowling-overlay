@@ -32,7 +32,7 @@ function render(){
   document.getElementById("players").textContent=rows.length;
   document.getElementById("games").textContent=rows.filter(p=>Number(p.total||0)>0).length;
   const avg=rows.length?rows.reduce((a,p)=>a+Number(p.total||0),0)/rows.length:0;document.getElementById("avg").textContent=avg.toFixed(0);
-  document.getElementById("list").innerHTML=rows.slice(0,20).map((p,i)=>{const r=i+1,m=r===1?"🥇":r===2?"🥈":r===3?"🥉":r;return `<div class="row ${r<=3?"top"+r:""}"><div class="rank">${m}</div><div><div class="name">${esc(p.nama||p.name)}</div><div class="team">${esc(p.team||"-")}</div></div><div class="score">${Number(p.total||0)}</div></div>`}).join("")||'<div class="empty">Belum ada data untuk kategori ini.</div>';
+  document.getElementById("list").innerHTML=rows.slice(0,70).map((p,i)=>{const r=i+1,m=r===1?"🥇":r===2?"🥈":r===3?"🥉":r;return `<div class="row ${r<=3?"top"+r:""}"><div class="rank">${m}</div><div><div class="name">${esc(p.nama||p.name)}</div><div class="team">${esc(p.team||"-")}</div></div><div class="score">${Number(p.total||0)}</div></div>`}).join("")||'<div class="empty">Belum ada data untuk kategori ini.</div>';
 }
 function load(){const old=document.getElementById("api");if(old)old.remove();const s=document.createElement("script");s.id="api";s.src=API+"?page=api_liveindividual&callback=callback&t="+Date.now();s.onerror=()=>document.getElementById("list").innerHTML='<div class="empty">Data tidak dapat dimuatkan.</div>';document.body.appendChild(s)}
 load();setInterval(load,10000);
