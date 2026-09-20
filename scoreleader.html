@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Ketua Kumpulan - Score Entry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Score Entry Ketua Kumpulan</title>
 
 <style>
 
@@ -17,1007 +18,999 @@ body{
   margin:0;
   padding:0;
   min-height:100%;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(
-      circle at top right,
-      rgba(0,130,255,.18),
-      transparent 35%
-    ),
-    #05070b;
-
+    radial-gradient(circle at top left,#182430 0%,#0b1118 45%,#05080c 100%);
   color:#fff;
 }
 
-
 body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  padding:20px;
+  min-height:100vh;
 }
 
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
-.container{
-
-  width:100%;
-  max-width:520px;
-
-}
-
-
-/* =========================================================
+/* =====================================
    HEADER
-   ========================================================= */
+===================================== */
 
 .header{
-
   text-align:center;
-
-  margin-bottom:20px;
-
+  padding:30px 18px 20px;
 }
-
 
 .logo{
-
-  width:75px;
-  height:75px;
-
+  width:78px;
+  height:78px;
   object-fit:contain;
-
-  margin-bottom:8px;
-
+  margin-bottom:10px;
 }
-
 
 .title{
-
-  font-size:25px;
+  margin:0;
+  font-size:27px;
   font-weight:900;
-
 }
-
 
 .subtitle{
-
-  margin-top:5px;
-
-  color:#8e9aaa;
-
-  font-size:11px;
-
+  margin-top:7px;
+  color:#9da8b4;
+  font-size:13px;
 }
 
+/* =====================================
+   CONTAINER
+===================================== */
 
-/* =========================================================
+.container{
+  width:min(850px,94%);
+  margin:0 auto;
+  padding-bottom:45px;
+}
+
+/* =====================================
    CARD
-   ========================================================= */
+===================================== */
 
 .card{
-
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.07),
+      rgba(255,255,255,.075),
       rgba(255,255,255,.025)
     );
 
-  border:
-    1px solid
-    rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.10);
 
-  border-radius:18px;
+  border-radius:20px;
 
   padding:22px;
 
+  margin-bottom:16px;
+
   box-shadow:
-    0 20px 60px
-    rgba(0,0,0,.35);
-
+    0 14px 35px rgba(0,0,0,.25);
 }
 
-
-/* =========================================================
+/* =====================================
    LOGIN
-   ========================================================= */
+===================================== */
 
-.login-title{
-
-  font-size:18px;
-  font-weight:900;
-
-  margin-bottom:18px;
-
+.login-card{
+  max-width:470px;
+  margin:0 auto;
 }
 
-
-label{
-
+.label{
   display:block;
-
+  font-size:13px;
+  color:#aab4bf;
   margin-bottom:7px;
-
-  color:#9da8b7;
-
-  font-size:11px;
-  font-weight:700;
-
 }
 
-
-input,
-select{
-
+.input{
   width:100%;
+  padding:14px 15px;
 
-  padding:13px 14px;
+  border-radius:12px;
 
-  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
 
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  background:#111722;
+  background:#0b1219;
 
   color:#fff;
 
   outline:none;
 
-  font-size:14px;
+  font-size:15px;
 
+  margin-bottom:14px;
 }
 
-
-input:focus,
-select:focus{
-
-  border-color:#168dff;
-
-  box-shadow:
-    0 0 0 2px
-    rgba(22,141,255,.12);
-
+.input:focus{
+  border-color:rgba(255,255,255,.35);
 }
 
-
-.form-group{
-
-  margin-bottom:15px;
-
-}
-
-
-/* =========================================================
-   BUTTON
-   ========================================================= */
-
-button{
-
+.button{
   width:100%;
 
   border:0;
 
-  border-radius:11px;
-
-  padding:13px;
-
-  background:#168dff;
-
-  color:#fff;
-
-  font-size:13px;
-  font-weight:900;
-
-  cursor:pointer;
-
-  transition:.2s;
-
-}
-
-
-button:hover{
-
-  background:#0879e5;
-
-  transform:translateY(-1px);
-
-}
-
-
-button:disabled{
-
-  opacity:.55;
-
-  cursor:not-allowed;
-
-  transform:none;
-
-}
-
-
-/* =========================================================
-   HOME
-   ========================================================= */
-
-.home-btn{
-
-  display:block;
-
-  width:100%;
-
-  margin-top:10px;
-
-  padding:11px;
-
-  border-radius:10px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  background:
-    rgba(255,255,255,.05);
-
-  color:#fff;
-
-  text-align:center;
-
-  text-decoration:none;
-
-  font-size:11px;
-  font-weight:800;
-
-}
-
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-.message{
-
-  display:none;
-
-  margin-bottom:15px;
-
-  padding:11px;
-
-  border-radius:9px;
-
-  background:
-    rgba(220,30,30,.12);
-
-  border:
-    1px solid
-    rgba(220,30,30,.30);
-
-  color:#ff8585;
-
-  font-size:11px;
-
-}
-
-
-.success{
-
-  background:
-    rgba(0,180,100,.12);
-
-  border-color:
-    rgba(0,180,100,.30);
-
-  color:#70e2aa;
-
-}
-
-
-/* =========================================================
-   SCORE PAGE
-   ========================================================= */
-
-#scorePage{
-
-  display:none;
-
-}
-
-
-.team-box{
+  border-radius:13px;
 
   padding:14px;
 
-  margin-bottom:18px;
-
-  border-radius:12px;
-
-  background:
-    rgba(22,141,255,.09);
-
-  border:
-    1px solid
-    rgba(22,141,255,.25);
-
-}
-
-
-.team-label{
-
-  color:#8ea0b6;
-
-  font-size:9px;
-
-  text-transform:uppercase;
+  font-size:15px;
 
   font-weight:800;
 
+  cursor:pointer;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1769aa,
+      #0d4c7c
+    );
+
+  transition:.18s;
 }
 
+.button:hover{
+  transform:translateY(-1px);
+}
+
+.button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* =====================================
+   TEAM HEADER
+===================================== */
+
+.team-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.team-label{
+  font-size:12px;
+  color:#8995a1;
+  margin-bottom:5px;
+}
 
 .team-name{
+  font-size:25px;
+  font-weight:900;
+}
 
+.leader-name{
+  color:#9da8b4;
+  font-size:13px;
   margin-top:4px;
+}
+
+.lock-team{
+  font-size:13px;
+  color:#9da8b4;
+  padding:9px 12px;
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+}
+
+/* =====================================
+   PLAYER
+===================================== */
+
+.player-title{
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.player-select{
+  width:100%;
+
+  padding:15px;
+
+  border-radius:13px;
+
+  border:1px solid rgba(255,255,255,.13);
+
+  background:#0b1219;
+
+  color:#fff;
+
+  font-size:15px;
+
+  outline:none;
+}
+
+.player-select:focus{
+  border-color:rgba(255,255,255,.35);
+}
+
+/* =====================================
+   GAMES
+===================================== */
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.game-box{
+  border-radius:15px;
+  padding:15px;
+
+  background:rgba(255,255,255,.045);
+
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.game-box.active{
+  border-color:rgba(50,170,255,.55);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25,110,175,.20),
+      rgba(255,255,255,.035)
+    );
+}
+
+.game-box.locked{
+  opacity:.65;
+}
+
+.game-label{
+  font-size:12px;
+  color:#9ca8b4;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.game-status{
+  font-size:11px;
+  margin-bottom:10px;
+  color:#778491;
+}
+
+.game-status.active{
+  color:#5eb9ff;
+}
+
+.game-status.saved{
+  color:#72d28a;
+}
+
+.game-status.locked{
+  color:#778491;
+}
+
+.score-input{
+  width:100%;
+
+  padding:13px 10px;
+
+  text-align:center;
 
   font-size:21px;
 
   font-weight:900;
 
-  color:#5db6ff;
+  color:#fff;
 
+  background:#070d13;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  border-radius:11px;
+
+  outline:none;
 }
 
-
-.leader-name{
-
-  margin-top:4px;
-
-  color:#aaa;
-
-  font-size:10px;
-
+.score-input:focus{
+  border-color:rgba(50,170,255,.6);
 }
 
-
-.lock{
-
-  float:right;
-
-  font-size:16px;
-
+.score-input:disabled{
+  color:#7f8a95;
+  background:#0a0f14;
+  cursor:not-allowed;
 }
 
+.save-game{
+  width:100%;
 
-/* =========================================================
-   SCORE INPUT
-   ========================================================= */
+  margin-top:11px;
 
-.score-grid{
+  padding:11px 8px;
 
-  display:grid;
+  border:0;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  border-radius:10px;
 
-  gap:10px;
-
-}
-
-
-.score-input{
-
-  text-align:center;
-
-  font-size:20px;
-  font-weight:900;
-
-}
-
-
-.score-title{
-
-  text-align:center;
-
-  margin-bottom:6px;
-
-  color:#9da8b7;
-
-  font-size:10px;
-  font-weight:800;
-
-}
-
-
-.total-box{
-
-  margin-top:15px;
-
-  padding:15px;
-
-  border-radius:12px;
-
-  background:
-    rgba(255,255,255,.04);
-
-  text-align:center;
-
-}
-
-
-.total-label{
-
-  color:#8995a5;
-
-  font-size:9px;
-
-}
-
-
-.total{
-
-  margin-top:4px;
-
-  font-size:28px;
-  font-weight:900;
+  background:#146da8;
 
   color:#fff;
 
+  font-weight:800;
+
+  cursor:pointer;
 }
 
-
-.logout{
-
-  margin-top:10px;
-
-  background:
-    rgba(255,255,255,.05);
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  color:#ccc;
-
+.save-game:disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
 
+/* =====================================
+   TOTAL
+===================================== */
 
-.logout:hover{
+.total-box{
+  margin-top:16px;
 
-  background:
-    rgba(255,255,255,.09);
+  padding:17px;
 
+  border-radius:14px;
+
+  background:rgba(255,255,255,.05);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
+.total-label{
+  color:#9aa6b2;
+  font-size:13px;
+}
 
-/* =========================================================
+.total-value{
+  font-size:27px;
+  font-weight:900;
+}
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.message{
+  display:none;
+
+  margin-top:15px;
+
+  padding:12px 14px;
+
+  border-radius:11px;
+
+  font-size:13px;
+
+  line-height:1.45;
+
+  background:rgba(255,255,255,.06);
+}
+
+.message.show{
+  display:block;
+}
+
+.message.success{
+  color:#7ee29a;
+}
+
+.message.error{
+  color:#ff8e8e;
+}
+
+/* =====================================
+   LOGOUT / HOME
+===================================== */
+
+.bottom-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:16px;
+}
+
+.secondary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  color:#c5ced7;
+
+  background:rgba(255,255,255,.055);
+
+  border:1px solid rgba(255,255,255,.10);
+
+  border-radius:12px;
+
+  padding:13px;
+
+  font-size:13px;
+
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.secondary:hover{
+  background:rgba(255,255,255,.09);
+}
+
+/* =====================================
+   HIDDEN
+===================================== */
+
+.hidden{
+  display:none !important;
+}
+
+/* =====================================
    LOADING
-   ========================================================= */
+===================================== */
 
 .loading{
-
   text-align:center;
-
-  padding:15px;
-
-  color:#8794a5;
-
-  font-size:11px;
-
+  color:#8e9aa6;
+  padding:20px;
+  font-size:13px;
 }
 
-
-/* =========================================================
+/* =====================================
    MOBILE
-   ========================================================= */
+===================================== */
 
-@media(max-width:500px){
-
-  body{
-
-    padding:12px;
-
-  }
-
-
-  .card{
-
-    padding:17px;
-
-  }
-
+@media(max-width:650px){
 
   .title{
-
-    font-size:21px;
-
+    font-size:23px;
   }
-
 
   .team-name{
-
-    font-size:18px;
-
+    font-size:21px;
   }
 
+  .games{
+    grid-template-columns:1fr;
+  }
 
-  .score-input{
+  .game-box{
+    padding:16px;
+  }
 
-    font-size:18px;
-
+  .bottom-buttons{
+    grid-template-columns:1fr;
   }
 
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 
-<div class="container">
+<!-- =====================================
+     HEADER
+===================================== -->
 
+<header class="header">
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
-
-  <div class="header">
-
-    <img
-      class="logo"
-      src="https://raw.githubusercontent.com/mieyaziz/recron-bowling-overlay/main/recron-logo.png"
-      alt="RECRON"
-      onerror="this.style.display='none'"
-    >
-
-    <div class="title">
-      RECRON BOWLING 2026
-    </div>
-
-    <div class="subtitle">
-      SCORE ENTRY KETUA KUMPULAN
-    </div>
-
-  </div>
-
-
-
-  <!-- =====================================================
-       LOGIN PAGE
-       ===================================================== -->
-
-  <div
-    class="card"
-    id="loginPage"
+  <img
+    class="logo"
+    src="https://raw.githubusercontent.com/mieyaziz/recron-bowling-overlay/main/recron-logo.png"
+    alt="RECRON Logo"
   >
 
-    <div class="login-title">
-      🔐 Login Ketua Kumpulan
-    </div>
+  <h1 class="title">
+    Score Entry Ketua Kumpulan
+  </h1>
+
+  <div class="subtitle">
+    RECRON Bowling Tournament 2026
+  </div>
+
+</header>
 
 
-    <div
-      class="message"
-      id="loginMessage"
-    ></div>
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main class="container">
 
 
-    <div class="form-group">
+  <!-- ===================================
+       LOGIN CARD
+  ==================================== -->
 
-      <label>
-        USERNAME
-      </label>
+  <section
+    id="loginSection"
+    class="card login-card"
+  >
 
-      <input
-        type="text"
-        id="username"
-        autocomplete="username"
-        placeholder="Contoh: KETUA01"
-      >
+    <label class="label">
+      Username
+    </label>
 
-    </div>
+    <input
+      id="username"
+      class="input"
+      type="text"
+      autocomplete="username"
+      placeholder="Masukkan username"
+    >
 
+    <label class="label">
+      Password
+    </label>
 
-    <div class="form-group">
-
-      <label>
-        PASSWORD
-      </label>
-
-      <input
-        type="password"
-        id="password"
-        autocomplete="current-password"
-        placeholder="Masukkan password"
-      >
-
-    </div>
-
+    <input
+      id="password"
+      class="input"
+      type="password"
+      autocomplete="current-password"
+      placeholder="Masukkan password"
+    >
 
     <button
       id="loginBtn"
+      class="button"
       onclick="login()"
     >
-      LOGIN
+      🔐 LOGIN
     </button>
 
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
 
-    <a
-      class="home-btn"
-      href="https://mieyaziz.github.io/recron-bowling-overlay/"
-    >
-      🏠 HOME
-    </a>
-
-  </div>
+  </section>
 
 
+  <!-- ===================================
+       SCORE SECTION
+  ==================================== -->
 
-  <!-- =====================================================
-       SCORE PAGE
-       ===================================================== -->
-
-  <div
-    class="card"
-    id="scorePage"
+  <section
+    id="scoreSection"
+    class="hidden"
   >
 
 
     <!-- TEAM -->
 
-    <div class="team-box">
+    <div class="card">
 
-      <span class="lock">
-        🔒
-      </span>
+      <div class="team-header">
 
-      <div class="team-label">
-        TEAM ANDA
-      </div>
+        <div>
 
-      <div
-        class="team-name"
-        id="teamName"
-      >
-        -
-      </div>
+          <div class="team-label">
+            TEAM ANDA
+          </div>
 
-      <div
-        class="leader-name"
-        id="leaderName"
-      >
-        -
+          <div
+            id="teamName"
+            class="team-name"
+          >
+            -
+          </div>
+
+          <div
+            id="leaderName"
+            class="leader-name"
+          >
+            -
+          </div>
+
+        </div>
+
+        <div class="lock-team">
+          🔒 Team Dikunci
+        </div>
+
       </div>
 
     </div>
 
 
+    <!-- PLAYER + SCORE -->
 
-    <!-- MESSAGE -->
+    <div class="card">
 
-    <div
-      class="message"
-      id="scoreMessage"
-    ></div>
-
-
-
-    <!-- PLAYER -->
-
-    <div class="form-group">
-
-      <label>
+      <div class="player-title">
         PILIH PEMAIN
-      </label>
+      </div>
 
       <select
         id="playerSelect"
-        onchange="loadPlayerScore()"
+        class="player-select"
+        onchange="loadSelectedPlayer()"
       >
 
         <option value="">
-          -- Pilih pemain --
+          -- Pilih Pemain --
         </option>
 
       </select>
 
-    </div>
-
-
-
-    <!-- SCORES -->
-
-    <div class="score-grid">
-
-
-      <div>
-
-        <div class="score-title">
-          GAME 1
-        </div>
-
-        <input
-          class="score-input"
-          id="g1"
-          type="number"
-          min="0"
-          max="300"
-          inputmode="numeric"
-          oninput="updateTotal()"
-        >
-
-      </div>
-
-
-      <div>
-
-        <div class="score-title">
-          GAME 2
-        </div>
-
-        <input
-          class="score-input"
-          id="g2"
-          type="number"
-          min="0"
-          max="300"
-          inputmode="numeric"
-          oninput="updateTotal()"
-        >
-
-      </div>
-
-
-      <div>
-
-        <div class="score-title">
-          GAME 3
-        </div>
-
-        <input
-          class="score-input"
-          id="g3"
-          type="number"
-          min="0"
-          max="300"
-          inputmode="numeric"
-          oninput="updateTotal()"
-        >
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- TOTAL -->
-
-    <div class="total-box">
-
-      <div class="total-label">
-        TOTAL
-      </div>
 
       <div
-        class="total"
-        id="total"
+        id="playerLoading"
+        class="loading hidden"
       >
-        0
+        Memuatkan score...
       </div>
+
+
+      <!-- GAMES -->
+
+      <div
+        id="gamesContainer"
+        class="games"
+      >
+
+
+        <!-- GAME 1 -->
+
+        <div
+          id="gameBox1"
+          class="game-box"
+        >
+
+          <div class="game-label">
+            GAME 1
+          </div>
+
+          <div
+            id="status1"
+            class="game-status locked"
+          >
+            🔐 Belum aktif
+          </div>
+
+          <input
+            id="score1"
+            class="score-input"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+            disabled
+            placeholder="-"
+          >
+
+          <button
+            id="save1"
+            class="save-game"
+            onclick="saveGame(1)"
+            disabled
+          >
+            SIMPAN G1
+          </button>
+
+        </div>
+
+
+        <!-- GAME 2 -->
+
+        <div
+          id="gameBox2"
+          class="game-box"
+        >
+
+          <div class="game-label">
+            GAME 2
+          </div>
+
+          <div
+            id="status2"
+            class="game-status locked"
+          >
+            🔐 Belum aktif
+          </div>
+
+          <input
+            id="score2"
+            class="score-input"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+            disabled
+            placeholder="-"
+          >
+
+          <button
+            id="save2"
+            class="save-game"
+            onclick="saveGame(2)"
+            disabled
+          >
+            SIMPAN G2
+          </button>
+
+        </div>
+
+
+        <!-- GAME 3 -->
+
+        <div
+          id="gameBox3"
+          class="game-box"
+        >
+
+          <div class="game-label">
+            GAME 3
+          </div>
+
+          <div
+            id="status3"
+            class="game-status locked"
+          >
+            🔐 Belum aktif
+          </div>
+
+          <input
+            id="score3"
+            class="score-input"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+            disabled
+            placeholder="-"
+          >
+
+          <button
+            id="save3"
+            class="save-game"
+            onclick="saveGame(3)"
+            disabled
+          >
+            SIMPAN G3
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- TOTAL -->
+
+      <div class="total-box">
+
+        <div class="total-label">
+          JUMLAH SCORE
+        </div>
+
+        <div
+          id="totalValue"
+          class="total-value"
+        >
+          0
+        </div>
+
+      </div>
+
+
+      <div
+        id="scoreMessage"
+        class="message"
+      ></div>
+
 
     </div>
 
 
-    <br>
+    <!-- BUTTONS -->
+
+    <div class="bottom-buttons">
+
+      <button
+        class="secondary"
+        onclick="logout()"
+      >
+        🚪 Logout
+      </button>
+
+      <a
+        class="secondary"
+        href="./index.html"
+      >
+        🏠 Home
+      </a>
+
+    </div>
 
 
-    <button
-      id="saveBtn"
-      onclick="saveScore()"
-    >
-      💾 SIMPAN SCORE
-    </button>
+  </section>
 
 
-    <button
-      class="logout"
-      onclick="logout()"
-    >
-      LOGOUT
-    </button>
-
-
-    <a
-      class="home-btn"
-      href="https://mieyaziz.github.io/recron-bowling-overlay/"
-    >
-      🏠 HOME
-    </a>
-
-
-  </div>
-
-
-</div>
-
+</main>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    CONFIG
-   ========================================================= */
+===================================================== */
 
-const API =
+const API_URL =
   "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
 
 
-let token = "";
+/* =====================================================
+   STATE
+===================================================== */
+
+let token =
+  localStorage.getItem("teamLeaderToken") || "";
+
+let currentTeam = "";
+
+let currentLeader = "";
 
 let players = [];
 
+let currentPlayer = "";
 
-/* =========================================================
-   JSONP
-   ========================================================= */
+let currentScores = {
+  g1: "",
+  g2: "",
+  g3: ""
+};
+
+
+/* =====================================================
+   JSONP HELPER
+===================================================== */
 
 function jsonp(page, params = {}) {
 
-  return new Promise(
-    (resolve,reject) => {
+  return new Promise((resolve, reject) => {
 
-      const callbackName =
-        "cb_" +
-        Date.now() +
-        "_" +
-        Math.floor(
-          Math.random() * 100000
+    const callbackName =
+      "jsonp_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random() * 100000);
+
+    const script =
+      document.createElement("script");
+
+    const query =
+      new URLSearchParams();
+
+    query.set("page", page);
+    query.set("callback", callbackName);
+
+    Object.keys(params).forEach(key => {
+
+      const value = params[key];
+
+      if (
+        value !== undefined &&
+        value !== null
+      ) {
+
+        query.set(
+          key,
+          String(value)
         );
-
-
-      const script =
-        document.createElement(
-          "script"
-        );
-
-
-      const query =
-        new URLSearchParams({
-
-          page:page,
-
-          callback:callbackName,
-
-          ...params
-
-        });
-
-
-      const timer =
-        setTimeout(
-          () => {
-
-            cleanup();
-
-            reject(
-              new Error(
-                "API timeout"
-              )
-            );
-
-          },
-          15000
-        );
-
-
-      function cleanup(){
-
-        clearTimeout(timer);
-
-        delete window[callbackName];
-
-        script.remove();
 
       }
 
-
-      window[callbackName] =
-        data => {
-
-          cleanup();
-
-          resolve(data);
-
-        };
+    });
 
 
-      script.onerror =
-        () => {
+    const timer =
+      setTimeout(() => {
 
-          cleanup();
+        cleanup();
 
-          reject(
-            new Error(
-              "Gagal sambung ke server."
-            )
-          );
+        reject(
+          new Error(
+            "Connection timeout."
+          )
+        );
 
-        };
-
-
-      script.src =
-        API +
-        "?" +
-        query.toString();
+      }, 20000);
 
 
-      document.body.appendChild(
-        script
-      );
+    function cleanup(){
+
+      clearTimeout(timer);
+
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+
+      try{
+        delete window[callbackName];
+      }catch(e){}
 
     }
-  );
+
+
+    window[callbackName] =
+      function(data){
+
+        cleanup();
+
+        resolve(data);
+
+      };
+
+
+    script.onerror =
+      function(){
+
+        cleanup();
+
+        reject(
+          new Error(
+            "API connection failed."
+          )
+        );
+
+      };
+
+
+    script.src =
+      API_URL +
+      "?" +
+      query.toString();
+
+
+    document.body.appendChild(script);
+
+  });
 
 }
 
 
-/* =========================================================
-   MESSAGE
-   ========================================================= */
+/* =====================================================
+   INIT
+===================================================== */
 
-function showMessage(
-  id,
-  message,
-  success = false
-){
+window.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-  const el =
-    document.getElementById(id);
+    if(token){
 
+      restoreSession();
 
-  el.textContent =
-    message;
+    }
 
-
-  el.classList.toggle(
-    "success",
-    success
-  );
+  }
+);
 
 
-  el.style.display =
-    "block";
-
-}
-
-
-function hideMessage(id){
-
-  document
-    .getElementById(id)
-    .style.display =
-      "none";
-
-}
-
-
-/* =========================================================
+/* =====================================================
    LOGIN
-   ========================================================= */
+===================================================== */
 
-function login(){
+async function login(){
 
   const username =
     document
@@ -1025,24 +1018,18 @@ function login(){
       .value
       .trim();
 
-
   const password =
     document
       .getElementById("password")
-      .value
-      .trim();
-
-
-  hideMessage(
-    "loginMessage"
-  );
+      .value;
 
 
   if(!username || !password){
 
     showMessage(
       "loginMessage",
-      "Sila masukkan username dan password."
+      "Sila masukkan username dan password.",
+      "error"
     );
 
     return;
@@ -1051,616 +1038,975 @@ function login(){
 
 
   const btn =
-    document
-      .getElementById("loginBtn");
-
+    document.getElementById("loginBtn");
 
   btn.disabled = true;
-
-  btn.textContent =
-    "LOGGING IN...";
+  btn.textContent = "⏳ LOGIN...";
 
 
-  jsonp(
-    "api_teamleader_login",
-    {
-      username:username,
-      password:password
-    }
-  )
+  try{
 
-  .then(
-    data => {
-
-      if(
-        !data ||
-        data.success !== true
-      ){
-
-        throw new Error(
-          data?.message ||
-          "Login gagal."
-        );
-
-      }
-
-
-      token =
-        data.token;
-
-
-      document
-        .getElementById(
-          "teamName"
-        )
-        .textContent =
-          data.team || "-";
-
-
-      document
-        .getElementById(
-          "leaderName"
-        )
-        .textContent =
-          data.namaKetua
-            ? "Ketua: " +
-              data.namaKetua
-            : "Username: " +
-              data.username;
-
-
-      localStorage.setItem(
-        "teamLeaderToken",
-        token
-      );
-
-
-      return loadPlayers();
-
-    }
-  )
-
-  .then(
-    () => {
-
-      document
-        .getElementById(
-          "loginPage"
-        )
-        .style.display =
-          "none";
-
-
-      document
-        .getElementById(
-          "scorePage"
-        )
-        .style.display =
-          "block";
-
-    }
-  )
-
-  .catch(
-    error => {
-
-      showMessage(
-        "loginMessage",
-        error.message ||
-        "Login gagal."
-      );
-
-    }
-  )
-
-  .finally(
-    () => {
-
-      btn.disabled = false;
-
-      btn.textContent =
-        "LOGIN";
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   LOAD PLAYERS
-   ========================================================= */
-
-function loadPlayers(){
-
-  return jsonp(
-    "api_teamleader_players",
-    {
-      token:token
-    }
-  )
-
-  .then(
-    data => {
-
-      if(
-        !data ||
-        data.success !== true
-      ){
-
-        throw new Error(
-          data?.message ||
-          "Gagal mendapatkan pemain."
-        );
-
-      }
-
-
-      players =
-        data.players || [];
-
-
-      const select =
-        document
-          .getElementById(
-            "playerSelect"
-          );
-
-
-      select.innerHTML =
-        '<option value="">' +
-        '-- Pilih pemain --' +
-        '</option>';
-
-
-      players.forEach(
-        player => {
-
-          const option =
-            document.createElement(
-              "option"
-            );
-
-
-          option.value =
-            player.nama;
-
-
-          option.textContent =
-            player.nama;
-
-
-          select.appendChild(
-            option
-          );
-
+    const result =
+      await jsonp(
+        "api_teamleader_login",
+        {
+          username:username,
+          password:password
         }
       );
 
 
-      if(!players.length){
+    if(!result || !result.success){
 
-        showMessage(
-          "scoreMessage",
-          "Tiada pemain ditemui untuk team ini."
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   LOAD EXISTING SCORE
-   ========================================================= */
-
-function loadPlayerScore(){
-
-  const nama =
-    document
-      .getElementById(
-        "playerSelect"
-      )
-      .value;
-
-
-  clearScores();
-
-  hideMessage(
-    "scoreMessage"
-  );
-
-
-  if(!nama)
-    return;
-
-
-  jsonp(
-    "api_score_get",
-    {
-      token:token,
-      nama:nama
-    }
-  )
-
-  .then(
-    data => {
-
-      if(
-        !data ||
-        data.success !== true
-      ){
-
-        return;
-
-      }
-
-
-      const score =
-        data.score ||
-        data;
-
-
-      document
-        .getElementById("g1")
-        .value =
-          score.g1 ?? "";
-
-
-      document
-        .getElementById("g2")
-        .value =
-          score.g2 ?? "";
-
-
-      document
-        .getElementById("g3")
-        .value =
-          score.g3 ?? "";
-
-
-      updateTotal();
-
-    }
-  )
-
-  .catch(
-    error => {
-
-      console.error(
-        error
+      throw new Error(
+        result?.message ||
+        "Login gagal."
       );
 
     }
-  );
-
-}
 
 
-/* =========================================================
-   CLEAR SCORES
-   ========================================================= */
+    token =
+      result.token;
 
-function clearScores(){
-
-  document
-    .getElementById("g1")
-    .value = "";
-
-
-  document
-    .getElementById("g2")
-    .value = "";
-
-
-  document
-    .getElementById("g3")
-    .value = "";
-
-
-  updateTotal();
-
-}
-
-
-/* =========================================================
-   TOTAL
-   ========================================================= */
-
-function updateTotal(){
-
-  const g1 =
-    Number(
-      document
-        .getElementById("g1")
-        .value
-    ) || 0;
-
-
-  const g2 =
-    Number(
-      document
-        .getElementById("g2")
-        .value
-    ) || 0;
-
-
-  const g3 =
-    Number(
-      document
-        .getElementById("g3")
-        .value
-    ) || 0;
-
-
-  document
-    .getElementById("total")
-    .textContent =
-      g1 + g2 + g3;
-
-}
-
-
-/* =========================================================
-   SAVE SCORE
-   ========================================================= */
-
-function saveScore(){
-
-  const nama =
-    document
-      .getElementById(
-        "playerSelect"
-      )
-      .value;
-
-
-  const g1 =
-    document
-      .getElementById("g1")
-      .value;
-
-
-  const g2 =
-    document
-      .getElementById("g2")
-      .value;
-
-
-  const g3 =
-    document
-      .getElementById("g3")
-      .value;
-
-
-  hideMessage(
-    "scoreMessage"
-  );
-
-
-  if(!nama){
-
-    showMessage(
-      "scoreMessage",
-      "Sila pilih pemain."
+    localStorage.setItem(
+      "teamLeaderToken",
+      token
     );
 
-    return;
+
+    currentTeam =
+      result.team || "";
+
+    currentLeader =
+      result.namaKetua || result.username || "";
+
+
+    await openScoreSection();
+
+
+  }catch(error){
+
+    showMessage(
+      "loginMessage",
+      error.message ||
+      "Login gagal.",
+      "error"
+    );
+
+  }finally{
+
+    btn.disabled = false;
+    btn.textContent = "🔐 LOGIN";
 
   }
 
-
-  if(
-    g1 === "" ||
-    g2 === "" ||
-    g3 === ""
-  ){
-
-    showMessage(
-      "scoreMessage",
-      "Sila isi Game 1, Game 2 dan Game 3."
-    );
-
-    return;
-
-  }
+}
 
 
-  const values =
-    [g1,g2,g3];
+/* =====================================================
+   RESTORE SESSION
+===================================================== */
 
+async function restoreSession(){
 
-  for(
-    const value of values
-  ){
+  try{
 
-    const score =
-      Number(value);
-
-
-    if(
-      !Number.isFinite(score) ||
-      score < 0 ||
-      score > 300
-    ){
-
-      showMessage(
-        "scoreMessage",
-        "Score mesti antara 0 hingga 300."
+    const result =
+      await jsonp(
+        "api_teamleader_players",
+        {
+          token:token
+        }
       );
+
+
+    if(!result || !result.success){
+
+      logout();
 
       return;
 
     }
 
+
+    currentTeam =
+      result.team || "";
+
+    currentLeader =
+      result.leader ||
+      result.namaKetua ||
+      result.username ||
+      "";
+
+
+    await openScoreSection();
+
+
+  }catch(error){
+
+    logout();
+
   }
-
-
-  const btn =
-    document
-      .getElementById(
-        "saveBtn"
-      );
-
-
-  btn.disabled = true;
-
-  btn.textContent =
-    "MENYIMPAN...";
-
-
-  jsonp(
-    "api_teamleader_save",
-    {
-
-      token:token,
-
-      nama:nama,
-
-      g1:g1,
-
-      g2:g2,
-
-      g3:g3
-
-    }
-  )
-
-  .then(
-    data => {
-
-      if(
-        !data ||
-        data.success !== true
-      ){
-
-        throw new Error(
-          data?.message ||
-          "Gagal simpan score."
-        );
-
-      }
-
-
-      showMessage(
-        "scoreMessage",
-        "Score berjaya disimpan.",
-        true
-      );
-
-
-      document
-        .getElementById(
-          "total"
-        )
-        .textContent =
-          Number(g1) +
-          Number(g2) +
-          Number(g3);
-
-    }
-  )
-
-  .catch(
-    error => {
-
-      showMessage(
-        "scoreMessage",
-        error.message ||
-        "Gagal simpan score."
-      );
-
-    }
-  )
-
-  .finally(
-    () => {
-
-      btn.disabled = false;
-
-      btn.textContent =
-        "💾 SIMPAN SCORE";
-
-    }
-  );
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   OPEN SCORE SECTION
+===================================================== */
+
+async function openScoreSection(){
+
+  document
+    .getElementById("loginSection")
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById("scoreSection")
+    .classList
+    .remove("hidden");
+
+
+  document
+    .getElementById("teamName")
+    .textContent =
+      currentTeam || "-";
+
+
+  document
+    .getElementById("leaderName")
+    .textContent =
+      currentLeader
+        ? "Ketua: " + currentLeader
+        : "";
+
+
+  await loadPlayers();
+
+}
+
+
+/* =====================================================
+   LOAD PLAYERS
+===================================================== */
+
+async function loadPlayers(){
+
+  try{
+
+    const result =
+      await jsonp(
+        "api_teamleader_players",
+        {
+          token:token
+        }
+      );
+
+
+    if(!result || !result.success){
+
+      throw new Error(
+        result?.message ||
+        "Gagal mendapatkan senarai pemain."
+      );
+
+    }
+
+
+    players =
+      Array.isArray(result.players)
+        ? result.players
+        : [];
+
+
+    const select =
+      document.getElementById(
+        "playerSelect"
+      );
+
+
+    select.innerHTML =
+      '<option value="">-- Pilih Pemain --</option>';
+
+
+    players.forEach(function(player){
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        player.nama;
+
+      option.textContent =
+        player.nama;
+
+      select.appendChild(option);
+
+    });
+
+
+  }catch(error){
+
+    showMessage(
+      "scoreMessage",
+      error.message ||
+      "Gagal mendapatkan pemain.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD SELECTED PLAYER
+===================================================== */
+
+async function loadSelectedPlayer(){
+
+  const select =
+    document.getElementById(
+      "playerSelect"
+    );
+
+  const nama =
+    select.value;
+
+
+  currentPlayer =
+    nama;
+
+
+  resetGameUI();
+
+
+  if(!nama){
+
+    return;
+
+  }
+
+
+  const loading =
+    document.getElementById(
+      "playerLoading"
+    );
+
+  loading.classList.remove(
+    "hidden"
+  );
+
+
+  try{
+
+    const result =
+      await jsonp(
+        "api_score_get",
+        {
+          token:token,
+          nama:nama
+        }
+      );
+
+
+    if(
+      result &&
+      result.success &&
+      result.score
+    ){
+
+      currentScores = {
+
+        g1:
+          normaliseScore(
+            result.score.g1
+          ),
+
+        g2:
+          normaliseScore(
+            result.score.g2
+          ),
+
+        g3:
+          normaliseScore(
+            result.score.g3
+          )
+
+      };
+
+    }else{
+
+      currentScores = {
+        g1:"",
+        g2:"",
+        g3:""
+      };
+
+    }
+
+
+    renderGames();
+
+
+  }catch(error){
+
+    showMessage(
+      "scoreMessage",
+      error.message ||
+      "Gagal membaca score pemain.",
+      "error"
+    );
+
+  }finally{
+
+    loading.classList.add(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   NORMALISE SCORE
+===================================================== */
+
+function normaliseScore(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+
+    return "";
+
+  }
+
+  return Number(value);
+
+}
+
+
+/* =====================================================
+   RESET UI
+===================================================== */
+
+function resetGameUI(){
+
+  currentScores = {
+    g1:"",
+    g2:"",
+    g3:""
+  };
+
+
+  for(let i=1;i<=3;i++){
+
+    const input =
+      document.getElementById(
+        "score" + i
+      );
+
+    const button =
+      document.getElementById(
+        "save" + i
+      );
+
+    const box =
+      document.getElementById(
+        "gameBox" + i
+      );
+
+    const status =
+      document.getElementById(
+        "status" + i
+      );
+
+
+    input.value = "";
+
+    input.disabled = true;
+
+    button.disabled = true;
+
+    box.classList.remove(
+      "active",
+      "locked"
+    );
+
+    status.className =
+      "game-status locked";
+
+    status.textContent =
+      "🔐 Belum aktif";
+
+  }
+
+
+  document
+    .getElementById("totalValue")
+    .textContent = "0";
+
+
+  document
+    .getElementById("scoreMessage")
+    .className =
+      "message";
+
+}
+
+
+/* =====================================================
+   RENDER GAME STATUS
+===================================================== */
+
+function renderGames(){
+
+  const scores =
+    currentScores;
+
+
+  const hasG1 =
+    scores.g1 !== "" &&
+    scores.g1 !== null &&
+    scores.g1 !== undefined;
+
+
+  const hasG2 =
+    scores.g2 !== "" &&
+    scores.g2 !== null &&
+    scores.g2 !== undefined;
+
+
+  const hasG3 =
+    scores.g3 !== "" &&
+    scores.g3 !== null &&
+    scores.g3 !== undefined;
+
+
+  /* ---------------------------------------------
+     SET VALUES
+  --------------------------------------------- */
+
+  document
+    .getElementById("score1")
+    .value =
+      hasG1 ? scores.g1 : "";
+
+  document
+    .getElementById("score2")
+    .value =
+      hasG2 ? scores.g2 : "";
+
+  document
+    .getElementById("score3")
+    .value =
+      hasG3 ? scores.g3 : "";
+
+
+  /* ---------------------------------------------
+     GAME 1
+  --------------------------------------------- */
+
+  if(hasG1){
+
+    setGameState(
+      1,
+      "saved",
+      "🔒 Disimpan",
+      true
+    );
+
+  }else{
+
+    setGameState(
+      1,
+      "active",
+      "🎳 Aktif",
+      false
+    );
+
+  }
+
+
+  /* ---------------------------------------------
+     GAME 2
+  --------------------------------------------- */
+
+  if(hasG2){
+
+    setGameState(
+      2,
+      "saved",
+      "🔒 Disimpan",
+      true
+    );
+
+  }else if(hasG1){
+
+    setGameState(
+      2,
+      "active",
+      "🎳 Aktif",
+      false
+    );
+
+  }else{
+
+    setGameState(
+      2,
+      "locked",
+      "🔐 Tunggu Game 1",
+      false
+    );
+
+  }
+
+
+  /* ---------------------------------------------
+     GAME 3
+  --------------------------------------------- */
+
+  if(hasG3){
+
+    setGameState(
+      3,
+      "saved",
+      "🔒 Disimpan",
+      true
+    );
+
+  }else if(hasG2){
+
+    setGameState(
+      3,
+      "active",
+      "🎳 Aktif",
+      false
+    );
+
+  }else{
+
+    setGameState(
+      3,
+      "locked",
+      "🔐 Tunggu Game 2",
+      false
+    );
+
+  }
+
+
+  /* ---------------------------------------------
+     TOTAL
+  --------------------------------------------- */
+
+  const total =
+    (Number(scores.g1) || 0) +
+    (Number(scores.g2) || 0) +
+    (Number(scores.g3) || 0);
+
+
+  document
+    .getElementById("totalValue")
+    .textContent =
+      total;
+
+
+  /* ---------------------------------------------
+     COMPLETE
+  --------------------------------------------- */
+
+  if(
+    hasG1 &&
+    hasG2 &&
+    hasG3
+  ){
+
+    showMessage(
+      "scoreMessage",
+      "✅ Semua 3 game untuk pemain ini telah selesai.",
+      "success"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SET GAME STATE
+===================================================== */
+
+function setGameState(
+  gameNo,
+  state,
+  text,
+  saved
+){
+
+  const box =
+    document.getElementById(
+      "gameBox" + gameNo
+    );
+
+  const status =
+    document.getElementById(
+      "status" + gameNo
+    );
+
+  const input =
+    document.getElementById(
+      "score" + gameNo
+    );
+
+  const button =
+    document.getElementById(
+      "save" + gameNo
+    );
+
+
+  box.classList.remove(
+    "active",
+    "locked"
+  );
+
+
+  status.className =
+    "game-status";
+
+
+  if(state === "active"){
+
+    box.classList.add(
+      "active"
+    );
+
+    status.classList.add(
+      "active"
+    );
+
+    input.disabled = false;
+
+    button.disabled = false;
+
+  }
+
+
+  else if(state === "saved"){
+
+    box.classList.add(
+      "locked"
+    );
+
+    status.classList.add(
+      "saved"
+    );
+
+    input.disabled = true;
+
+    button.disabled = true;
+
+  }
+
+
+  else{
+
+    box.classList.add(
+      "locked"
+    );
+
+    status.classList.add(
+      "locked"
+    );
+
+    input.disabled = true;
+
+    button.disabled = true;
+
+  }
+
+
+  status.textContent =
+    text;
+
+}
+
+
+/* =====================================================
+   SAVE GAME
+===================================================== */
+
+async function saveGame(gameNo){
+
+  if(!currentPlayer){
+
+    showMessage(
+      "scoreMessage",
+      "Sila pilih pemain dahulu.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const input =
+    document.getElementById(
+      "score" + gameNo
+    );
+
+
+  const button =
+    document.getElementById(
+      "save" + gameNo
+    );
+
+
+  const rawValue =
+    input.value;
+
+
+  /*
+   * Penting:
+   * 0 dianggap valid.
+   */
+
+  if(
+    rawValue === "" ||
+    rawValue === null ||
+    rawValue === undefined
+  ){
+
+    showMessage(
+      "scoreMessage",
+      "Sila masukkan score Game " + gameNo + ".",
+      "error"
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  const score =
+    Number(rawValue);
+
+
+  if(
+    isNaN(score) ||
+    score < 0 ||
+    score > 300
+  ){
+
+    showMessage(
+      "scoreMessage",
+      "Score mesti antara 0 hingga 300.",
+      "error"
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "⏳ SIMPAN...";
+
+
+  try{
+
+    const result =
+      await jsonp(
+        "api_teamleader_save_game",
+        {
+          token:token,
+          nama:currentPlayer,
+          game:gameNo,
+          score:score
+        }
+      );
+
+
+    if(!result || !result.success){
+
+      if(
+        result &&
+        result.locked
+      ){
+
+        throw new Error(
+          result.message ||
+          "Game sudah dikunci."
+        );
+
+      }
+
+      throw new Error(
+        result?.message ||
+        "Gagal menyimpan score."
+      );
+
+    }
+
+
+    /* ---------------------------------------------
+       UPDATE LOCAL SCORE
+    --------------------------------------------- */
+
+    if(gameNo === 1){
+      currentScores.g1 = score;
+    }
+
+    if(gameNo === 2){
+      currentScores.g2 = score;
+    }
+
+    if(gameNo === 3){
+      currentScores.g3 = score;
+    }
+
+
+    renderGames();
+
+
+    showMessage(
+      "scoreMessage",
+      "✅ Game " +
+        gameNo +
+        " berjaya disimpan untuk " +
+        currentPlayer +
+        ".",
+      "success"
+    );
+
+
+  }catch(error){
+
+    showMessage(
+      "scoreMessage",
+      error.message ||
+      "Gagal menyimpan score.",
+      "error"
+    );
+
+
+    /*
+     * Refresh data daripada server
+     * supaya UI tidak tersalah anggap
+     * game sudah/ belum disimpan.
+     */
+
+    try{
+
+      await loadSelectedPlayer();
+
+    }catch(e){}
+
+  }finally{
+
+    button.textContent =
+      "SIMPAN G" + gameNo;
+
+  }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+  elementId,
+  text,
+  type
+){
+
+  const element =
+    document.getElementById(
+      elementId
+    );
+
+
+  element.textContent =
+    text;
+
+
+  element.className =
+    "message show " +
+    (type || "");
+
+
+}
+
+
+/* =====================================================
    LOGOUT
-   ========================================================= */
+===================================================== */
 
 function logout(){
-
-  token = "";
-
-  players = [];
-
 
   localStorage.removeItem(
     "teamLeaderToken"
   );
 
 
-  document
-    .getElementById(
-      "scorePage"
-    )
-    .style.display =
-      "none";
+  token = "";
+
+  currentTeam = "";
+
+  currentLeader = "";
+
+  players = [];
+
+  currentPlayer = "";
 
 
   document
-    .getElementById(
-      "loginPage"
-    )
-    .style.display =
-      "block";
+    .getElementById("scoreSection")
+    .classList
+    .add("hidden");
 
 
   document
-    .getElementById(
-      "username"
-    )
+    .getElementById("loginSection")
+    .classList
+    .remove("hidden");
+
+
+  document
+    .getElementById("username")
     .value = "";
 
 
   document
-    .getElementById(
-      "password"
-    )
+    .getElementById("password")
     .value = "";
 
 
-  clearScores();
+  document
+    .getElementById("playerSelect")
+    .innerHTML =
+      '<option value="">-- Pilih Pemain --</option>';
+
+
+  resetGameUI();
 
 }
-
-
-/* =========================================================
-   ENTER KEY LOGIN
-   ========================================================= */
-
-document
-  .getElementById("password")
-  .addEventListener(
-    "keydown",
-    event => {
-
-      if(
-        event.key === "Enter"
-      ){
-
-        login();
-
-      }
-
-    }
-  );
 
 </script>
 
