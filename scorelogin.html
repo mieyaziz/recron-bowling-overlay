@@ -132,6 +132,7 @@ button.primary:disabled{opacity:.65;cursor:not-allowed}
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
 let token = sessionStorage.getItem("recronScoreToken") || "";
+let allScorePlayers = [];
 
 function jsonp(page, params={}) {
   return new Promise((resolve,reject)=>{
@@ -200,7 +201,8 @@ function loadPlayers() {
     .then(r=>{
       if(authFail(r)) return;
       if(!r.success) throw new Error(r.message||"Gagal memuatkan team.");
-      const teams=[...new Set((r.players||[]).map(x=>String(x.team||"").trim()).filter(Boolean))].sort();
+      allScorePlayers = Array.isArray(r.players) ? r.players : [];
+      const teams=[...new Set(allScorePlayers.map(x=>String(x.team||"").trim()).filter(Boolean))].sort();
       document.getElementById("team").innerHTML='<option value="">-- Pilih Team --</option>'+
         teams.map(t=>'<option value="'+escapeHtml(t)+'">'+escapeHtml(t)+'</option>').join("");
       document.getElementById("sessionMsg").textContent=teams.length+" team tersedia.";
@@ -215,15 +217,15 @@ function loadTeam() {
   msg("saveMsg","");
   if(!team) return;
 
-  jsonp("api_score_team",{token:token,team:team})
-    .then(r=>{
-      if(authFail(r)) return;
-      if(!r.success) throw new Error(r.message||"Gagal memuatkan pemain.");
-      const players=r.players||[];
-      document.getElementById("player").innerHTML='<option value="">-- Pilih Pemain --</option>'+
-        players.map(p=>'<option value="'+escapeHtml(p.nama)+'">'+escapeHtml(p.nama)+'</option>').join("");
-    })
-    .catch(e=>msg("saveMsg","❌ "+e.message,"err"));
+  // Gunakan senarai pemain yang sudah dimuatkan oleh api_score_players.
+  // Tidak perlu panggil api_score_team lagi; ini elak timeout dan lebih pantas.
+  const players = allScorePlayers.filter(p =>
+    String(p.team || "").trim() === team
+  );
+
+  document.getElementById("player").innerHTML=
+    '<option value="">-- Pilih Pemain --</option>'+
+    players.map(p=>'<option value="'+escapeHtml(p.nama)+'">'+escapeHtml(p.nama)+'</option>').join("");
 }
 
 function draftKey() {
