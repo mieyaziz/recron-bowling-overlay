@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ketua Kumpulan - Score Entry</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0,130,255,.18),
+      transparent 35%
+    ),
+    #05070b;
+
+  color:#fff;
+}
+
+
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container{
+
+  width:100%;
+  max-width:520px;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header{
+
+  text-align:center;
+
+  margin-bottom:20px;
+
+}
+
+
+.logo{
+
+  width:75px;
+  height:75px;
+
+  object-fit:contain;
+
+  margin-bottom:8px;
+
+}
+
+
+.title{
+
+  font-size:25px;
+  font-weight:900;
+
+}
+
+
+.subtitle{
+
+  margin-top:5px;
+
+  color:#8e9aaa;
+
+  font-size:11px;
+
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card{
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.025)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius:18px;
+
+  padding:22px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.35);
+
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-title{
+
+  font-size:18px;
+  font-weight:900;
+
+  margin-bottom:18px;
+
+}
+
+
+label{
+
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#9da8b7;
+
+  font-size:11px;
+  font-weight:700;
+
+}
+
+
+input,
+select{
+
+  width:100%;
+
+  padding:13px 14px;
+
+  border-radius:10px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  background:#111722;
+
+  color:#fff;
+
+  outline:none;
+
+  font-size:14px;
+
+}
+
+
+input:focus,
+select:focus{
+
+  border-color:#168dff;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(22,141,255,.12);
+
+}
+
+
+.form-group{
+
+  margin-bottom:15px;
+
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+button{
+
+  width:100%;
+
+  border:0;
+
+  border-radius:11px;
+
+  padding:13px;
+
+  background:#168dff;
+
+  color:#fff;
+
+  font-size:13px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+button:hover{
+
+  background:#0879e5;
+
+  transform:translateY(-1px);
+
+}
+
+
+button:disabled{
+
+  opacity:.55;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+.home-btn{
+
+  display:block;
+
+  width:100%;
+
+  margin-top:10px;
+
+  padding:11px;
+
+  border-radius:10px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#fff;
+
+  text-align:center;
+
+  text-decoration:none;
+
+  font-size:11px;
+  font-weight:800;
+
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.message{
+
+  display:none;
+
+  margin-bottom:15px;
+
+  padding:11px;
+
+  border-radius:9px;
+
+  background:
+    rgba(220,30,30,.12);
+
+  border:
+    1px solid
+    rgba(220,30,30,.30);
+
+  color:#ff8585;
+
+  font-size:11px;
+
+}
+
+
+.success{
+
+  background:
+    rgba(0,180,100,.12);
+
+  border-color:
+    rgba(0,180,100,.30);
+
+  color:#70e2aa;
+
+}
+
+
+/* =========================================================
+   SCORE PAGE
+   ========================================================= */
+
+#scorePage{
+
+  display:none;
+
+}
+
+
+.team-box{
+
+  padding:14px;
+
+  margin-bottom:18px;
+
+  border-radius:12px;
+
+  background:
+    rgba(22,141,255,.09);
+
+  border:
+    1px solid
+    rgba(22,141,255,.25);
+
+}
+
+
+.team-label{
+
+  color:#8ea0b6;
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  font-weight:800;
+
+}
+
+
+.team-name{
+
+  margin-top:4px;
+
+  font-size:21px;
+
+  font-weight:900;
+
+  color:#5db6ff;
+
+}
+
+
+.leader-name{
+
+  margin-top:4px;
+
+  color:#aaa;
+
+  font-size:10px;
+
+}
+
+
+.lock{
+
+  float:right;
+
+  font-size:16px;
+
+}
+
+
+/* =========================================================
+   SCORE INPUT
+   ========================================================= */
+
+.score-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+}
+
+
+.score-input{
+
+  text-align:center;
+
+  font-size:20px;
+  font-weight:900;
+
+}
+
+
+.score-title{
+
+  text-align:center;
+
+  margin-bottom:6px;
+
+  color:#9da8b7;
+
+  font-size:10px;
+  font-weight:800;
+
+}
+
+
+.total-box{
+
+  margin-top:15px;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  text-align:center;
+
+}
+
+
+.total-label{
+
+  color:#8995a5;
+
+  font-size:9px;
+
+}
+
+
+.total{
+
+  margin-top:4px;
+
+  font-size:28px;
+  font-weight:900;
+
+  color:#fff;
+
+}
+
+
+.logout{
+
+  margin-top:10px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  color:#ccc;
+
+}
+
+
+.logout:hover{
+
+  background:
+    rgba(255,255,255,.09);
+
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading{
+
+  text-align:center;
+
+  padding:15px;
+
+  color:#8794a5;
+
+  font-size:11px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:500px){
+
+  body{
+
+    padding:12px;
+
+  }
+
+
+  .card{
+
+    padding:17px;
+
+  }
+
+
+  .title{
+
+    font-size:21px;
+
+  }
+
+
+  .team-name{
+
+    font-size:18px;
+
+  }
+
+
+  .score-input{
+
+    font-size:18px;
+
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <div class="header">
+
+    <img
+      class="logo"
+      src="https://raw.githubusercontent.com/mieyaziz/recron-bowling-overlay/main/recron-logo.png"
+      alt="RECRON"
+      onerror="this.style.display='none'"
+    >
+
+    <div class="title">
+      RECRON BOWLING 2026
+    </div>
+
+    <div class="subtitle">
+      SCORE ENTRY KETUA KUMPULAN
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       LOGIN PAGE
+       ===================================================== -->
+
+  <div
+    class="card"
+    id="loginPage"
+  >
+
+    <div class="login-title">
+      🔐 Login Ketua Kumpulan
+    </div>
+
+
+    <div
+      class="message"
+      id="loginMessage"
+    ></div>
+
+
+    <div class="form-group">
+
+      <label>
+        USERNAME
+      </label>
+
+      <input
+        type="text"
+        id="username"
+        autocomplete="username"
+        placeholder="Contoh: KETUA01"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        PASSWORD
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        autocomplete="current-password"
+        placeholder="Masukkan password"
+      >
+
+    </div>
+
+
+    <button
+      id="loginBtn"
+      onclick="login()"
+    >
+      LOGIN
+    </button>
+
+
+    <a
+      class="home-btn"
+      href="https://mieyaziz.github.io/recron-bowling-overlay/"
+    >
+      🏠 HOME
+    </a>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       SCORE PAGE
+       ===================================================== -->
+
+  <div
+    class="card"
+    id="scorePage"
+  >
+
+
+    <!-- TEAM -->
+
+    <div class="team-box">
+
+      <span class="lock">
+        🔒
+      </span>
+
+      <div class="team-label">
+        TEAM ANDA
+      </div>
+
+      <div
+        class="team-name"
+        id="teamName"
+      >
+        -
+      </div>
+
+      <div
+        class="leader-name"
+        id="leaderName"
+      >
+        -
+      </div>
+
+    </div>
+
+
+
+    <!-- MESSAGE -->
+
+    <div
+      class="message"
+      id="scoreMessage"
+    ></div>
+
+
+
+    <!-- PLAYER -->
+
+    <div class="form-group">
+
+      <label>
+        PILIH PEMAIN
+      </label>
+
+      <select
+        id="playerSelect"
+        onchange="loadPlayerScore()"
+      >
+
+        <option value="">
+          -- Pilih pemain --
+        </option>
+
+      </select>
+
+    </div>
+
+
+
+    <!-- SCORES -->
+
+    <div class="score-grid">
+
+
+      <div>
+
+        <div class="score-title">
+          GAME 1
+        </div>
+
+        <input
+          class="score-input"
+          id="g1"
+          type="number"
+          min="0"
+          max="300"
+          inputmode="numeric"
+          oninput="updateTotal()"
+        >
+
+      </div>
+
+
+      <div>
+
+        <div class="score-title">
+          GAME 2
+        </div>
+
+        <input
+          class="score-input"
+          id="g2"
+          type="number"
+          min="0"
+          max="300"
+          inputmode="numeric"
+          oninput="updateTotal()"
+        >
+
+      </div>
+
+
+      <div>
+
+        <div class="score-title">
+          GAME 3
+        </div>
+
+        <input
+          class="score-input"
+          id="g3"
+          type="number"
+          min="0"
+          max="300"
+          inputmode="numeric"
+          oninput="updateTotal()"
+        >
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- TOTAL -->
+
+    <div class="total-box">
+
+      <div class="total-label">
+        TOTAL
+      </div>
+
+      <div
+        class="total"
+        id="total"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+      id="saveBtn"
+      onclick="saveScore()"
+    >
+      💾 SIMPAN SCORE
+    </button>
+
+
+    <button
+      class="logout"
+      onclick="logout()"
+    >
+      LOGOUT
+    </button>
+
+
+    <a
+      class="home-btn"
+      href="https://mieyaziz.github.io/recron-bowling-overlay/"
+    >
+      🏠 HOME
+    </a>
+
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   CONFIG
+   ========================================================= */
+
+const API =
+  "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+
+
+let token = "";
+
+let players = [];
+
+
+/* =========================================================
+   JSONP
+   ========================================================= */
+
+function jsonp(page, params = {}) {
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const callbackName =
+        "cb_" +
+        Date.now() +
+        "_" +
+        Math.floor(
+          Math.random() * 100000
+        );
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      const query =
+        new URLSearchParams({
+
+          page:page,
+
+          callback:callbackName,
+
+          ...params
+
+        });
+
+
+      const timer =
+        setTimeout(
+          () => {
+
+            cleanup();
+
+            reject(
+              new Error(
+                "API timeout"
+              )
+            );
+
+          },
+          15000
+        );
+
+
+      function cleanup(){
+
+        clearTimeout(timer);
+
+        delete window[callbackName];
+
+        script.remove();
+
+      }
+
+
+      window[callbackName] =
+        data => {
+
+          cleanup();
+
+          resolve(data);
+
+        };
+
+
+      script.onerror =
+        () => {
+
+          cleanup();
+
+          reject(
+            new Error(
+              "Gagal sambung ke server."
+            )
+          );
+
+        };
+
+
+      script.src =
+        API +
+        "?" +
+        query.toString();
+
+
+      document.body.appendChild(
+        script
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+function showMessage(
+  id,
+  message,
+  success = false
+){
+
+  const el =
+    document.getElementById(id);
+
+
+  el.textContent =
+    message;
+
+
+  el.classList.toggle(
+    "success",
+    success
+  );
+
+
+  el.style.display =
+    "block";
+
+}
+
+
+function hideMessage(id){
+
+  document
+    .getElementById(id)
+    .style.display =
+      "none";
+
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function login(){
+
+  const username =
+    document
+      .getElementById("username")
+      .value
+      .trim();
+
+
+  const password =
+    document
+      .getElementById("password")
+      .value
+      .trim();
+
+
+  hideMessage(
+    "loginMessage"
+  );
+
+
+  if(!username || !password){
+
+    showMessage(
+      "loginMessage",
+      "Sila masukkan username dan password."
+    );
+
+    return;
+
+  }
+
+
+  const btn =
+    document
+      .getElementById("loginBtn");
+
+
+  btn.disabled = true;
+
+  btn.textContent =
+    "LOGGING IN...";
+
+
+  jsonp(
+    "api_teamleader_login",
+    {
+      username:username,
+      password:password
+    }
+  )
+
+  .then(
+    data => {
+
+      if(
+        !data ||
+        data.success !== true
+      ){
+
+        throw new Error(
+          data?.message ||
+          "Login gagal."
+        );
+
+      }
+
+
+      token =
+        data.token;
+
+
+      document
+        .getElementById(
+          "teamName"
+        )
+        .textContent =
+          data.team || "-";
+
+
+      document
+        .getElementById(
+          "leaderName"
+        )
+        .textContent =
+          data.namaKetua
+            ? "Ketua: " +
+              data.namaKetua
+            : "Username: " +
+              data.username;
+
+
+      localStorage.setItem(
+        "teamLeaderToken",
+        token
+      );
+
+
+      return loadPlayers();
+
+    }
+  )
+
+  .then(
+    () => {
+
+      document
+        .getElementById(
+          "loginPage"
+        )
+        .style.display =
+          "none";
+
+
+      document
+        .getElementById(
+          "scorePage"
+        )
+        .style.display =
+          "block";
+
+    }
+  )
+
+  .catch(
+    error => {
+
+      showMessage(
+        "loginMessage",
+        error.message ||
+        "Login gagal."
+      );
+
+    }
+  )
+
+  .finally(
+    () => {
+
+      btn.disabled = false;
+
+      btn.textContent =
+        "LOGIN";
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOAD PLAYERS
+   ========================================================= */
+
+function loadPlayers(){
+
+  return jsonp(
+    "api_teamleader_players",
+    {
+      token:token
+    }
+  )
+
+  .then(
+    data => {
+
+      if(
+        !data ||
+        data.success !== true
+      ){
+
+        throw new Error(
+          data?.message ||
+          "Gagal mendapatkan pemain."
+        );
+
+      }
+
+
+      players =
+        data.players || [];
+
+
+      const select =
+        document
+          .getElementById(
+            "playerSelect"
+          );
+
+
+      select.innerHTML =
+        '<option value="">' +
+        '-- Pilih pemain --' +
+        '</option>';
+
+
+      players.forEach(
+        player => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            player.nama;
+
+
+          option.textContent =
+            player.nama;
+
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+
+      if(!players.length){
+
+        showMessage(
+          "scoreMessage",
+          "Tiada pemain ditemui untuk team ini."
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOAD EXISTING SCORE
+   ========================================================= */
+
+function loadPlayerScore(){
+
+  const nama =
+    document
+      .getElementById(
+        "playerSelect"
+      )
+      .value;
+
+
+  clearScores();
+
+  hideMessage(
+    "scoreMessage"
+  );
+
+
+  if(!nama)
+    return;
+
+
+  jsonp(
+    "api_score_get",
+    {
+      token:token,
+      nama:nama
+    }
+  )
+
+  .then(
+    data => {
+
+      if(
+        !data ||
+        data.success !== true
+      ){
+
+        return;
+
+      }
+
+
+      const score =
+        data.score ||
+        data;
+
+
+      document
+        .getElementById("g1")
+        .value =
+          score.g1 ?? "";
+
+
+      document
+        .getElementById("g2")
+        .value =
+          score.g2 ?? "";
+
+
+      document
+        .getElementById("g3")
+        .value =
+          score.g3 ?? "";
+
+
+      updateTotal();
+
+    }
+  )
+
+  .catch(
+    error => {
+
+      console.error(
+        error
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CLEAR SCORES
+   ========================================================= */
+
+function clearScores(){
+
+  document
+    .getElementById("g1")
+    .value = "";
+
+
+  document
+    .getElementById("g2")
+    .value = "";
+
+
+  document
+    .getElementById("g3")
+    .value = "";
+
+
+  updateTotal();
+
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+function updateTotal(){
+
+  const g1 =
+    Number(
+      document
+        .getElementById("g1")
+        .value
+    ) || 0;
+
+
+  const g2 =
+    Number(
+      document
+        .getElementById("g2")
+        .value
+    ) || 0;
+
+
+  const g3 =
+    Number(
+      document
+        .getElementById("g3")
+        .value
+    ) || 0;
+
+
+  document
+    .getElementById("total")
+    .textContent =
+      g1 + g2 + g3;
+
+}
+
+
+/* =========================================================
+   SAVE SCORE
+   ========================================================= */
+
+function saveScore(){
+
+  const nama =
+    document
+      .getElementById(
+        "playerSelect"
+      )
+      .value;
+
+
+  const g1 =
+    document
+      .getElementById("g1")
+      .value;
+
+
+  const g2 =
+    document
+      .getElementById("g2")
+      .value;
+
+
+  const g3 =
+    document
+      .getElementById("g3")
+      .value;
+
+
+  hideMessage(
+    "scoreMessage"
+  );
+
+
+  if(!nama){
+
+    showMessage(
+      "scoreMessage",
+      "Sila pilih pemain."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    g1 === "" ||
+    g2 === "" ||
+    g3 === ""
+  ){
+
+    showMessage(
+      "scoreMessage",
+      "Sila isi Game 1, Game 2 dan Game 3."
+    );
+
+    return;
+
+  }
+
+
+  const values =
+    [g1,g2,g3];
+
+
+  for(
+    const value of values
+  ){
+
+    const score =
+      Number(value);
+
+
+    if(
+      !Number.isFinite(score) ||
+      score < 0 ||
+      score > 300
+    ){
+
+      showMessage(
+        "scoreMessage",
+        "Score mesti antara 0 hingga 300."
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  const btn =
+    document
+      .getElementById(
+        "saveBtn"
+      );
+
+
+  btn.disabled = true;
+
+  btn.textContent =
+    "MENYIMPAN...";
+
+
+  jsonp(
+    "api_teamleader_save",
+    {
+
+      token:token,
+
+      nama:nama,
+
+      g1:g1,
+
+      g2:g2,
+
+      g3:g3
+
+    }
+  )
+
+  .then(
+    data => {
+
+      if(
+        !data ||
+        data.success !== true
+      ){
+
+        throw new Error(
+          data?.message ||
+          "Gagal simpan score."
+        );
+
+      }
+
+
+      showMessage(
+        "scoreMessage",
+        "Score berjaya disimpan.",
+        true
+      );
+
+
+      document
+        .getElementById(
+          "total"
+        )
+        .textContent =
+          Number(g1) +
+          Number(g2) +
+          Number(g3);
+
+    }
+  )
+
+  .catch(
+    error => {
+
+      showMessage(
+        "scoreMessage",
+        error.message ||
+        "Gagal simpan score."
+      );
+
+    }
+  )
+
+  .finally(
+    () => {
+
+      btn.disabled = false;
+
+      btn.textContent =
+        "💾 SIMPAN SCORE";
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+function logout(){
+
+  token = "";
+
+  players = [];
+
+
+  localStorage.removeItem(
+    "teamLeaderToken"
+  );
+
+
+  document
+    .getElementById(
+      "scorePage"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "loginPage"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "username"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "password"
+    )
+    .value = "";
+
+
+  clearScores();
+
+}
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+   ========================================================= */
+
+document
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Enter"
+      ){
+
+        login();
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
