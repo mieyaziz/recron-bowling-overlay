@@ -226,6 +226,59 @@ function loadTeam() {
     .catch(e=>msg("saveMsg","❌ "+e.message,"err"));
 }
 
+function draftKey() {
+  const team = document.getElementById("team").value || "";
+  const nama = document.getElementById("player").value || "";
+  return "recronScoreDraft::" + team + "::" + nama;
+}
+
+function readDraft() {
+  try {
+    const raw = sessionStorage.getItem(draftKey());
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) {
+    return null;
+  }
+}
+
+function saveDraft() {
+  const nama = document.getElementById("player").value;
+  if(!nama) return;
+
+  const draft = {
+    g1: document.getElementById("g1").value,
+    g2: document.getElementById("g2").value,
+    g3: document.getElementById("g3").value
+  };
+
+  try {
+    sessionStorage.setItem(draftKey(), JSON.stringify(draft));
+  } catch(e) {}
+}
+
+function clearDraft() {
+  try {
+    sessionStorage.removeItem(draftKey());
+  } catch(e) {}
+}
+
+function restoreDraft(draft) {
+  if(!draft) return false;
+
+  const fields = ["g1","g2","g3"];
+  let found = false;
+
+  fields.forEach(id=>{
+    if(draft[id] !== undefined && draft[id] !== null && draft[id] !== "") {
+      document.getElementById(id).value = draft[id];
+      found = true;
+    }
+  });
+
+  if(found) calcTotal();
+  return found;
+}
+
 function loadScore() {
   const nama=document.getElementById("player").value;
   clearScores();
@@ -236,11 +289,17 @@ function loadScore() {
     .then(r=>{
       if(authFail(r)) return;
       if(!r.success) throw new Error(r.message||"Gagal membaca score.");
+
       const s=r.score||{};
+
       document.getElementById("g1").value=s.g1??"";
       document.getElementById("g2").value=s.g2??"";
       document.getElementById("g3").value=s.g3??"";
       calcTotal();
+
+      // Jika ada input sementara yang sedang ditaip, pulihkan semula.
+      // Ini elak Game 1/2/3 hilang jika UI melakukan redraw.
+      restoreDraft(readDraft());
     })
     .catch(e=>msg("saveMsg","❌ "+e.message,"err"));
 }
@@ -269,6 +328,9 @@ function saveScore() {
     }
   }
 
+  // Simpan draft dahulu supaya nilai tidak hilang ketika request berjalan.
+  saveDraft();
+
   loading("saveBtn",true,"⏳ Menyimpan...");
   msg("saveMsg","");
 
@@ -284,14 +346,19 @@ function saveScore() {
       if(authFail(r)) return;
       if(!r.success) throw new Error(r.message||"Gagal menyimpan score.");
 
+      // Save berjaya. Kekalkan semua nilai pada skrin dan buang draft lama.
+      clearDraft();
+      document.getElementById("g1").value = r.g1 ?? g1;
+      document.getElementById("g2").value = r.g2 ?? g2;
+      document.getElementById("g3").value = r.g3 ?? g3;
+      calcTotal();
+
       msg(
         "saveMsg",
         "✅ " + (r.message || "Score berjaya disimpan.") +
         " • " + (r.team || team),
         "ok"
       );
-
-      calcTotal();
     })
     .catch(e=>msg("saveMsg","❌ "+e.message,"err"))
     .finally(()=>loading("saveBtn",false));
@@ -311,7 +378,7 @@ function escapeHtml(v) {
   return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
 
-["g1","g2","g3"].forEach(id=>document.getElementById(id).addEventListener("input",calcTotal));
+["g1","g2","g3"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ calcTotal(); saveDraft(); }));
 
 if(token) {
   document.getElementById("loginCard").classList.add("hidden");
