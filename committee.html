@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECRON • Committee 2026</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#080d14;color:#f5f7fb}body{display:flex;justify-content:center;padding:28px 16px}.container{width:min(900px,100%)}.card{overflow:hidden;border:1px solid rgba(255,193,7,.45);border-radius:28px;background:radial-gradient(circle at top right,rgba(255,193,7,.08),transparent 35%),linear-gradient(180deg,#151c26,#0d141e);box-shadow:0 25px 80px rgba(0,0,0,.45)}.header{padding:42px 36px 26px;border-bottom:1px solid rgba(255,255,255,.08)}.eyebrow{margin-bottom:10px;color:#ffc107;font-size:12px;font-weight:900;letter-spacing:3px}.title{margin:0;color:#f7f8fb;font-size:clamp(38px,7vw,58px);line-height:.96;font-weight:900;letter-spacing:-2px}.subtitle{margin-top:14px;color:#d9e3f1;font-size:13px;font-weight:600}.badge{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 12px;border:1px solid rgba(255,193,7,.35);border-radius:999px;color:#ffd54f;font-size:9px;font-weight:900;letter-spacing:1.2px}.dot{width:7px;height:7px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8)}.status{padding:16px 36px 0;color:#8f9bad;font-size:10px}.committee{display:grid;gap:12px;padding:22px 36px 30px}.member{display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(255,255,255,.035);transition:.18s}.member:hover{transform:translateY(-2px);border-color:rgba(255,193,7,.38);background:rgba(255,193,7,.055)}.number{flex:0 0 42px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,193,7,.24);border-radius:13px;background:rgba(255,193,7,.06);color:#ffc107;font-size:13px;font-weight:900}.content{min-width:0}.name{color:#f7f8fb;font-size:16px;line-height:1.25;font-weight:900}.position{margin-top:6px;color:#ffc52b;font-size:11px;line-height:1.4;font-weight:800;letter-spacing:.7px;text-transform:uppercase}.empty,.error{padding:30px 20px;text-align:center;border:1px dashed rgba(255,255,255,.12);border-radius:16px;color:#9ba7b8;font-size:12px}.error{color:#ff9a9a}.nav{display:flex;justify-content:space-between;gap:10px;padding:16px 36px;border-top:1px solid rgba(255,255,255,.07)}.nav a{display:inline-flex;align-items:center;justify-content:center;min-width:110px;padding:10px 14px;border:1px solid rgba(255,193,7,.25);border-radius:10px;color:#f5f7fb;background:rgba(255,193,7,.05);text-decoration:none;font-size:10px;font-weight:900;letter-spacing:.8px}.footer{display:flex;justify-content:space-between;padding:0 36px 18px;color:#718096;font-size:9px;letter-spacing:.6px;text-transform:uppercase}.footer-right{color:#b7c1cf;font-weight:800}@media(max-width:700px){body{padding:12px}.card{border-radius:20px}.header{padding:32px 20px 22px}.title{font-size:clamp(34px,11vw,48px)}.status{padding:16px 20px 0}.committee{padding:18px 20px 24px}.member{padding:15px}.name{font-size:14px}.nav{padding:14px 20px}.footer{padding:0 20px 16px}}
+</style>
+</head>
+<body>
+<div class="container"><div class="card">
+<div class="header"><div class="eyebrow">RECRON</div><h1 class="title">COMMITTEE<br>2026</h1><div class="subtitle">RECRON Bowling Tournament 2026</div><div class="badge"><span class="dot"></span>TOURNAMENT COMMITTEE</div></div>
+<div class="status" id="status">Loading committee...</div>
+<section class="committee" id="committee"><div class="empty">Loading...</div></section>
+<div class="nav"><a href="./index.html">⌂ HOME</a><a href="javascript:history.back()">← BACK</a></div>
+<div class="footer"><div>RECRON BOWLING TOURNAMENT 2026</div><div class="footer-right">COMMITTEE</div></div>
+</div></div>
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function loadCommittee(){
+ const cb="committeeCallback_"+Date.now();let script=document.createElement("script");
+ window[cb]=function(data){renderCommittee(data);delete window[cb];if(script.parentNode)script.remove()};
+ script.src=API_URL+"?page=api_committee&callback="+encodeURIComponent(cb)+"&t="+Date.now();
+ script.onerror=function(){document.getElementById("status").textContent="Unable to connect to committee data.";document.getElementById("committee").innerHTML='<div class="error">Connection error. Please try again.</div>';delete window[cb];if(script.parentNode)script.remove()};document.body.appendChild(script)
+}
+function renderCommittee(data){const box=document.getElementById("committee"),status=document.getElementById("status");if(!Array.isArray(data)){box.innerHTML='<div class="empty">Tiada data Committee dijumpai.</div>';return}const rows=data.filter(x=>x&&(String(x.nama||"").trim()||String(x.jawatan||"").trim())).sort((a,b)=>(Number(a.susunan)||0)-(Number(b.susunan)||0));status.textContent=rows.length+" committee member"+(rows.length===1?"":"s")+" • Data from Google Sheet";if(!rows.length){box.innerHTML='<div class="empty">Tiada data Committee dijumpai.</div>';return}box.innerHTML=rows.map((x,i)=>`<article class="member"><div class="number">${Number(x.susunan)||i+1}</div><div class="content"><div class="name">${esc(x.nama)}</div><div class="position">${esc(x.jawatan)}</div></div></article>`).join("")}
+loadCommittee();setInterval(loadCommittee,30000);
+</script>
+</body></html>
