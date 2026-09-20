@@ -4,389 +4,1643 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Score Entry • Recron Bowling Tournament 2026</title>
+
 <style>
 *{box-sizing:border-box}
-:root{--green:#0b8f43;--dark:#075f2d;--soft:#eaf8f0;--gold:#d9a441;--text:#17231c;--muted:#68756d;--line:#dfe7e2;--bg:#f4f8f5;--danger:#c62828}
-body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text);min-height:100vh}
-.page{max-width:900px;margin:auto;padding:12px}
-.nav{display:flex;gap:8px;justify-content:flex-end;margin-bottom:10px}
-.nav button{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer}
-.hero{background:linear-gradient(135deg,#075f2d,#0b8f43 60%,#159b50);color:#fff;border-radius:20px;padding:20px;margin-bottom:14px;box-shadow:0 10px 25px rgba(0,0,0,.10)}
-.hero-row{display:flex;gap:12px;align-items:center}
-.icon{width:48px;height:48px;border-radius:14px;background:#ffffff20;display:grid;place-items:center;font-size:27px}
-h1{margin:0;font-size:clamp(20px,5vw,29px);line-height:1.12}
-.sub{margin-top:7px;font-size:12px;font-weight:700;opacity:.88}
-.badge{display:inline-block;margin-top:13px;background:#ffffff1f;border:1px solid #ffffff25;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 7px 22px rgba(0,0,0,.05)}
-.login{max-width:480px;margin:6vh auto 0}
-.login-icon{width:58px;height:58px;margin:0 auto 10px;border-radius:18px;background:var(--soft);display:grid;place-items:center;font-size:29px}
-.center{text-align:center}
-h2{margin:0;font-size:20px}
-.muted{color:var(--muted);font-size:13px;line-height:1.5}
-label{display:block;font-size:12px;font-weight:800;color:#4c5a51;text-transform:uppercase;letter-spacing:.4px;margin:0 0 7px}
-.field{margin:14px 0}
-input,select{width:100%;min-height:48px;border:1px solid #cfd9d3;border-radius:12px;padding:11px 13px;font-size:16px;background:#fff;outline:none}
-input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #0b8f4318}
-button.primary{width:100%;min-height:48px;border:0;border-radius:12px;background:var(--green);color:#fff;font-size:15px;font-weight:800;cursor:pointer}
-button.primary:disabled{opacity:.65;cursor:not-allowed}
-.msg{min-height:22px;text-align:center;font-size:13px;font-weight:800;margin-top:10px}
-.err{color:var(--danger)}.ok{color:var(--dark)}
-.hidden{display:none}
-.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.score-grid input{text-align:center;font-size:21px;font-weight:800}
-.total{margin-top:12px;background:var(--soft);border:1px solid #ccebd8;border-radius:13px;padding:12px;text-align:center}
-.total small{display:block;color:var(--muted);font-weight:800;font-size:11px;text-transform:uppercase}
-.total strong{font-size:28px;color:var(--dark)}
-.note{background:#fff8e8;color:#755516;border-radius:11px;padding:10px 12px;font-size:12px;font-weight:700;margin-top:12px}
-.status{margin-top:10px;font-size:12px;color:var(--muted);text-align:center}
-@media(max-width:600px){.page{padding:8px}.hero{border-radius:17px;padding:17px 14px}.card{padding:15px;border-radius:16px}.score-grid{gap:7px}}
-@media(max-width:370px){.score-grid{grid-template-columns:1fr}}
+
+:root{
+  --green:#0b8f43;
+  --dark:#075f2d;
+  --soft:#eaf8f0;
+  --gold:#d9a441;
+  --text:#17231c;
+  --muted:#68756d;
+  --line:#dfe7e2;
+  --bg:#f4f8f5;
+  --danger:#c62828
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  min-height:100vh
+}
+
+.page{
+  max-width:900px;
+  margin:auto;
+  padding:12px
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-bottom:10px
+}
+
+.nav button{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:9px 13px;
+  font-weight:800;
+  cursor:pointer
+}
+
+.hero{
+  background:linear-gradient(
+    135deg,
+    #075f2d,
+    #0b8f43 60%,
+    #159b50
+  );
+  color:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.10)
+}
+
+.hero-row{
+  display:flex;
+  gap:12px;
+  align-items:center
+}
+
+.icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#ffffff20;
+  display:grid;
+  place-items:center;
+  font-size:27px
+}
+
+h1{
+  margin:0;
+  font-size:clamp(20px,5vw,29px);
+  line-height:1.12
+}
+
+.sub{
+  margin-top:7px;
+  font-size:12px;
+  font-weight:700;
+  opacity:.88
+}
+
+.badge{
+  display:inline-block;
+  margin-top:13px;
+  background:#ffffff1f;
+  border:1px solid #ffffff25;
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:800
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:14px;
+  box-shadow:0 7px 22px rgba(0,0,0,.05)
+}
+
+.login{
+  max-width:480px;
+  margin:6vh auto 0
+}
+
+.login-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 10px;
+  border-radius:18px;
+  background:var(--soft);
+  display:grid;
+  place-items:center;
+  font-size:29px
+}
+
+.center{
+  text-align:center
+}
+
+h2{
+  margin:0;
+  font-size:20px
+}
+
+.muted{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:#4c5a51;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  margin:0 0 7px
+}
+
+.field{
+  margin:14px 0
+}
+
+input,
+select{
+  width:100%;
+  min-height:48px;
+  border:1px solid #cfd9d3;
+  border-radius:12px;
+  padding:11px 13px;
+  font-size:16px;
+  background:#fff;
+  outline:none
+}
+
+input:focus,
+select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px #0b8f4318
+}
+
+button.primary{
+  width:100%;
+  min-height:48px;
+  border:0;
+  border-radius:12px;
+  background:var(--green);
+  color:#fff;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer
+}
+
+button.primary:disabled{
+  opacity:.65;
+  cursor:not-allowed
+}
+
+.msg{
+  min-height:22px;
+  text-align:center;
+  font-size:13px;
+  font-weight:800;
+  margin-top:10px
+}
+
+.err{
+  color:var(--danger)
+}
+
+.ok{
+  color:var(--dark)
+}
+
+.hidden{
+  display:none
+}
+
+.score-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
+}
+
+.score-grid input{
+  text-align:center;
+  font-size:21px;
+  font-weight:800
+}
+
+.total{
+  margin-top:12px;
+  background:var(--soft);
+  border:1px solid #ccebd8;
+  border-radius:13px;
+  padding:12px;
+  text-align:center
+}
+
+.total small{
+  display:block;
+  color:var(--muted);
+  font-weight:800;
+  font-size:11px;
+  text-transform:uppercase
+}
+
+.total strong{
+  font-size:28px;
+  color:var(--dark)
+}
+
+.note{
+  background:#fff8e8;
+  color:#755516;
+  border-radius:11px;
+  padding:10px 12px;
+  font-size:12px;
+  font-weight:700;
+  margin-top:12px
+}
+
+.status{
+  margin-top:10px;
+  font-size:12px;
+  color:var(--muted);
+  text-align:center
+}
+
+@media(max-width:600px){
+
+  .page{
+    padding:8px
+  }
+
+  .hero{
+    border-radius:17px;
+    padding:17px 14px
+  }
+
+  .card{
+    padding:15px;
+    border-radius:16px
+  }
+
+  .score-grid{
+    gap:7px
+  }
+
+}
+
+@media(max-width:370px){
+
+  .score-grid{
+    grid-template-columns:1fr
+  }
+
+}
 </style>
 </head>
+
 <body>
+
 <div class="page">
 
+  <!-- NAVIGATION -->
   <div class="nav">
-    <button onclick="location.href='./'">⌂ HOME</button>
-    <button onclick="history.back()">← BACK</button>
+
+    <button onclick="location.href='./'">
+      ⌂ HOME
+    </button>
+
+    <button onclick="history.back()">
+      ← BACK
+    </button>
+
   </div>
 
+
+  <!-- LOGIN HERO -->
   <div id="heroLogin" class="hero">
+
     <div class="hero-row">
-      <div class="icon">🎳</div>
-      <div>
-        <h1>RECRON BOWLING<br>TOURNAMENT 2026</h1>
-        <div class="sub">URUSETIA • SCORE ENTRY</div>
+
+      <div class="icon">
+        🎳
       </div>
+
+      <div>
+
+        <h1>
+          RECRON BOWLING<br>
+          TOURNAMENT 2026
+        </h1>
+
+        <div class="sub">
+          URUSETIA • SCORE ENTRY
+        </div>
+
+      </div>
+
     </div>
-    <div class="badge">🔐 Akses Urusetia</div>
+
+    <div class="badge">
+      🔐 Akses Urusetia
+    </div>
+
   </div>
 
+
+  <!-- LOGIN CARD -->
   <div id="loginCard" class="card login">
-    <div class="login-icon">🔐</div>
-    <div class="center">
-      <h2>Score Entry</h2>
-      <p class="muted">Masukkan password urusetia untuk key in atau kemaskini score.</p>
+
+    <div class="login-icon">
+      🔐
     </div>
+
+    <div class="center">
+
+      <h2>
+        Score Entry
+      </h2>
+
+      <p class="muted">
+        Masukkan password urusetia untuk key in atau kemaskini score.
+      </p>
+
+    </div>
+
 
     <div class="field">
-      <label for="password">Password Urusetia</label>
-      <input id="password" type="password" autocomplete="off"
-             placeholder="Masukkan password"
-             onkeydown="if(event.key==='Enter') login()">
+
+      <label for="password">
+        Password Urusetia
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        autocomplete="off"
+        placeholder="Masukkan password"
+        onkeydown="if(event.key==='Enter') login()"
+      >
+
     </div>
 
-    <button id="loginBtn" class="primary" onclick="login()">🔓 Masuk</button>
+
+    <button
+      id="loginBtn"
+      class="primary"
+      onclick="login()"
+    >
+      🔓 Masuk
+    </button>
+
     <div id="loginMsg" class="msg"></div>
+
   </div>
 
+
+  <!-- SCORE ENTRY APP -->
   <div id="app" class="hidden">
 
     <div class="hero">
+
       <div class="hero-row">
-        <div class="icon">🎯</div>
-        <div>
-          <h1>KEY IN SCORE</h1>
-          <div class="sub">URUSETIA • LIVE SCORE ENTRY</div>
+
+        <div class="icon">
+          🎯
         </div>
+
+        <div>
+
+          <h1>
+            KEY IN SCORE
+          </h1>
+
+          <div class="sub">
+            URUSETIA • LIVE SCORE ENTRY
+          </div>
+
+        </div>
+
       </div>
-      <div class="badge">✅ Sesi Urusetia Aktif</div>
+
+      <div class="badge">
+        ✅ Sesi Urusetia Aktif
+      </div>
+
     </div>
 
+
     <div class="card">
+
+      <!-- TEAM -->
       <div class="field">
-        <label for="team">Team</label>
-        <select id="team" onchange="loadTeam()">
-          <option value="">-- Pilih Team --</option>
+
+        <label for="team">
+          Team
+        </label>
+
+        <select
+          id="team"
+          onchange="loadTeam()"
+        >
+
+          <option value="">
+            -- Pilih Team --
+          </option>
+
         </select>
+
       </div>
 
+
+      <!-- PLAYER -->
       <div class="field">
-        <label for="player">Pemain</label>
-        <select id="player" onchange="loadScore()">
-          <option value="">-- Pilih Pemain --</option>
+
+        <label for="player">
+          Pemain
+        </label>
+
+        <select
+          id="player"
+          onchange="loadScore()"
+        >
+
+          <option value="">
+            -- Pilih Pemain --
+          </option>
+
         </select>
+
       </div>
 
+
+      <!-- GAMES -->
       <div class="score-grid">
-        <div><label>Game 1</label><input id="g1" type="number" min="0" max="300" inputmode="numeric"></div>
-        <div><label>Game 2</label><input id="g2" type="number" min="0" max="300" inputmode="numeric"></div>
-        <div><label>Game 3</label><input id="g3" type="number" min="0" max="300" inputmode="numeric"></div>
+
+        <div>
+
+          <label>
+            Game 1
+          </label>
+
+          <input
+            id="g1"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Game 2
+          </label>
+
+          <input
+            id="g2"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Game 3
+          </label>
+
+          <input
+            id="g3"
+            type="number"
+            min="0"
+            max="300"
+            inputmode="numeric"
+          >
+
+        </div>
+
       </div>
 
+
+      <!-- TOTAL -->
       <div class="total">
-        <small>Total Series</small>
-        <strong id="total">0</strong>
+
+        <small>
+          Total Series
+        </small>
+
+        <strong id="total">
+          0
+        </strong>
+
       </div>
 
-      <div class="note">💡 Pilih pemain yang sudah ada score untuk kemaskini. Sistem akan update rekod pemain yang sama.</div>
 
-      <button id="saveBtn" class="primary" style="margin-top:14px" onclick="saveScore()">💾 Simpan / Update Score</button>
+      <!-- NOTE -->
+      <div class="note">
+        💡 Pilih pemain yang sudah ada score untuk kemaskini.
+        Sistem akan update rekod pemain yang sama.
+      </div>
+
+
+      <!-- SAVE -->
+      <button
+        id="saveBtn"
+        class="primary"
+        style="margin-top:14px"
+        onclick="saveScore()"
+      >
+        💾 Simpan / Update Score
+      </button>
+
       <div id="saveMsg" class="msg"></div>
+
       <div id="sessionMsg" class="status"></div>
+
     </div>
 
   </div>
+
 </div>
 
+
 <script>
-const API = "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
-let token = sessionStorage.getItem("recronScoreToken") || "";
+
+const API =
+  "https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec";
+
+
+let token =
+  sessionStorage.getItem("recronScoreToken") || "";
+
+
 let allScorePlayers = [];
 
+
+/* =========================================================
+   JSONP
+   ========================================================= */
+
 function jsonp(page, params={}) {
+
   return new Promise((resolve,reject)=>{
-    const cb="cb_"+Date.now()+"_"+Math.floor(Math.random()*100000);
-    const script=document.createElement("script");
-    const query=new URLSearchParams({page:page,callback:cb,...params});
-    const timer=setTimeout(()=>{cleanup();reject(new Error("API timeout"));},15000);
-    function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
-    window[cb]=data=>{cleanup();resolve(data)};
-    script.onerror=()=>{cleanup();reject(new Error("Gagal sambung ke API."))};
-    script.src=API+"?"+query.toString();
+
+    const cb =
+      "cb_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random()*100000);
+
+    const script =
+      document.createElement("script");
+
+    const query =
+      new URLSearchParams({
+        page:page,
+        callback:cb,
+        ...params
+      });
+
+    const timer =
+      setTimeout(()=>{
+        cleanup();
+        reject(new Error("API timeout"));
+      },15000);
+
+
+    function cleanup(){
+
+      clearTimeout(timer);
+
+      delete window[cb];
+
+      script.remove();
+
+    }
+
+
+    window[cb] =
+      data=>{
+        cleanup();
+        resolve(data);
+      };
+
+
+    script.onerror =
+      ()=>{
+        cleanup();
+        reject(
+          new Error("Gagal sambung ke API.")
+        );
+      };
+
+
+    script.src =
+      API + "?" + query.toString();
+
     document.body.appendChild(script);
+
   });
+
 }
 
-function msg(id,text,type="") {
-  const el=document.getElementById(id);
-  el.textContent=text||"";
-  el.className="msg "+type;
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+function msg(id,text,type=""){
+
+  const el =
+    document.getElementById(id);
+
+  el.textContent =
+    text || "";
+
+  el.className =
+    "msg " + type;
+
 }
 
-function loading(id,on,text) {
-  const b=document.getElementById(id);
-  if(on) {
-    b.dataset.old=b.innerHTML;
-    b.innerHTML=text||"⏳ Memproses...";
-    b.disabled=true;
-  } else {
-    b.innerHTML=b.dataset.old||b.innerHTML;
-    b.disabled=false;
+
+/* =========================================================
+   LOADING BUTTON
+   ========================================================= */
+
+function loading(id,on,text){
+
+  const b =
+    document.getElementById(id);
+
+  if(on){
+
+    b.dataset.old =
+      b.innerHTML;
+
+    b.innerHTML =
+      text || "⏳ Memproses...";
+
+    b.disabled =
+      true;
+
+  }else{
+
+    b.innerHTML =
+      b.dataset.old ||
+      b.innerHTML;
+
+    b.disabled =
+      false;
+
   }
+
 }
 
-function login() {
-  const password=document.getElementById("password").value.trim();
-  if(!password) { msg("loginMsg","❌ Sila masukkan password.","err"); return; }
-  loading("loginBtn",true,"⏳ Semak akses...");
-  msg("loginMsg","");
-  jsonp("api_score_login",{password:password})
-    .then(r=>{
-      if(!r || r.success!==true) throw new Error(r?.message||"Password tidak sah.");
-      token=r.token;
-      sessionStorage.setItem("recronScoreToken",token);
-      document.getElementById("loginCard").classList.add("hidden");
-      document.getElementById("app").classList.remove("hidden");
-      loadPlayers();
-    })
-    .catch(e=>msg("loginMsg","❌ "+e.message,"err"))
-    .finally(()=>loading("loginBtn",false));
-}
 
-function authFail(r) {
-  if(r && r.auth===false) {
-    token="";
-    sessionStorage.removeItem("recronScoreToken");
-    document.getElementById("app").classList.add("hidden");
-    document.getElementById("loginCard").classList.remove("hidden");
-    msg("loginMsg","🔐 Sesi tamat. Sila login semula.","err");
-    return true;
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function login(){
+
+  const password =
+    document
+      .getElementById("password")
+      .value
+      .trim();
+
+
+  if(!password){
+
+    msg(
+      "loginMsg",
+      "❌ Sila masukkan password.",
+      "err"
+    );
+
+    return;
+
   }
-  return false;
-}
 
-function loadPlayers() {
-  jsonp("api_score_players",{token:token})
-    .then(r=>{
-      if(authFail(r)) return;
-      if(!r.success) throw new Error(r.message||"Gagal memuatkan team.");
-      allScorePlayers = Array.isArray(r.players) ? r.players : [];
-      const teams=[...new Set(allScorePlayers.map(x=>String(x.team||"").trim()).filter(Boolean))].sort();
-      document.getElementById("team").innerHTML='<option value="">-- Pilih Team --</option>'+
-        teams.map(t=>'<option value="'+escapeHtml(t)+'">'+escapeHtml(t)+'</option>').join("");
-      document.getElementById("sessionMsg").textContent=teams.length+" team tersedia.";
-    })
-    .catch(e=>msg("saveMsg","❌ "+e.message,"err"));
-}
 
-function loadTeam() {
-  const team=document.getElementById("team").value;
-  document.getElementById("player").innerHTML='<option value="">-- Pilih Pemain --</option>';
-  clearScores();
-  msg("saveMsg","");
-  if(!team) return;
-
-  // Gunakan senarai pemain yang sudah dimuatkan oleh api_score_players.
-  // Tidak perlu panggil api_score_team lagi; ini elak timeout dan lebih pantas.
-  const players = allScorePlayers.filter(p =>
-    String(p.team || "").trim() === team
+  loading(
+    "loginBtn",
+    true,
+    "⏳ Semak akses..."
   );
 
-  document.getElementById("player").innerHTML=
-    '<option value="">-- Pilih Pemain --</option>'+
-    players.map(p=>'<option value="'+escapeHtml(p.nama)+'">'+escapeHtml(p.nama)+'</option>').join("");
-}
 
-function draftKey() {
-  const team = document.getElementById("team").value || "";
-  const nama = document.getElementById("player").value || "";
-  return "recronScoreDraft::" + team + "::" + nama;
-}
+  msg(
+    "loginMsg",
+    ""
+  );
 
-function readDraft() {
-  try {
-    const raw = sessionStorage.getItem(draftKey());
-    return raw ? JSON.parse(raw) : null;
-  } catch(e) {
-    return null;
-  }
-}
 
-function saveDraft() {
-  const nama = document.getElementById("player").value;
-  if(!nama) return;
-
-  const draft = {
-    g1: document.getElementById("g1").value,
-    g2: document.getElementById("g2").value,
-    g3: document.getElementById("g3").value
-  };
-
-  try {
-    sessionStorage.setItem(draftKey(), JSON.stringify(draft));
-  } catch(e) {}
-}
-
-function clearDraft() {
-  try {
-    sessionStorage.removeItem(draftKey());
-  } catch(e) {}
-}
-
-function restoreDraft(draft) {
-  if(!draft) return false;
-
-  const fields = ["g1","g2","g3"];
-  let found = false;
-
-  fields.forEach(id=>{
-    if(draft[id] !== undefined && draft[id] !== null && draft[id] !== "") {
-      document.getElementById(id).value = draft[id];
-      found = true;
+  jsonp(
+    "api_score_login",
+    {
+      password:password
     }
+  )
+
+  .then(r=>{
+
+    if(
+      !r ||
+      r.success !== true
+    ){
+
+      throw new Error(
+        r?.message ||
+        "Password tidak sah."
+      );
+
+    }
+
+
+    token =
+      r.token;
+
+
+    sessionStorage.setItem(
+      "recronScoreToken",
+      token
+    );
+
+
+    document
+      .getElementById("loginCard")
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById("app")
+      .classList
+      .remove("hidden");
+
+
+    loadPlayers();
+
+  })
+
+  .catch(e=>{
+
+    msg(
+      "loginMsg",
+      "❌ " + e.message,
+      "err"
+    );
+
+  })
+
+  .finally(()=>{
+
+    loading(
+      "loginBtn",
+      false
+    );
+
   });
 
-  if(found) calcTotal();
-  return found;
 }
 
-function loadScore() {
-  const nama=document.getElementById("player").value;
-  clearScores();
-  msg("saveMsg","");
-  if(!nama) return;
 
-  jsonp("api_score_get",{token:token,nama:nama})
-    .then(r=>{
-      if(authFail(r)) return;
-      if(!r.success) throw new Error(r.message||"Gagal membaca score.");
+/* =========================================================
+   AUTH CHECK
+   ========================================================= */
 
-      const s=r.score||{};
+function authFail(r){
 
-      document.getElementById("g1").value=s.g1??"";
-      document.getElementById("g2").value=s.g2??"";
-      document.getElementById("g3").value=s.g3??"";
-      calcTotal();
+  if(
+    r &&
+    r.auth === false
+  ){
 
-      // Jika ada input sementara yang sedang ditaip, pulihkan semula.
-      // Ini elak Game 1/2/3 hilang jika UI melakukan redraw.
-      restoreDraft(readDraft());
-    })
-    .catch(e=>msg("saveMsg","❌ "+e.message,"err"));
+    token = "";
+
+    sessionStorage.removeItem(
+      "recronScoreToken"
+    );
+
+
+    document
+      .getElementById("app")
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById("loginCard")
+      .classList
+      .remove("hidden");
+
+
+    msg(
+      "loginMsg",
+      "🔐 Sesi tamat. Sila login semula.",
+      "err"
+    );
+
+
+    return true;
+
+  }
+
+
+  return false;
+
 }
 
-function saveScore() {
-  const team = document.getElementById("team").value;
-  const nama = document.getElementById("player").value;
-  const g1 = document.getElementById("g1").value;
-  const g2 = document.getElementById("g2").value;
-  const g3 = document.getElementById("g3").value;
 
-  if(!team) {
-    msg("saveMsg","❌ Sila pilih team.","err");
-    return;
-  }
+/* =========================================================
+   LOAD PLAYERS
+   ========================================================= */
 
-  if(!nama) {
-    msg("saveMsg","❌ Sila pilih pemain.","err");
-    return;
-  }
+function loadPlayers(){
 
-  for(const v of [g1,g2,g3]) {
-    if(v!=="" && (Number(v)<0 || Number(v)>300)) {
-      msg("saveMsg","❌ Skor mestilah antara 0 hingga 300.","err");
-      return;
+  jsonp(
+    "api_score_players",
+    {
+      token:token
     }
+  )
+
+  .then(r=>{
+
+    if(authFail(r))
+      return;
+
+
+    if(!r.success){
+
+      throw new Error(
+        r.message ||
+        "Gagal memuatkan team."
+      );
+
+    }
+
+
+    allScorePlayers =
+      Array.isArray(r.players)
+        ? r.players
+        : [];
+
+
+    const teams =
+      [
+        ...new Set(
+          allScorePlayers
+            .map(
+              x =>
+                String(
+                  x.team || ""
+                ).trim()
+            )
+            .filter(Boolean)
+        )
+      ].sort();
+
+
+    document
+      .getElementById("team")
+      .innerHTML =
+        '<option value="">-- Pilih Team --</option>' +
+
+        teams
+          .map(
+            t =>
+              '<option value="' +
+              escapeHtml(t) +
+              '">' +
+              escapeHtml(t) +
+              '</option>'
+          )
+          .join("");
+
+
+    document
+      .getElementById("sessionMsg")
+      .textContent =
+        teams.length +
+        " team tersedia.";
+
+  })
+
+  .catch(e=>{
+
+    msg(
+      "saveMsg",
+      "❌ " + e.message,
+      "err"
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   LOAD TEAM
+   ========================================================= */
+
+function loadTeam(){
+
+  const team =
+    document
+      .getElementById("team")
+      .value;
+
+
+  document
+    .getElementById("player")
+    .innerHTML =
+      '<option value="">-- Pilih Pemain --</option>';
+
+
+  clearScores();
+
+
+  msg(
+    "saveMsg",
+    ""
+  );
+
+
+  if(!team)
+    return;
+
+
+  /*
+    Gunakan senarai pemain yang sudah dimuatkan
+    oleh api_score_players.
+
+    Tidak perlu panggil api_score_team lagi.
+    Ini elak timeout dan lebih pantas.
+  */
+
+  const players =
+    allScorePlayers.filter(
+      p =>
+        String(
+          p.team || ""
+        ).trim() === team
+    );
+
+
+  document
+    .getElementById("player")
+    .innerHTML =
+
+      '<option value="">-- Pilih Pemain --</option>' +
+
+      players
+        .map(
+          p =>
+            '<option value="' +
+            escapeHtml(p.nama) +
+            '">' +
+            escapeHtml(p.nama) +
+            '</option>'
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   DRAFT KEY
+   ========================================================= */
+
+function draftKey(){
+
+  const team =
+    document
+      .getElementById("team")
+      .value || "";
+
+
+  const nama =
+    document
+      .getElementById("player")
+      .value || "";
+
+
+  return (
+    "recronScoreDraft::" +
+    team +
+    "::" +
+    nama
+  );
+
+}
+
+
+/* =========================================================
+   READ DRAFT
+   ========================================================= */
+
+function readDraft(){
+
+  try{
+
+    const raw =
+      sessionStorage.getItem(
+        draftKey()
+      );
+
+
+    return raw
+      ? JSON.parse(raw)
+      : null;
+
+  }catch(e){
+
+    return null;
+
   }
 
-  // Simpan draft dahulu supaya nilai tidak hilang ketika request berjalan.
-  saveDraft();
+}
 
-  loading("saveBtn",true,"⏳ Menyimpan...");
-  msg("saveMsg","");
 
-  jsonp("api_score_save",{
-    token: token,
-    nama: nama,
-    team: team,
-    g1: g1,
-    g2: g2,
-    g3: g3
+/* =========================================================
+   SAVE DRAFT
+   ========================================================= */
+
+function saveDraft(){
+
+  const nama =
+    document
+      .getElementById("player")
+      .value;
+
+
+  if(!nama)
+    return;
+
+
+  const draft = {
+
+    g1:
+      document
+        .getElementById("g1")
+        .value,
+
+    g2:
+      document
+        .getElementById("g2")
+        .value,
+
+    g3:
+      document
+        .getElementById("g3")
+        .value
+
+  };
+
+
+  try{
+
+    sessionStorage.setItem(
+      draftKey(),
+      JSON.stringify(draft)
+    );
+
+  }catch(e){}
+
+}
+
+
+/* =========================================================
+   CLEAR DRAFT
+   ========================================================= */
+
+function clearDraft(){
+
+  try{
+
+    sessionStorage.removeItem(
+      draftKey()
+    );
+
+  }catch(e){}
+
+}
+
+
+/* =========================================================
+   RESTORE DRAFT
+   ========================================================= */
+
+function restoreDraft(draft){
+
+  if(!draft)
+    return false;
+
+
+  const fields =
+    [
+      "g1",
+      "g2",
+      "g3"
+    ];
+
+
+  let found =
+    false;
+
+
+  fields.forEach(id=>{
+
+    if(
+      draft[id] !== undefined &&
+      draft[id] !== null &&
+      draft[id] !== ""
+    ){
+
+      document
+        .getElementById(id)
+        .value =
+          draft[id];
+
+      found =
+        true;
+
+    }
+
+  });
+
+
+  if(found)
+    calcTotal();
+
+
+  return found;
+
+}
+
+
+/* =========================================================
+   LOAD SCORE
+   ========================================================= */
+
+function loadScore(){
+
+  const nama =
+    document
+      .getElementById("player")
+      .value;
+
+
+  clearScores();
+
+
+  msg(
+    "saveMsg",
+    ""
+  );
+
+
+  if(!nama)
+    return;
+
+
+  jsonp(
+    "api_score_get",
+    {
+      token:token,
+      nama:nama
+    }
+  )
+
+  .then(r=>{
+
+    if(authFail(r))
+      return;
+
+
+    if(!r.success){
+
+      throw new Error(
+        r.message ||
+        "Gagal membaca score."
+      );
+
+    }
+
+
+    const s =
+      r.score || {};
+
+
+    document
+      .getElementById("g1")
+      .value =
+        s.g1 ?? "";
+
+
+    document
+      .getElementById("g2")
+      .value =
+        s.g2 ?? "";
+
+
+    document
+      .getElementById("g3")
+      .value =
+        s.g3 ?? "";
+
+
+    calcTotal();
+
+
+    /*
+      Jika ada input sementara yang sedang ditaip,
+      pulihkan semula.
+    */
+
+    restoreDraft(
+      readDraft()
+    );
+
   })
-    .then(r=>{
-      if(authFail(r)) return;
-      if(!r.success) throw new Error(r.message||"Gagal menyimpan score.");
 
-      // Save berjaya. Kekalkan semua nilai pada skrin dan buang draft lama.
-      clearDraft();
-      document.getElementById("g1").value = r.g1 ?? g1;
-      document.getElementById("g2").value = r.g2 ?? g2;
-      document.getElementById("g3").value = r.g3 ?? g3;
-      calcTotal();
+  .catch(e=>{
+
+    msg(
+      "saveMsg",
+      "❌ " + e.message,
+      "err"
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   SAVE SCORE
+   ========================================================= */
+
+function saveScore(){
+
+  const team =
+    document
+      .getElementById("team")
+      .value;
+
+
+  const nama =
+    document
+      .getElementById("player")
+      .value;
+
+
+  const g1 =
+    document
+      .getElementById("g1")
+      .value;
+
+
+  const g2 =
+    document
+      .getElementById("g2")
+      .value;
+
+
+  const g3 =
+    document
+      .getElementById("g3")
+      .value;
+
+
+  if(!team){
+
+    msg(
+      "saveMsg",
+      "❌ Sila pilih team.",
+      "err"
+    );
+
+    return;
+
+  }
+
+
+  if(!nama){
+
+    msg(
+      "saveMsg",
+      "❌ Sila pilih pemain.",
+      "err"
+    );
+
+    return;
+
+  }
+
+
+  for(
+    const v of
+    [g1,g2,g3]
+  ){
+
+    if(
+      v !== "" &&
+      (
+        Number(v) < 0 ||
+        Number(v) > 300
+      )
+    ){
 
       msg(
         "saveMsg",
-        "✅ " + (r.message || "Score berjaya disimpan.") +
-        " • " + (r.team || team),
-        "ok"
+        "❌ Skor mestilah antara 0 hingga 300.",
+        "err"
       );
-    })
-    .catch(e=>msg("saveMsg","❌ "+e.message,"err"))
-    .finally(()=>loading("saveBtn",false));
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+    Simpan draft dahulu supaya nilai
+    tidak hilang ketika request berjalan.
+  */
+
+  saveDraft();
+
+
+  loading(
+    "saveBtn",
+    true,
+    "⏳ Menyimpan..."
+  );
+
+
+  msg(
+    "saveMsg",
+    ""
+  );
+
+
+  jsonp(
+    "api_score_save",
+    {
+      token:token,
+      nama:nama,
+      team:team,
+      g1:g1,
+      g2:g2,
+      g3:g3
+    }
+  )
+
+  .then(r=>{
+
+    if(authFail(r))
+      return;
+
+
+    if(!r.success){
+
+      throw new Error(
+        r.message ||
+        "Gagal menyimpan score."
+      );
+
+    }
+
+
+    /*
+      Save berjaya.
+      Kekalkan semua nilai pada skrin
+      dan buang draft lama.
+    */
+
+    clearDraft();
+
+
+    document
+      .getElementById("g1")
+      .value =
+        r.g1 ?? g1;
+
+
+    document
+      .getElementById("g2")
+      .value =
+        r.g2 ?? g2;
+
+
+    document
+      .getElementById("g3")
+      .value =
+        r.g3 ?? g3;
+
+
+    calcTotal();
+
+
+    msg(
+      "saveMsg",
+
+      "✅ " +
+      (
+        r.message ||
+        "Score berjaya disimpan."
+      ) +
+
+      " • " +
+
+      (
+        r.team ||
+        team
+      ),
+
+      "ok"
+    );
+
+  })
+
+  .catch(e=>{
+
+    msg(
+      "saveMsg",
+      "❌ " + e.message,
+      "err"
+    );
+
+  })
+
+  .finally(()=>{
+
+    loading(
+      "saveBtn",
+      false
+    );
+
+  });
+
 }
 
-function clearScores() {
-  ["g1","g2","g3"].forEach(id=>document.getElementById(id).value="");
+
+/* =========================================================
+   CLEAR SCORES
+   ========================================================= */
+
+function clearScores(){
+
+  [
+    "g1",
+    "g2",
+    "g3"
+  ].forEach(
+    id =>
+      document
+        .getElementById(id)
+        .value = ""
+  );
+
+
   calcTotal();
+
 }
 
-function calcTotal() {
-  const n=id=>Number(document.getElementById(id).value)||0;
-  document.getElementById("total").textContent=n("g1")+n("g2")+n("g3");
+
+/* =========================================================
+   CALCULATE TOTAL
+   ========================================================= */
+
+function calcTotal(){
+
+  const n =
+    id =>
+      Number(
+        document
+          .getElementById(id)
+          .value
+      ) || 0;
+
+
+  document
+    .getElementById("total")
+    .textContent =
+      n("g1") +
+      n("g2") +
+      n("g3");
+
 }
 
-function escapeHtml(v) {
-  return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHtml(v){
+
+  return String(v ?? "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
 }
 
-["g1","g2","g3"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ calcTotal(); saveDraft(); }));
 
-if(token) {
-  document.getElementById("loginCard").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
-  loadPlayers();
-}
+/* =========================================================
+   SCORE INPUT DRAFT
+   ========================================================= */
+
+[
+  "g1",
+  "g2",
+  "g3"
+].forEach(id=>{
+
+  document
+    .getElementById(id)
+    .addEventListener(
+      "input",
+      ()=>{
+        calcTotal();
+        saveDraft();
+      }
+    );
+
+});
+
+
+/* =========================================================
+   FORCE LOGIN EVERY TIME PAGE OPENS
+   ========================================================= */
+
+/*
+  Token lama sengaja dibuang.
+
+  Jadi walaupun browser pernah login,
+  bila Score Entry dibuka semula,
+  password tetap diperlukan.
+*/
+
+token = "";
+
+sessionStorage.removeItem(
+  "recronScoreToken"
+);
+
+
+/*
+  Pastikan login screen dipaparkan
+  dan Score Entry disembunyikan.
+*/
+
+document
+  .getElementById("loginCard")
+  .classList
+  .remove("hidden");
+
+
+document
+  .getElementById("app")
+  .classList
+  .add("hidden");
+
+
+/*
+  Fokus terus ke password.
+*/
+
+document
+  .getElementById("password")
+  .focus();
+
 </script>
+
 </body>
 </html>
