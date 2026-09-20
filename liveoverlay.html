@@ -36,7 +36,9 @@
       width:100%;
       max-width:1080px;
       min-height:100vh;
+
       padding:24px;
+
       background:
         radial-gradient(
           circle at 90% 0%,
@@ -60,6 +62,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+
       gap:15px;
 
       border-bottom:2px solid #168dff;
@@ -68,22 +71,27 @@
       margin-bottom:20px;
     }
 
+
     .brand{
       min-width:0;
       flex:1;
 
       display:flex;
       align-items:center;
+
       gap:14px;
     }
+
 
     .logo{
       width:68px;
       height:68px;
 
       object-fit:contain;
+
       flex-shrink:0;
     }
+
 
     .event-title{
       font-size:clamp(18px,3vw,29px);
@@ -91,9 +99,11 @@
       line-height:1.1;
     }
 
+
     .live-badge{
       display:inline-flex;
       align-items:center;
+
       gap:7px;
 
       background:#e00000;
@@ -107,6 +117,7 @@
       font-weight:900;
     }
 
+
     .live-dot{
       width:9px;
       height:9px;
@@ -118,11 +129,67 @@
       animation:blink 1s infinite;
     }
 
+
     @keyframes blink{
+
       50%{
         opacity:.25;
       }
+
     }
+
+
+    /* =========================================================
+       TOP ACTIONS
+       ========================================================= */
+
+    .top-actions{
+      display:flex;
+      align-items:center;
+
+      gap:12px;
+
+      flex-shrink:0;
+    }
+
+
+    .home-btn{
+      display:inline-flex;
+
+      align-items:center;
+      justify-content:center;
+
+      padding:9px 14px;
+
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:10px;
+
+      background:rgba(255,255,255,.07);
+
+      color:#fff;
+
+      text-decoration:none;
+
+      font-size:11px;
+      font-weight:900;
+
+      white-space:nowrap;
+
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .home-btn:hover{
+      background:#168dff;
+
+      border-color:#168dff;
+
+      transform:translateY(-1px);
+    }
+
 
     .clock{
       text-align:right;
@@ -133,6 +200,7 @@
 
       flex-shrink:0;
     }
+
 
     .clock strong{
       display:block;
@@ -183,9 +251,11 @@
       overflow:hidden;
     }
 
+
     .section-title{
       display:flex;
       align-items:center;
+
       gap:9px;
 
       margin:0 0 10px;
@@ -193,6 +263,7 @@
       font-size:17px;
       font-weight:900;
     }
+
 
     .section-title span{
       width:5px;
@@ -229,6 +300,7 @@
         rgba(255,255,255,.07);
     }
 
+
     .ranking-row:last-child{
       border-bottom:0;
     }
@@ -254,15 +326,18 @@
       font-weight:900;
     }
 
+
     .rank.gold{
       background:#c99b22;
       color:#000;
     }
 
+
     .rank.silver{
       background:#999;
       color:#000;
     }
+
 
     .rank.bronze{
       background:#a56a3d;
@@ -283,6 +358,7 @@
       text-overflow:ellipsis;
     }
 
+
     .player-team{
       margin-top:3px;
 
@@ -294,6 +370,7 @@
       overflow:hidden;
       text-overflow:ellipsis;
     }
+
 
     .score{
       color:#5bb4ff;
@@ -315,6 +392,7 @@
       margin-bottom:0;
     }
 
+
     .team-row{
       display:grid;
 
@@ -334,9 +412,11 @@
         rgba(255,255,255,.07);
     }
 
+
     .team-row:last-child{
       border-bottom:0;
     }
+
 
     .team-name{
       font-size:16px;
@@ -347,6 +427,7 @@
       text-overflow:ellipsis;
     }
 
+
     .team-members{
       color:#999;
 
@@ -354,6 +435,7 @@
 
       margin-top:3px;
     }
+
 
     .team-score{
       color:#fff;
@@ -378,6 +460,7 @@
 
       font-size:11px;
     }
+
 
     .loading{
       color:#8ea2b8;
@@ -413,7 +496,7 @@
 
 
     /* =========================================================
-       RESPONSIVE
+       TABLET / MOBILE
        ========================================================= */
 
     @media(max-width:700px){
@@ -422,50 +505,77 @@
         padding:14px;
       }
 
+
       .ranking-grid{
         grid-template-columns:1fr;
+
         gap:12px;
       }
+
 
       .logo{
         width:50px;
         height:50px;
       }
 
+
       .event-title{
         font-size:18px;
       }
+
 
       .clock{
         font-size:8px;
       }
 
+
       .clock strong{
         font-size:13px;
       }
+
 
       .section-title{
         font-size:16px;
       }
 
+
       .player-name{
         font-size:14px;
       }
+
 
       .score{
         font-size:18px;
       }
 
+
       .team-name{
         font-size:14px;
       }
+
 
       .team-score{
         font-size:19px;
       }
 
+
+      .home-btn{
+        padding:7px 10px;
+
+        font-size:9px;
+      }
+
+
+      .top-actions{
+        gap:7px;
+      }
+
     }
 
+
+    /* =========================================================
+       SMALL PHONE
+       ========================================================= */
 
     @media(max-width:420px){
 
@@ -473,33 +583,67 @@
         padding:10px;
       }
 
+
       .topbar{
         padding-bottom:12px;
+
         margin-bottom:12px;
+
+        gap:8px;
       }
+
 
       .brand{
         gap:9px;
       }
+
 
       .logo{
         width:42px;
         height:42px;
       }
 
+
       .event-title{
         font-size:15px;
       }
 
+
       .live-badge{
         padding:4px 8px;
+
         font-size:9px;
       }
 
+
+      .top-actions{
+        gap:5px;
+      }
+
+
+      .home-btn{
+        padding:6px 8px;
+
+        font-size:8px;
+      }
+
+
+      .clock{
+        font-size:7px;
+      }
+
+
+      .clock strong{
+        font-size:11px;
+      }
+
+
       .panel{
         padding:12px;
+
         border-radius:13px;
       }
+
 
       .ranking-row{
         grid-template-columns:
@@ -510,6 +654,7 @@
         padding:7px 0;
       }
 
+
       .rank{
         width:26px;
         height:26px;
@@ -517,17 +662,21 @@
         font-size:10px;
       }
 
+
       .player-name{
         font-size:12px;
       }
+
 
       .player-team{
         font-size:8px;
       }
 
+
       .score{
         font-size:16px;
       }
+
 
       .team-row{
         grid-template-columns:
@@ -538,9 +687,11 @@
         padding:8px 0;
       }
 
+
       .team-name{
         font-size:13px;
       }
+
 
       .team-score{
         font-size:17px;
@@ -563,9 +714,12 @@
 
   <div class="topbar">
 
+
+    <!-- BRAND -->
+
     <div class="brand">
 
-      <!-- Logo -->
+
       <img
         class="logo"
         src="https://raw.githubusercontent.com/mieyaziz/recron-bowling-overlay/main/recron-logo.png"
@@ -573,11 +727,13 @@
         onerror="this.style.display='none'"
       >
 
+
       <div>
 
         <div class="event-title">
           RECRON BOWLING TOURNAMENT 2026
         </div>
+
 
         <div class="live-badge">
 
@@ -592,15 +748,33 @@
     </div>
 
 
-    <div class="clock">
 
-      <strong id="clock">
-        --:--:--
-      </strong>
+    <!-- HOME + CLOCK -->
 
-      <span id="updated">
-        Connecting...
-      </span>
+    <div class="top-actions">
+
+
+      <a
+        href="https://mieyaziz.github.io/recron-bowling-overlay/"
+        class="home-btn"
+      >
+        🏠 HOME
+      </a>
+
+
+      <div class="clock">
+
+        <strong id="clock">
+          --:--:--
+        </strong>
+
+
+        <span id="updated">
+          Connecting...
+        </span>
+
+      </div>
+
 
     </div>
 
@@ -609,17 +783,16 @@
 
 
   <!-- =========================================================
-       TOP 5 MEN + TOP 5 WOMEN
+       TOP 5 LELAKI + TOP 5 PEREMPUAN
        ========================================================= -->
 
   <div class="ranking-grid">
 
 
-    <!-- =======================================================
-         TOP 5 MEN
-         ======================================================= -->
+    <!-- TOP 5 LELAKI -->
 
     <div class="panel">
+
 
       <div class="section-title">
 
@@ -629,6 +802,7 @@
 
       </div>
 
+
       <div id="individualMale">
 
         <div class="loading">
@@ -637,15 +811,15 @@
 
       </div>
 
+
     </div>
 
 
 
-    <!-- =======================================================
-         TOP 5 WOMEN
-         ======================================================= -->
+    <!-- TOP 5 PEREMPUAN -->
 
     <div class="panel">
+
 
       <div class="section-title">
 
@@ -655,6 +829,7 @@
 
       </div>
 
+
       <div id="individualFemale">
 
         <div class="loading">
@@ -662,6 +837,7 @@
         </div>
 
       </div>
+
 
     </div>
 
@@ -675,6 +851,7 @@
 
   <div class="panel team-panel">
 
+
     <div class="section-title">
 
       <span></span>
@@ -683,6 +860,7 @@
 
     </div>
 
+
     <div id="teamRanking">
 
       <div class="loading">
@@ -690,6 +868,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -705,11 +884,13 @@
       RECRON BOWLING TOURNAMENT 2026
     </span>
 
+
     <span>
       LIVE OVERLAY
     </span>
 
   </div>
+
 
 </div>
 
@@ -732,6 +913,7 @@ const API =
 function jsonp(page, params = {}) {
 
   return new Promise((resolve, reject) => {
+
 
     const callbackName =
       "cb_" +
@@ -769,7 +951,7 @@ function jsonp(page, params = {}) {
           )
         );
 
-      }, 15000);
+      },15000);
 
 
     function cleanup() {
@@ -915,19 +1097,15 @@ function renderIndividuals(
   }
 
 
-  /*
-    Pastikan hanya TOP 5.
-  */
-
   const top5 =
-    players
-      .slice(0,5);
+    players.slice(0,5);
 
 
   element.innerHTML =
     top5
       .map(
         (player,index) => {
+
 
           const rank =
             Number(
@@ -940,6 +1118,7 @@ function renderIndividuals(
 
             <div class="ranking-row">
 
+
               <div class="rank ${rankClass(rank)}">
                 ${rank}
               </div>
@@ -947,13 +1126,16 @@ function renderIndividuals(
 
               <div>
 
+
                 <div class="player-name">
                   ${esc(player.nama)}
                 </div>
 
+
                 <div class="player-team">
                   ${esc(player.team || "-")}
                 </div>
+
 
               </div>
 
@@ -961,6 +1143,7 @@ function renderIndividuals(
               <div class="score">
                 ${Number(player.total || 0)}
               </div>
+
 
             </div>
 
@@ -977,9 +1160,7 @@ function renderIndividuals(
    RENDER TEAM
    ============================================================= */
 
-function renderTeams(
-  teams
-) {
+function renderTeams(teams) {
 
   const element =
     document.getElementById(
@@ -1002,19 +1183,15 @@ function renderTeams(
   }
 
 
-  /*
-    Pastikan hanya TOP 5.
-  */
-
   const top5 =
-    teams
-      .slice(0,5);
+    teams.slice(0,5);
 
 
   element.innerHTML =
     top5
       .map(
         (team,index) => {
+
 
           const rank =
             Number(
@@ -1027,6 +1204,7 @@ function renderTeams(
 
             <div class="team-row">
 
+
               <div class="rank ${rankClass(rank)}">
                 ${rank}
               </div>
@@ -1034,14 +1212,17 @@ function renderTeams(
 
               <div>
 
+
                 <div class="team-name">
                   ${esc(team.team)}
                 </div>
+
 
                 <div class="team-members">
                   ${Number(team.players || 0)}
                   pemain
                 </div>
+
 
               </div>
 
@@ -1049,6 +1230,7 @@ function renderTeams(
               <div class="team-score">
                 ${Number(team.total || 0)}
               </div>
+
 
             </div>
 
@@ -1074,6 +1256,7 @@ function loadOverlay() {
   .then(
     data => {
 
+
       if(
         !data ||
         data.success !== true
@@ -1086,9 +1269,7 @@ function loadOverlay() {
       }
 
 
-      /*
-        TOP 5 LELAKI
-      */
+      /* TOP 5 LELAKI */
 
       renderIndividuals(
         data.individualMale || [],
@@ -1096,9 +1277,7 @@ function loadOverlay() {
       );
 
 
-      /*
-        TOP 5 PEREMPUAN
-      */
+      /* TOP 5 PEREMPUAN */
 
       renderIndividuals(
         data.individualFemale || [],
@@ -1106,18 +1285,14 @@ function loadOverlay() {
       );
 
 
-      /*
-        TOP 5 TEAM
-      */
+      /* TOP 5 TEAM */
 
       renderTeams(
         data.teamRanking || []
       );
 
 
-      /*
-        Last update
-      */
+      /* UPDATE TIME */
 
       document
         .getElementById(
@@ -1179,22 +1354,19 @@ function updateClock() {
 
 updateClock();
 
+
 setInterval(
   updateClock,
   1000
 );
 
 
-/*
-  Load pertama
-*/
+/* FIRST LOAD */
 
 loadOverlay();
 
 
-/*
-  Refresh setiap 5 saat
-*/
+/* AUTO REFRESH EVERY 5 SECONDS */
 
 setInterval(
   loadOverlay,
