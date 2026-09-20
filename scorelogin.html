@@ -246,14 +246,21 @@ function loadScore() {
 }
 
 function saveScore() {
-  const team=document.getElementById("team").value;
-  const nama=document.getElementById("player").value;
-  const g1=document.getElementById("g1").value;
-  const g2=document.getElementById("g2").value;
-  const g3=document.getElementById("g3").value;
+  const team = document.getElementById("team").value;
+  const nama = document.getElementById("player").value;
+  const g1 = document.getElementById("g1").value;
+  const g2 = document.getElementById("g2").value;
+  const g3 = document.getElementById("g3").value;
 
-  if(!team) { msg("saveMsg","❌ Sila pilih team.","err"); return; }
-  if(!nama) { msg("saveMsg","❌ Sila pilih pemain.","err"); return; }
+  if(!team) {
+    msg("saveMsg","❌ Sila pilih team.","err");
+    return;
+  }
+
+  if(!nama) {
+    msg("saveMsg","❌ Sila pilih pemain.","err");
+    return;
+  }
 
   for(const v of [g1,g2,g3]) {
     if(v!=="" && (Number(v)<0 || Number(v)>300)) {
@@ -266,18 +273,24 @@ function saveScore() {
   msg("saveMsg","");
 
   jsonp("api_score_save",{
-    token:token,
-    nama:nama,
-    team:team,
-    g1:g1,
-    g2:g2,
-    g3:g3
+    token: token,
+    nama: nama,
+    team: team,
+    g1: g1,
+    g2: g2,
+    g3: g3
   })
     .then(r=>{
       if(authFail(r)) return;
       if(!r.success) throw new Error(r.message||"Gagal menyimpan score.");
-      msg("saveMsg","✅ "+(r.message||"Score berjaya disimpan.")+
-        " • "+(r.team||team),"ok");
+
+      msg(
+        "saveMsg",
+        "✅ " + (r.message || "Score berjaya disimpan.") +
+        " • " + (r.team || team),
+        "ok"
+      );
+
       calcTotal();
     })
     .catch(e=>msg("saveMsg","❌ "+e.message,"err"))
