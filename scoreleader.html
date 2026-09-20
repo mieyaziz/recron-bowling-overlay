@@ -2211,29 +2211,20 @@ async function saveGame(gameNo){
     }
 
 
-    /* UPDATE LOCAL */
+    /* UPDATE FROM SERVER
+       Gunakan data score yang dipulangkan oleh backend.
+       Ini memastikan UI terus lock selepas score berjaya disimpan. */
 
-    if(gameNo === 1){
+    currentScores = {
+      g1: normaliseScore(result.g1),
+      g2: normaliseScore(result.g2),
+      g3: normaliseScore(result.g3)
+    };
 
-      currentScores.g1 =
-        score;
-
+    /* Fallback jika backend belum pulangkan score game ini */
+    if(currentScores["g" + gameNo] === ""){
+      currentScores["g" + gameNo] = score;
     }
-
-    if(gameNo === 2){
-
-      currentScores.g2 =
-        score;
-
-    }
-
-    if(gameNo === 3){
-
-      currentScores.g3 =
-        score;
-
-    }
-
 
     renderGames();
 
