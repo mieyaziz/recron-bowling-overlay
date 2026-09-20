@@ -1,437 +1,850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>RECRON • Bowling Tournament 2026</title>
 
+
   <style>
+
     *{
       box-sizing:border-box;
     }
 
-    html,body{
+
+    html,
+    body{
       margin:0;
       padding:0;
+
       width:100%;
       min-height:100%;
-      font-family:Arial,Helvetica,sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background:#080d14;
+
       color:#f5f7fb;
     }
 
+
     body{
       display:flex;
+
       justify-content:center;
       align-items:flex-start;
+
       padding:28px 16px;
     }
+
 
     .container{
       width:min(900px,100%);
     }
 
+
     .card{
       position:relative;
+
       overflow:hidden;
-      border:1px solid rgba(255,193,7,.45);
+
+      border:
+        1px solid
+        rgba(255,193,7,.45);
+
       border-radius:28px;
+
       background:
+
         radial-gradient(
           circle at top right,
           rgba(255,193,7,.08),
           transparent 35%
         ),
+
         linear-gradient(
           180deg,
           #151c26 0%,
           #0d141e 100%
         );
-      box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.45);
     }
 
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
     .header{
-      padding:42px 36px 26px;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      padding:
+        42px
+        36px
+        26px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
     }
+
 
     .eyebrow{
       margin-bottom:10px;
+
       color:#ffc107;
+
       font-size:12px;
       font-weight:900;
+
       letter-spacing:3px;
+
       text-transform:uppercase;
     }
+
 
     .title{
       margin:0;
+
       max-width:780px;
+
       color:#f7f8fb;
-      font-size:clamp(38px,7vw,58px);
+
+      font-size:
+        clamp(
+          38px,
+          7vw,
+          58px
+        );
+
       line-height:.96;
+
       font-weight:900;
+
       letter-spacing:-2px;
+
       text-transform:uppercase;
     }
+
 
     .subtitle{
       margin-top:14px;
+
       color:#d9e3f1;
+
       font-size:13px;
+
       font-weight:600;
     }
 
+
     .live-badge{
       display:inline-flex;
+
       align-items:center;
+
       gap:8px;
+
       margin-top:18px;
-      padding:7px 12px;
-      border:1px solid rgba(255,193,7,.35);
+
+      padding:
+        7px
+        12px;
+
+      border:
+        1px solid
+        rgba(255,193,7,.35);
+
       border-radius:999px;
+
       color:#ffd54f;
-      background:rgba(255,193,7,.04);
+
+      background:
+        rgba(255,193,7,.04);
+
       font-size:9px;
+
       font-weight:900;
+
       letter-spacing:1.2px;
+
       text-transform:uppercase;
     }
+
 
     .live-dot{
       width:7px;
       height:7px;
+
       border-radius:50%;
+
       background:#ff4d4d;
-      box-shadow:0 0 10px rgba(255,77,77,.8);
+
+      box-shadow:
+        0 0 10px
+        rgba(255,77,77,.8);
     }
+
+
+    /* =====================================================
+       MENU
+       ===================================================== */
 
     .menu{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+
+      grid-template-columns:
+        repeat(2,1fr);
+
       gap:12px;
-      padding:26px 36px 30px;
+
+      padding:
+        26px
+        36px
+        30px;
     }
+
 
     .menu-card{
       min-height:92px;
+
       display:flex;
+
       align-items:center;
+
       gap:14px;
-      padding:16px 16px;
-      border:1px solid rgba(255,255,255,.08);
+
+      padding:
+        16px
+        16px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
       border-radius:16px;
+
       color:#f5f7fb;
-      background:rgba(255,255,255,.035);
+
+      background:
+        rgba(255,255,255,.035);
+
       text-decoration:none;
+
       transition:
         transform .18s ease,
         border-color .18s ease,
         background .18s ease;
     }
 
+
     .menu-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,193,7,.38);
-      background:rgba(255,193,7,.055);
+
+      transform:
+        translateY(-2px);
+
+      border-color:
+        rgba(255,193,7,.38);
+
+      background:
+        rgba(255,193,7,.055);
     }
 
+
     .menu-icon{
-      flex:0 0 46px;
+
+      flex:
+        0 0 46px;
+
       width:46px;
       height:46px;
+
       display:flex;
+
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(255,193,7,.24);
+
+      border:
+        1px solid
+        rgba(255,193,7,.24);
+
       border-radius:13px;
-      background:rgba(255,193,7,.06);
+
+      background:
+        rgba(255,193,7,.06);
+
       font-size:22px;
     }
 
+
     .menu-content{
+
       min-width:0;
+
       flex:1;
     }
 
+
     .menu-title{
+
       color:#f7f8fb;
+
       font-size:14px;
+
       font-weight:900;
     }
 
+
     .menu-desc{
+
       margin-top:6px;
+
       color:#9ba7b8;
+
       font-size:10px;
+
       line-height:1.4;
     }
 
+
     .menu-arrow{
-      flex:0 0 auto;
+
+      flex:
+        0 0 auto;
+
       color:#ffc52b;
+
       font-size:22px;
+
       font-weight:700;
     }
 
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
     .footer{
+
       display:flex;
+
       justify-content:space-between;
+
       align-items:center;
-      padding:16px 36px;
-      border-top:1px solid rgba(255,255,255,.07);
+
+      padding:
+        16px
+        36px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
       color:#718096;
+
       font-size:9px;
+
       letter-spacing:.6px;
+
       text-transform:uppercase;
     }
 
+
     .footer-right{
+
       color:#b7c1cf;
+
       font-weight:800;
     }
 
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
     @media(max-width:700px){
+
       body{
+
         padding:12px;
       }
 
+
       .card{
+
         border-radius:20px;
       }
 
+
       .header{
-        padding:32px 20px 22px;
+
+        padding:
+          32px
+          20px
+          22px;
       }
+
 
       .title{
-        font-size:clamp(34px,11vw,48px);
+
+        font-size:
+          clamp(
+            34px,
+            11vw,
+            48px
+          );
       }
 
+
       .menu{
+
         grid-template-columns:1fr;
+
         padding:20px;
       }
 
+
       .footer{
-        padding:15px 20px;
+
+        padding:
+          15px
+          20px;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <div class="container">
+
 
     <div class="card">
 
-      <!-- HEADER -->
+
+      <!-- =================================================
+           HEADER
+           ================================================= -->
+
       <div class="header">
+
 
         <div class="eyebrow">
           RECRON
         </div>
 
+
         <h1 class="title">
+
           BOWLING<br>
           TOURNAMENT 2026
+
         </h1>
 
+
         <div class="subtitle">
-          Official Live Results &amp; Tournament Information
+
+          Official Live Results &amp;
+          Tournament Information
+
         </div>
 
+
         <div class="live-badge">
+
           <span class="live-dot"></span>
+
           LIVE TOURNAMENT HUB
+
         </div>
+
 
       </div>
 
 
-      <!-- MENU -->
+
+      <!-- =================================================
+           MENU
+           ================================================= -->
+
       <div class="menu">
 
-        <!-- SCORE ENTRY -->
-        <a class="menu-card" href="./scorelogin.html">
 
-          <div class="menu-icon">🎯</div>
+        <!-- ===============================================
+             SCORE ENTRY URUSETIA
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./scorelogin.html"
+        >
+
+          <div class="menu-icon">
+            🎯
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Score Entry
             </div>
 
+
             <div class="menu-desc">
               Enter and update player bowling scores securely.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- LIVE OVERLAY -->
-        <a class="menu-card" href="./liveoverlay.html">
 
-          <div class="menu-icon">📺</div>
+        <!-- ===============================================
+             SCORE ENTRY KETUA KUMPULAN
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./scoreleader.html"
+        >
+
+          <div class="menu-icon">
+            👤
+          </div>
+
 
           <div class="menu-content">
+
+            <div class="menu-title">
+              Score Entry Ketua Kumpulan
+            </div>
+
+
+            <div class="menu-desc">
+              Ketua kumpulan boleh masukkan score
+              untuk team sendiri sahaja.
+            </div>
+
+          </div>
+
+
+          <div class="menu-arrow">
+            ›
+          </div>
+
+        </a>
+
+
+
+        <!-- ===============================================
+             LIVE OVERLAY
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./liveoverlay.html"
+        >
+
+          <div class="menu-icon">
+            📺
+          </div>
+
+
+          <div class="menu-content">
+
             <div class="menu-title">
               Live Overlay
             </div>
 
+
             <div class="menu-desc">
-              Open the live bowling overlay for TikTok LIVE Studio.
+              Open the live bowling overlay
+              for TikTok LIVE Studio.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- LIVE INDIVIDUAL -->
-        <a class="menu-card" href="./liveindividual.html">
 
-          <div class="menu-icon">🎳</div>
+        <!-- ===============================================
+             LIVE INDIVIDUAL
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./liveindividual.html"
+        >
+
+          <div class="menu-icon">
+            🎳
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Live Individual Result
             </div>
 
+
             <div class="menu-desc">
-              View current individual player rankings and scores.
+              View current individual player
+              rankings and scores.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- LIVE TEAM -->
-        <a class="menu-card" href="./teamgroup.html">
 
-          <div class="menu-icon">🏆</div>
+        <!-- ===============================================
+             LIVE TEAM
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./teamgroup.html"
+        >
+
+          <div class="menu-icon">
+            🏆
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Live Team Result
             </div>
 
+
             <div class="menu-desc">
-              Follow team ranking, player scores and team totals.
+              Follow team ranking, player scores
+              and team totals.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- TEAM DIRECTORY -->
-        <a class="menu-card" href="./teams.html">
 
-          <div class="menu-icon">👥</div>
+        <!-- ===============================================
+             TEAM DIRECTORY
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./teams.html"
+        >
+
+          <div class="menu-icon">
+            👥
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Team Directory
             </div>
 
+
             <div class="menu-desc">
-              Browse participating teams and their players.
+              Browse participating teams
+              and their players.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- RULES -->
-        <a class="menu-card" href="./rules.html">
 
-          <div class="menu-icon">📋</div>
+        <!-- ===============================================
+             RULES
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./rules.html"
+        >
+
+          <div class="menu-icon">
+            📋
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Tournament Rules
             </div>
 
+
             <div class="menu-desc">
-              View the official rules and tournament information.
+              View the official rules
+              and tournament information.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- COUNTDOWN -->
-        <a class="menu-card" href="./countdown.html">
 
-          <div class="menu-icon">⏱️</div>
+        <!-- ===============================================
+             COUNTDOWN
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./countdown.html"
+        >
+
+          <div class="menu-icon">
+            ⏱️
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Countdown
             </div>
 
+
             <div class="menu-desc">
-              Event countdown and tournament schedule information.
+              Event countdown and tournament
+              schedule information.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
 
 
-        <!-- ATTENDANCE -->
-        <a class="menu-card" href="./attendance.html">
 
-          <div class="menu-icon">🧾</div>
+        <!-- ===============================================
+             ATTENDANCE
+             =============================================== -->
+
+        <a
+          class="menu-card"
+          href="./attendance.html"
+        >
+
+          <div class="menu-icon">
+            🧾
+          </div>
+
 
           <div class="menu-content">
+
             <div class="menu-title">
               Attendance
             </div>
 
+
             <div class="menu-desc">
-              Check participant attendance status in real time.
+              Check participant attendance
+              status in real time.
             </div>
+
           </div>
 
-          <div class="menu-arrow">›</div>
+
+          <div class="menu-arrow">
+            ›
+          </div>
 
         </a>
+
 
       </div>
 
 
-      <!-- FOOTER -->
+
+      <!-- =================================================
+           FOOTER
+           ================================================= -->
+
       <div class="footer">
+
 
         <div>
           RECRON BOWLING TOURNAMENT 2026
         </div>
 
+
         <div class="footer-right">
           LIVE SCOREBOARD
         </div>
 
+
       </div>
+
 
     </div>
 
   </div>
+
 
 </body>
 </html>
