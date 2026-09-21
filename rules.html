@@ -1,14 +1,981 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RECRON • Tournament Rules</title><style>
-:root{--bg:#080b12;--panel:#111722;--gold:#f6c744;--gold2:#ffdf72;--text:#f5f7fb;--muted:#9aa5b5;--line:rgba(255,255,255,.08)}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% -10%,rgba(246,199,68,.13),transparent 34%),linear-gradient(180deg,#0b0f17,#070a10);color:var(--text)}
-body{padding:10px 8px 28px}.wrap{width:min(1040px,100%);margin:auto}.panel{position:relative;overflow:hidden;border:1px solid rgba(246,199,68,.42);border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.035),transparent 45%),linear-gradient(180deg,#131a26,#0d131d);box-shadow:0 24px 70px rgba(0,0,0,.45)}
-.home{position:absolute;right:18px;top:16px;z-index:3;padding:9px 14px;border:1px solid rgba(246,199,68,.45);border-radius:999px;background:rgba(246,199,68,.07);color:var(--gold2);text-decoration:none;font-size:11px;font-weight:900;letter-spacing:1px}.header{padding:34px 24px 22px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase}h1{margin:8px 0 0;font-size:clamp(32px,6vw,56px);line-height:1}.sub{margin:11px 0 0;color:#c0c8d4;font-size:13px;letter-spacing:.6px}.status{margin-top:10px;color:var(--muted);font-size:10px}.card{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}footer{padding:18px 24px;border-top:1px solid var(--line);color:#758093;font-size:9px;letter-spacing:1.2px;text-transform:uppercase}
-@media(max-width:680px){.header{padding:30px 18px 20px}.home{right:13px;top:13px}.sub{font-size:11px}}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RECRON • Tournament Rules</title>
 
-.rules{display:grid;gap:12px;padding:20px}.category{padding:13px 15px;border-left:4px solid var(--gold);border-radius:12px;background:rgba(246,199,68,.07);color:var(--gold);font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}.rule{display:grid;grid-template-columns:42px 1fr;gap:13px;padding:17px}.num{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--gold);color:#111;font-weight:900}.title{font-size:15px;font-weight:900;margin-bottom:6px}.content{color:#aeb8c7;font-size:12px;line-height:1.7;white-space:pre-line}
-</style></head><body><main class="wrap"><section class="panel"><a class="home" href="./">⌂ HOME</a><header class="header"><div class="eyebrow">OFFICIAL INFORMATION</div><h1>TOURNAMENT RULES</h1><div class="sub">Sila baca dan fahami semua peraturan pertandingan.</div><div id="status" class="status">Loading rules...</div></header><section id="rules" class="rules"></section><footer>RECRON BOWLING TOURNAMENT 2026</footer></section></main><script>
-const API="https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec?page=api_rules&callback=rulesCallback";
-function esc(v){const d=document.createElement("div");d.textContent=v==null?"":String(v);return d.innerHTML}
-function rulesCallback(rows){let n=0,html="";(rows||[]).forEach(r=>{let t=String(r.title||"").trim(),c=String(r.content||"").trim();if(!t&&!c)return;if(t&&!c){html+=`<div class="category">${esc(t)}</div>`;return}n++;html+=`<article class="card rule"><div class="num">${n}</div><div><div class="title">${esc(t||"Peraturan "+n)}</div><div class="content">${esc(c)}</div></div></article>`});document.getElementById("rules").innerHTML=html||'<div class="card rule"><div class="content">Tiada peraturan dijumpai.</div></div>';document.getElementById("status").textContent=n+" peraturan dimuatkan"}
-function load(){const s=document.createElement("script");s.src=API;s.onerror=()=>document.getElementById("status").textContent="Unable to load rules";document.body.appendChild(s)}load();
-</script></body></html>
+<style>
+:root{
+  --bg:#070a10;
+  --panel:#101722;
+  --panel2:#141d2a;
+  --gold:#f6c744;
+  --gold2:#ffe38a;
+  --text:#f5f7fb;
+  --muted:#a7b1c1;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 25px 80px rgba(0,0,0,.48);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100%;
+  padding:14px 10px 34px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(246,199,68,.16),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 0% 45%,
+      rgba(246,199,68,.055),
+      transparent 25%
+    ),
+    linear-gradient(180deg,#0b0f17,#06080d);
+  color:var(--text);
+}
+
+.wrap{
+  width:min(1080px,100%);
+  margin:auto;
+}
+
+.panel{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(246,199,68,.38);
+  border-radius:26px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.035),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #131b27,
+      #0b111a
+    );
+  box-shadow:var(--shadow);
+}
+
+.panel:before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:2px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold),
+      transparent
+    );
+  opacity:.8;
+}
+
+/* HOME BUTTON */
+
+.home{
+  position:absolute;
+  right:18px;
+  top:18px;
+  z-index:5;
+
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:10px 15px;
+
+  border:1px solid rgba(246,199,68,.42);
+  border-radius:999px;
+
+  background:rgba(246,199,68,.065);
+
+  color:var(--gold2);
+  text-decoration:none;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.3px;
+
+  transition:.2s ease;
+}
+
+.home:hover{
+  background:rgba(246,199,68,.15);
+  border-color:rgba(246,199,68,.75);
+  transform:translateY(-1px);
+}
+
+/* HEADER */
+
+.header{
+  position:relative;
+  padding:42px 26px 24px;
+  border-bottom:1px solid var(--line);
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:var(--gold);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2.7px;
+
+  text-transform:uppercase;
+}
+
+.eyebrow:before{
+  content:"🎳";
+  font-size:16px;
+  letter-spacing:0;
+}
+
+h1{
+  margin:9px 0 0;
+
+  font-size:clamp(34px,6vw,58px);
+  line-height:.98;
+
+  letter-spacing:-1.8px;
+}
+
+.sub{
+  margin:12px 0 0;
+  max-width:680px;
+
+  color:#c2cad6;
+
+  font-size:13px;
+  line-height:1.6;
+  letter-spacing:.35px;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  margin-top:14px;
+  padding:6px 10px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  background:rgba(255,255,255,.025);
+
+  color:#8995a8;
+
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.status:before{
+  content:"";
+
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--gold);
+
+  box-shadow:
+    0 0 10px rgba(246,199,68,.65);
+}
+
+/* RULES CONTAINER */
+
+.rules{
+  display:grid;
+  gap:11px;
+  padding:20px;
+}
+
+/* CATEGORY */
+
+.category{
+  margin-top:5px;
+
+  padding:11px 14px;
+
+  border-left:4px solid var(--gold);
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(246,199,68,.09),
+      rgba(246,199,68,.025)
+    );
+
+  color:var(--gold2);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.6px;
+
+  text-transform:uppercase;
+}
+
+/* RULE CARD */
+
+.rule{
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.012)
+    );
+
+  overflow:hidden;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.rule:hover{
+  border-color:rgba(246,199,68,.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(246,199,68,.055),
+      rgba(255,255,255,.012)
+    );
+}
+
+.rule.open{
+  border-color:rgba(246,199,68,.38);
+}
+
+/* RULE HEADER */
+
+.rule-head{
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    42px
+    1fr
+    30px;
+
+  align-items:center;
+
+  gap:13px;
+
+  padding:15px 16px;
+
+  border:0;
+
+  background:none;
+
+  color:inherit;
+
+  text-align:left;
+
+  cursor:pointer;
+}
+
+/* NUMBER */
+
+.num{
+  width:38px;
+  height:38px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:11px;
+
+  background:var(--gold);
+
+  color:#111;
+
+  font-size:12px;
+  font-weight:900;
+
+  box-shadow:
+    0 4px 18px rgba(246,199,68,.14);
+}
+
+/* TITLE */
+
+.title{
+  font-size:14px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+/* ARROW */
+
+.chevron{
+  width:28px;
+  height:28px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--line);
+  border-radius:50%;
+
+  color:var(--gold2);
+
+  font-size:16px;
+
+  transition:
+    transform .25s ease;
+}
+
+.rule.open .chevron{
+  transform:rotate(180deg);
+}
+
+/* ACCORDION */
+
+.rule-body{
+  display:grid;
+
+  grid-template-rows:0fr;
+
+  transition:
+    grid-template-rows .28s ease;
+}
+
+.rule.open .rule-body{
+  grid-template-rows:1fr;
+}
+
+.rule-inner{
+  overflow:hidden;
+}
+
+/* CONTENT */
+
+.content{
+  padding:
+    0
+    16px
+    18px
+    71px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.75;
+
+  white-space:pre-line;
+}
+
+/* EMPTY */
+
+.empty{
+  padding:28px;
+
+  text-align:center;
+
+  color:var(--muted);
+}
+
+/* LOADING */
+
+.loading{
+  padding:30px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.loading .spinner{
+  width:28px;
+  height:28px;
+
+  margin:
+    0
+    auto
+    12px;
+
+  border:
+    3px solid
+    rgba(246,199,68,.18);
+
+  border-top-color:var(--gold);
+
+  border-radius:50%;
+
+  animation:
+    spin .8s linear infinite;
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+/* FOOTER */
+
+footer{
+  padding:18px 24px;
+
+  border-top:1px solid var(--line);
+
+  color:#687487;
+
+  font-size:9px;
+
+  letter-spacing:1.2px;
+
+  text-transform:uppercase;
+
+  text-align:center;
+}
+
+/* BACK TO TOP */
+
+.top{
+  position:fixed;
+
+  right:18px;
+  bottom:18px;
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid
+    rgba(246,199,68,.45);
+
+  border-radius:50%;
+
+  background:
+    rgba(13,18,27,.9);
+
+  color:var(--gold2);
+
+  cursor:pointer;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(8px);
+
+  transition:.2s ease;
+
+  z-index:20;
+}
+
+.top.show{
+  opacity:1;
+  visibility:visible;
+
+  transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:680px){
+
+  body{
+    padding:
+      8px
+      6px
+      24px;
+  }
+
+  .panel{
+    border-radius:20px;
+  }
+
+  .home{
+    right:12px;
+    top:12px;
+
+    padding:
+      8px
+      11px;
+  }
+
+  .header{
+    padding:
+      68px
+      18px
+      20px;
+  }
+
+  h1{
+    font-size:38px;
+
+    letter-spacing:-1.2px;
+  }
+
+  .sub{
+    font-size:11px;
+  }
+
+  .rules{
+    padding:12px;
+
+    gap:9px;
+  }
+
+  .rule-head{
+
+    grid-template-columns:
+      36px
+      1fr
+      28px;
+
+    gap:10px;
+
+    padding:
+      13px
+      12px;
+  }
+
+  .num{
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+  }
+
+  .title{
+    font-size:13px;
+  }
+
+  .content{
+
+    padding:
+      0
+      13px
+      16px
+      58px;
+
+    font-size:11.5px;
+
+    line-height:1.7;
+  }
+
+  .category{
+
+    padding:
+      10px
+      12px;
+
+    font-size:9px;
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<main class="wrap">
+
+<section class="panel">
+
+<a class="home" href="./">
+  ⌂ HOME
+</a>
+
+<header class="header">
+
+  <div class="eyebrow">
+    Official Information
+  </div>
+
+  <h1>
+    TOURNAMENT RULES
+  </h1>
+
+  <div class="sub">
+    Sila baca dan fahami semua peraturan pertandingan
+    sebelum permainan bermula.
+  </div>
+
+  <div id="status" class="status">
+    Loading rules...
+  </div>
+
+</header>
+
+
+<section id="rules" class="rules">
+
+  <div class="loading">
+
+    <div class="spinner"></div>
+
+    Memuatkan peraturan pertandingan...
+
+  </div>
+
+</section>
+
+
+<footer>
+  RECRON BOWLING TOURNAMENT 2026
+</footer>
+
+</section>
+
+</main>
+
+
+<button
+  class="top"
+  id="topBtn"
+  title="Back to top"
+>
+  ↑
+</button>
+
+
+<script>
+
+/* =========================================================
+   API
+   ========================================================= */
+
+const API =
+"https://script.google.com/macros/s/AKfycbwW8_FQ12mi6iQqfZaXbZ7C0qDm5_hR--lSDwYzWGixBu-APdxAxgImby7ZeVkwbRVO/exec?page=api_rules&callback=rulesCallback";
+
+
+/* =========================================================
+   HTML ESCAPE
+   ========================================================= */
+
+function esc(v){
+
+  const d =
+    document.createElement("div");
+
+  d.textContent =
+    v == null
+      ? ""
+      : String(v);
+
+  return d.innerHTML;
+}
+
+
+/* =========================================================
+   RULES CALLBACK
+   ========================================================= */
+
+function rulesCallback(rows){
+
+  let n = 0;
+
+  let html = "";
+
+
+  (rows || []).forEach(r => {
+
+    const t =
+      String(r.title || "").trim();
+
+    const c =
+      String(r.content || "").trim();
+
+
+    /* Ignore completely empty row */
+
+    if(!t && !c){
+      return;
+    }
+
+
+    /*
+      If Title exists but Content is empty,
+      treat it as a category heading.
+    */
+
+    if(t && !c){
+
+      html += `
+        <div class="category">
+          ${esc(t)}
+        </div>
+      `;
+
+      return;
+    }
+
+
+    n++;
+
+
+    html += `
+
+      <article class="rule">
+
+        <button
+          class="rule-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="num">
+            ${n}
+          </span>
+
+
+          <span class="title">
+            ${esc(
+              t || "Peraturan " + n
+            )}
+          </span>
+
+
+          <span class="chevron">
+            ⌄
+          </span>
+
+        </button>
+
+
+        <div class="rule-body">
+
+          <div class="rule-inner">
+
+            <div class="content">
+              ${esc(c)}
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `;
+
+  });
+
+
+  document.getElementById("rules").innerHTML =
+
+    html ||
+
+    `
+      <div class="empty">
+        Tiada peraturan dijumpai.
+      </div>
+    `;
+
+
+  document.getElementById("status").textContent =
+
+    n +
+    (
+      n === 1
+        ? " peraturan dimuatkan"
+        : " peraturan dimuatkan"
+    );
+
+
+  initAccordion();
+
+}
+
+
+/* =========================================================
+   ACCORDION
+   ========================================================= */
+
+function initAccordion(){
+
+  document
+    .querySelectorAll(".rule-head")
+    .forEach(btn => {
+
+      btn.addEventListener(
+        "click",
+        () => {
+
+          const rule =
+            btn.closest(".rule");
+
+          const isOpen =
+            rule.classList.contains("open");
+
+
+          /*
+            Close every other rule
+          */
+
+          document
+            .querySelectorAll(".rule.open")
+            .forEach(x => {
+
+              x.classList.remove("open");
+
+              x
+                .querySelector(".rule-head")
+                .setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+            });
+
+
+          /*
+            Open selected rule
+          */
+
+          if(!isOpen){
+
+            rule.classList.add("open");
+
+            btn.setAttribute(
+              "aria-expanded",
+              "true"
+            );
+
+          }
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   LOAD API
+   ========================================================= */
+
+function load(){
+
+  const s =
+    document.createElement("script");
+
+
+  s.src = API;
+
+
+  s.onerror = () => {
+
+    document.getElementById(
+      "status"
+    ).textContent =
+      "Unable to load rules";
+
+
+    document.getElementById(
+      "rules"
+    ).innerHTML =
+
+      `
+        <div class="empty">
+
+          Peraturan gagal dimuatkan.
+
+          <br>
+
+          Sila cuba semula.
+
+        </div>
+      `;
+
+  };
+
+
+  document.body.appendChild(s);
+
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+const topBtn =
+  document.getElementById("topBtn");
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if(window.scrollY > 350){
+
+      topBtn.classList.add("show");
+
+    }else{
+
+      topBtn.classList.remove("show");
+
+    }
+
+  }
+);
+
+
+topBtn.addEventListener(
+  "click",
+  () => {
+
+    window.scrollTo({
+
+      top:0,
+
+      behavior:"smooth"
+
+    });
+
+  }
+);
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+load();
+
+</script>
+
+</body>
+</html>
